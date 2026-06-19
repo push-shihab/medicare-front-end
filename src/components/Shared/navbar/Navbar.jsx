@@ -5,12 +5,18 @@ import { Link, Button } from "@heroui/react";
 import { FaHeartbeat } from "react-icons/fa";
 import { FiMenu, FiX } from "react-icons/fi";
 import Image from "next/image";
+import { authClient, useSession } from "@/app/lib/auth-client";
+import { redirect } from "next/navigation";
 
 export default function Navbar() {
+  const { data } = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const handleLogout = async () => {
+    await authClient.signOut();
+    redirect("/");
+  };
 
   // Mock authentication state (Toggle to true to preview avatar state)
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAvatarDropdownOpen, setIsAvatarDropdownOpen] = useState(false);
 
   const menuItems = [
@@ -62,42 +68,20 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
-
         {/* ================= RIGHT SIDE: AUTH BUTTONS ================= */}
         <div className="flex items-center gap-3">
-          {!isLoggedIn ? (
-            <>
-              {/* Login Button */}
-              <Button
-                as={Link}
-                href="#"
-                variant="bordered"
-                className="h-10 sm:min-w-[85px] rounded-[8px] border-[1.5px] border-[#0EA5E9] bg-transparent text-[15px] font-semibold tracking-[0.01em] text-[#0EA5E9] transition-all duration-200 hover:bg-[#E0F2FE]"
-              >
-                Login
-              </Button>
-
-              {/* Register Button */}
-              <Button
-                as={Link}
-                href="#"
-                className="h-10 sm:min-w-[95px] rounded-[8px] bg-[#0EA5E9] text-[15px] font-semibold tracking-[0.01em] text-white shadow-sm transition-all duration-200 hover:bg-[#0369A1]"
-              >
-                Register
-              </Button>
-            </>
-          ) : (
+          {data?.user ? (
             /* Logged In Avatar Dropdown State */
             <div className="relative">
               <button
                 onClick={() => setIsAvatarDropdownOpen(!isAvatarDropdownOpen)}
-                className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#E2E8F0] overflow-hidden focus:outline-none focus:border-[#0EA5E9]"
+                className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#E2E8F0] overflow-hidden focus:outline-none focus:border-[#0EA5E9] cursor-pointer"
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces"
-                  alt="User Avatar"
+                  src={data?.user?.image}
+                  alt={data?.user?.name}
                   fill
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover rounded-full outline-2 outline-[#0EA5E9]"
                 />
               </button>
 
@@ -121,16 +105,35 @@ export default function Navbar() {
                   <div className="my-1 border-t border-[#E2E8F0]" />
                   <button
                     onClick={() => {
+                      handleLogout();
                       setIsAvatarDropdownOpen(false);
-                      setIsLoggedIn(false);
                     }}
-                    className="block w-full text-left rounded-[6px] px-4 py-2 text-sm text-[#EF4444] hover:bg-[#FEE2E2]"
+                    className="block w-full text-left rounded-[6px] px-4 py-2 text-sm text-[#EF4444] hover:bg-[#FEE2E2] cursor-pointer"
                   >
                     Logout
                   </button>
                 </div>
               )}
             </div>
+          ) : (
+            <>
+              {/* Login Button */}
+              <Link
+                href="/login"
+                variant="bordered"
+                className="h-10 flex justify-center sm:min-w-[85px] rounded-[8px] border-[1.5px] border-[#0EA5E9] bg-transparent text-[15px] font-semibold tracking-[0.01em] text-[#0EA5E9] transition-all duration-200 hover:bg-[#E0F2FE]"
+              >
+                Login
+              </Link>
+
+              {/* Register Button */}
+              <Link
+                href="/register"
+                className="h-10 flex justify-center sm:min-w-[95px] rounded-[8px] bg-[#0EA5E9] text-[15px] font-semibold tracking-[0.01em] text-white shadow-sm transition-all duration-200 hover:bg-[#0369A1]"
+              >
+                Register
+              </Link>
+            </>
           )}
         </div>
       </header>
