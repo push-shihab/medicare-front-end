@@ -10,6 +10,7 @@ import Image from "next/image";
 import illustration from "../../../../public/images/flat-national-doctor-s-day-illustration.png";
 import { authClient } from "@/app/lib/auth-client";
 import toast from "react-hot-toast";
+import { redirect } from "next/navigation";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -41,6 +42,7 @@ export default function Login() {
       }
       if (res) {
         toast.success("login in successfull");
+        redirect("/");
       }
     } finally {
       setIsSubmittingForm(false);

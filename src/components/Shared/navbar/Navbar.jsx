@@ -20,10 +20,11 @@ export default function Navbar() {
   const [isAvatarDropdownOpen, setIsAvatarDropdownOpen] = useState(false);
 
   const menuItems = [
-    { label: "Home", href: "#" },
-    { label: "Find Doctors", href: "#" },
-    { label: "About Us", href: "#" },
-    { label: "Contact Us", href: "#" },
+    { label: "Home", href: "/" },
+    { label: "Find Doctors", href: "/doctors" },
+    { label: "About Us", href: "/about-us" },
+    { label: "Contact Us", href: "/contact-us" },
+    { label: "Dashboard", href: `${data?.user ? "/dashboard" : "/login"}` },
   ];
 
   return (
@@ -45,7 +46,7 @@ export default function Navbar() {
           </button>
 
           {/* Brand Logo */}
-          <Link href="#" className="flex items-center gap-2 active:opacity-90">
+          <Link href="/" className="flex items-center gap-2 active:opacity-90">
             <FaHeartbeat className="text-[22px] text-[#0EA5E9]" />
             <span className="text-[20px] font-bold text-[#0F172A] tracking-tight whitespace-nowrap">
               MediCare Connect
