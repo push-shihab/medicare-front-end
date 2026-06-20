@@ -35,14 +35,13 @@ export default function Login() {
         email: data.email,
         password: data.password,
         rememberMe: true,
-        callbackURL: "/login",
       });
       if (error) {
         toast.error(error.message);
       }
       if (res) {
         toast.success("login in successfull");
-        redirect("/");
+        window.location.href = "/dashboard";
       }
     } finally {
       setIsSubmittingForm(false);

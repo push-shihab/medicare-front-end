@@ -10,7 +10,8 @@ import Image from "next/image";
 import illustration from "../../../../public/images/flat-national-doctor-s-day-illustration.png";
 import { authClient } from "@/app/lib/auth-client";
 import toast from "react-hot-toast";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
+import { doctorDataAfterRegister } from "@/app/utility/actions/doctor/doctor";
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,6 +19,7 @@ export default function Register() {
   const [isSubmittingForm, setIsSubmittingForm] = useState(false);
   const [previewUrl, setPreviewUrl] = useState("");
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
+  const router = useRouter();
 
   const {
     register,
@@ -28,6 +30,8 @@ export default function Register() {
     defaultValues: {
       fullName: "",
       email: "",
+      phone: "",
+      gender: "male",
       role: "patient",
       profilePhoto: null,
       password: "",
@@ -90,16 +94,33 @@ export default function Register() {
         password: data.password,
         image: uploadedImageUrl,
         role: data.role,
-        callbackURL: "/register",
+        phone: data.phone,
+        gender: data.gender,
       });
 
       if (error) {
         toast.error(error.message);
+        return;
       }
+
       if (res) {
         toast.success(`You have successfully registered ${data.fullName}`);
-        redirect("/");
+
+        if (data.role === "doctor") {
+          const response = await doctorDataAfterRegister({
+            ...data,
+            image: uploadedImageUrl,
+          });
+          if (response.acknowledged) {
+            router.push("/dashboard");
+            router.refresh();
+          }
+        } else {
+          router.push("/dashboard");
+        }
       }
+    } catch (err) {
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setIsSubmittingForm(false);
     }
@@ -216,6 +237,55 @@ export default function Register() {
               {errors.email && (
                 <span className="text-[13px] text-[#EF4444]">
                   {errors.email.message}
+                </span>
+              )}
+            </div>
+
+            {/* Input: Phone Number */}
+            <div className="flex flex-col gap-2">
+              <label className="text-[14px] font-medium text-[#0F172A]">
+                Phone Number
+              </label>
+              <input
+                type="tel"
+                placeholder="Enter your phone number"
+                {...register("phone", { required: "Phone number is required" })}
+                className={`h-12 w-full rounded-[8px] border-[1.5px] bg-white px-4 text-[15px] text-[#0F172A] placeholder-[#94A3B8] outline-none transition-all focus:border-[#0EA5E9] focus:shadow-[0_0_0_3px_rgba(14,165,233,0.15)] ${
+                  errors.phone ? "border-[#EF4444]" : "border-[#E2E8F0]"
+                }`}
+              />
+              {errors.phone && (
+                <span className="text-[13px] text-[#EF4444]">
+                  {errors.phone.message}
+                </span>
+              )}
+            </div>
+
+            {/* Input: Gender Dropdown */}
+            <div className="flex flex-col gap-2">
+              <label className="text-[14px] font-medium text-[#0F172A]">
+                Gender
+              </label>
+              <div className="relative w-full">
+                <select
+                  {...register("gender", {
+                    required: "Gender selection is required",
+                  })}
+                  className={`h-12 w-full rounded-[8px] border-[1.5px] bg-white px-4 text-[15px] text-[#0F172A] outline-none transition-all focus:border-[#0EA5E9] focus:shadow-[0_0_0_3px_rgba(14,165,233,0.15)] appearance-none cursor-pointer ${
+                    errors.gender ? "border-[#EF4444]" : "border-[#E2E8F0]"
+                  }`}
+                >
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+                <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-slate-400 text-[10px]">
+                  ▼
+                </div>
+              </div>
+              {errors.gender && (
+                <span className="text-[13px] text-[#EF4444]">
+                  {errors.gender.message}
                 </span>
               )}
             </div>

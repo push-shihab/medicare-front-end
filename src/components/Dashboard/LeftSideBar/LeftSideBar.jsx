@@ -11,12 +11,14 @@ import {
   FiStar,
   FiUser,
 } from "react-icons/fi";
+import { useSession } from "@/app/lib/auth-client";
 
 export default function LeftSideBar() {
   const pathname = usePathname();
+  const { data } = useSession();
 
   // Navigation Items Layout Matrix
-  const mainNavItems = [
+  const patientNavItems = [
     { label: "Overview", href: "/dashboard/patient/overview", icon: FiGrid },
     {
       label: "My Appointments",
@@ -31,6 +33,29 @@ export default function LeftSideBar() {
     { label: "My Reviews", href: "/dashboard/patient/reviews", icon: FiStar },
     { label: "My Profile", href: "/dashboard/patient/profile", icon: FiUser },
   ];
+
+  const doctorNavItems = [
+    { label: "Overview", href: "/dashboard/doctor/overview", icon: FiGrid },
+    {
+      label: "Manage Schedule",
+      href: "/dashboard/doctor/schedule",
+      icon: FiCreditCard,
+    },
+    {
+      label: "Appointments",
+      href: "/dashboard/doctor/appointments",
+      icon: FiCalendar,
+    },
+    {
+      label: "Prescriptions",
+      href: "/dashboard/doctor/prescriptions",
+      icon: FiStar,
+    },
+    { label: "My Profile", href: "/dashboard/doctor/profile", icon: FiUser },
+  ];
+
+  const mainNavItems =
+    data?.user.role === "doctor" ? [...doctorNavItems] : [...patientNavItems];
 
   // User Profile Mock Context (Matches design specs badge representation)
   const userProfile = {

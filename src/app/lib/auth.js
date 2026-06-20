@@ -20,6 +20,12 @@ export const auth = betterAuth({
       role: {
         defaultValue: "patient",
       },
+      phone: {
+        defaultValue: "",
+      },
+      gender: {
+        defaultValue: "unknown",
+      },
     },
   },
 });
