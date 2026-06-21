@@ -1,5 +1,6 @@
 import { Avatar, Button, Card } from "@heroui/react";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { FaStar } from "react-icons/fa";
 import { HiOutlineClock } from "react-icons/hi2";
@@ -71,11 +72,12 @@ const ShowDoctors = ({ doctor, chipClass }) => {
         </div>
 
         {/* CTA */}
-        <Button
-          className={`w-full font-bold text-[13px] h-9 rounded-xl transition-colors shadow-smbg-sky-500 text-white hover:bg-sky-600 shadow-sky-200`}
+        <Link
+          href={`/doctors/${doctor._id}`}
+          className={`w-full font-bold text-[13px] py-2 rounded-xl transition-colors shadow-smbg-sky-500 bg-sky-500 text-white hover:bg-sky-600 shadow-sky-200`}
         >
           Book Appointment
-        </Button>
+        </Link>
       </Card.Content>
     </Card>
   );

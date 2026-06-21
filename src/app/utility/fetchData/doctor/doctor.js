@@ -8,3 +8,8 @@ export const getAllDoctors = async () => {
   const res = await fetch(`${baseLink}/api/all-doctors`);
   return res.json();
 };
+
+export const getDoctorById = async (id) => {
+  const res = await fetch(`${baseLink}/api/doctor/${id}`);
+  return res.json();
+};
