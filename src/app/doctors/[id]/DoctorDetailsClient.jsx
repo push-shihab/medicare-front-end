@@ -2,37 +2,15 @@
 
 import React, { useState } from "react";
 // Fixed imports: Using proper flat HeroUI layout definitions to avoid undefined errors
-import { Card, Avatar, Button } from "@heroui/react";
+import { Card, Button } from "@heroui/react";
 // Using exclusively react-icons
 import { IoCheckmarkCircle, IoDocumentTextOutline } from "react-icons/io5";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 
-export default function DoctorDetailsClient({ doctor: doctorData }) {
+export default function DoctorDetailsClient({ doctor: doctorData, session }) {
   const [selectedTime, setSelectedTime] = useState("");
   const [bookingDate, setBookingDate] = useState("");
-
-  const doctor = {
-    name: "Dr. Raiyan",
-    specialization: "General Medicine Specialist",
-    rating: 0.0,
-    reviewsCount: 0,
-    fee: 50,
-    about:
-      "Dr. Raiyan is a dedicated General Medicine Specialist with 1 year of active clinical practice. Committed to providing comprehensive healthcare services with a patient-centered approach.\n\nCurrently practicing at Medicare Clinic, Dr. Raiyan focuses on preventive care, diagnosis, and treatment of common medical conditions with evidence-based medicine.",
-    qualifications: ["MBBS", "1 Year Active Practice", "Medicare Clinic"],
-  };
-
-  const timeSlots = [
-    { time: "9:00 AM" },
-    { time: "10:00 AM" },
-    { time: "11:00 AM" },
-    { time: "12:00 PM" },
-    { time: "2:00 PM" },
-    { time: "3:00 PM" },
-    { time: "4:00 PM" },
-    { time: "5:00 PM" },
-  ];
 
   return (
     <div className="w-full max-w-7xl mx-auto p-6 select-none min-h-screen flex flex-col gap-6">
@@ -112,27 +90,48 @@ export default function DoctorDetailsClient({ doctor: doctorData }) {
                 Available Time Slots
               </label>
               <div className="grid grid-cols-4 gap-3">
-                {timeSlots.map((slot, index) => {
-                  const isSelected = selectedTime === slot.time;
+                {doctorData.availableSlots.map((slot, index) => {
+                  const isSelected = selectedTime === slot;
                   return (
                     <button
                       key={index}
-                      onClick={() => setSelectedTime(slot.time)}
+                      onClick={() => setSelectedTime(slot)}
                       className={`p-2.5 rounded-xl text-[13px] font-bold border transition-all duration-150 ${
                         isSelected
                           ? "bg-[#0EA5E9] border-[#0EA5E9] text-white shadow-sm shadow-sky-500/10"
                           : "bg-white border-[#0EA5E9] text-[#0EA5E9] hover:bg-sky-50/40"
                       }`}
                     >
-                      {slot.time}
+                      {slot}
                     </button>
                   );
                 })}
               </div>
             </div>
-            <Button className="w-full bg-[#0EA5E9] text-white font-bold text-[14px] h-11 mt-2 rounded-xl hover:bg-sky-600 transition-all shadow-sm shadow-sky-500/10">
-              Proceed to Payment
-            </Button>
+            {doctorData.doctorEmail === session.email ? (
+              <h2 className="text-center font-semibold text-[#0EA5E9]">
+                Everyone can book here except you, {doctorData.doctorName}!
+              </h2>
+            ) : (
+              <form action="/api/checkout_sessions" method="POST">
+                <input type="hidden" value={selectedTime} name="selectedTime" />
+                <input type="hidden" value={bookingDate} name="bookingDate" />
+                <input
+                  type="hidden"
+                  value={doctorData.consultationFee}
+                  name="fee"
+                />
+                <section>
+                  <button
+                    type="submit"
+                    role="link"
+                    className="w-full bg-[#0EA5E9] text-white font-bold text-[14px] h-11 mt-2 rounded-xl hover:bg-sky-600 transition-all shadow-sm shadow-sky-500/10"
+                  >
+                    Proceed to Payment
+                  </button>
+                </section>
+              </form>
+            )}
           </Card.Content>
         </Card>
       </div>
