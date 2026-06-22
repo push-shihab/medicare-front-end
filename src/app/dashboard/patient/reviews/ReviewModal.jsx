@@ -10,12 +10,18 @@ import {
   IoCloseOutline,
 } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa";
+import { createReview } from "@/app/utility/actions/review/review";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
-export default function ReviewModal(appointments) {
+export default function ReviewModal({ appointments, user }) {
   const [isOpen, setIsOpen] = useState(false);
-  const filterAppointments = appointments.appointments.filter(
+  const [selectedDoctorId, setSelectedDoctorId] = useState("");
+
+  const filterAppointments = appointments.filter(
     (appointment) => appointment.appointmentStatus === "pending",
   );
+
   const {
     register,
     handleSubmit,
@@ -23,15 +29,27 @@ export default function ReviewModal(appointments) {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      doctorName: "",
       rating: "5",
       reviewText: "",
     },
   });
 
-  const onSubmit = (formData) => {
-    console.log("Feedback Review Submission Initialized:", formData);
-    setIsOpen(true);
+  const router = useRouter();
+
+  const onSubmit = async (formData) => {
+    const payload = {
+      ...formData,
+      doctorId: selectedDoctorId,
+      patientId: user.id,
+    };
+    const res = await createReview(payload);
+    if (res.acknowledged) {
+      toast.success("Successfully added the review");
+      reset();
+      setSelectedDoctorId("");
+      router.refresh();
+      setIsOpen(false);
+    }
   };
 
   return (
@@ -68,31 +86,26 @@ export default function ReviewModal(appointments) {
 
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Modal.Body className="p-6 flex flex-col gap-4">
-                  {/* Doctor Selection */}
+                  {/* Doctor Selection — outside react-hook-form, managed via useState */}
                   <div className="flex flex-col gap-1.5">
                     <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
                       <IoPersonOutline className="text-[12px]" /> Select Doctor
                     </label>
                     <select
-                      {...register("doctorName", {
-                        required: "Please select a professional provider",
-                      })}
+                      value={selectedDoctorId}
+                      onChange={(e) => setSelectedDoctorId(e.target.value)}
+                      required
                       className="w-full h-11 px-3 bg-slate-50 border border-slate-200 rounded-xl text-[13px] text-slate-700 font-medium focus:outline-none focus:border-sky-400 transition-colors cursor-pointer appearance-none"
                     >
                       <option value="" disabled hidden>
                         Choose Doctor...
                       </option>
                       {filterAppointments.map((doc) => (
-                        <option key={doc._id} value={doc.doctorName}>
+                        <option key={doc._id} value={doc.doctorId}>
                           {doc.doctorName}
                         </option>
                       ))}
                     </select>
-                    {errors.doctorName && (
-                      <span className="text-[11px] text-rose-500 font-semibold pl-0.5">
-                        {errors.doctorName.message}
-                      </span>
-                    )}
                   </div>
 
                   {/* Rating Selection */}

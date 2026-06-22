@@ -4,34 +4,14 @@ import { FiEdit2, FiTrash2 } from "react-icons/fi";
 import ReviewModal from "./ReviewModal";
 import { getAppointmentsByPatientId } from "@/app/utility/fetchData/appointment/appointment";
 import { getSession } from "@/app/utility/server/session";
+import { getReviewsById } from "@/app/utility/fetchData/review/review";
+import EditReviewModal from "./EditReviewModal";
+import DeleteReviewModal from "./DeleteReviewModal";
 
 export default async function ReviewsPage() {
   const user = await getSession();
   const appointments = await getAppointmentsByPatientId(user.id);
-  // Existing reviews structural mock array matching patientReviews.png
-  const reviewsList = [
-    {
-      id: 1,
-      doctorName: "Dr. Sarah Johnson",
-      rating: 5,
-      comment: `"Excellent doctor, very thorough and professional. She explained everything clearly and made me feel comfortable throughout the consultation."`,
-      date: "Nov 15, 2026",
-    },
-    {
-      id: 2,
-      doctorName: "Dr. James Williams",
-      rating: 5,
-      comment: `"Very knowledgeable neurologist. The consultation was detailed and he took time to answer all my questions. Highly recommended."`,
-      date: "Oct 22, 2026",
-    },
-    {
-      id: 3,
-      doctorName: "Dr. Rina Ahmed",
-      rating: 4, // 4 filled stars, 1 empty star representation
-      comment: `"Good experience overall. The treatment was effective and the doctor was friendly. Would visit again if needed."`,
-      date: "Sep 10, 2026",
-    },
-  ];
+  const reviews = await getReviewsById(user.id);
 
   return (
     <div className="w-full flex flex-col gap-6 m-5 p-1 select-none">
@@ -45,14 +25,14 @@ export default async function ReviewsPage() {
             Share your experience with doctors you&apos;ve visited
           </p>
         </div>
-        <ReviewModal appointments={appointments}></ReviewModal>
+        <ReviewModal user={user} appointments={appointments}></ReviewModal>
       </div>
 
       {/* Grid Matrix Layer */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 w-full">
-        {reviewsList.map((review) => (
+        {reviews.map((review) => (
           <div
-            key={review.id}
+            key={review._id}
             className="bg-white border border-slate-200 rounded-[16px] p-6 flex flex-col justify-between shadow-sm shadow-slate-100/40 relative min-h-[190px]"
           >
             {/* Upper Section Frame: Heading info & Action Buttons */}
@@ -63,20 +43,8 @@ export default async function ReviewsPage() {
                 </h4>
                 {/* Micro Action Buttons */}
                 <div className="flex items-center gap-1.5">
-                  <Button
-                    isIconOnly
-                    size="sm"
-                    className="w-7 h-7 rounded-md bg-orange-50 text-orange-500 hover:bg-orange-100 transition-colors min-w-0"
-                  >
-                    <FiEdit2 className="text-[12px]" />
-                  </Button>
-                  <Button
-                    isIconOnly
-                    size="sm"
-                    className="w-7 h-7 rounded-md bg-red-50 text-red-400 hover:bg-red-100 transition-colors min-w-0"
-                  >
-                    <FiTrash2 className="text-[12px]" />
-                  </Button>
+                  <EditReviewModal review={review}></EditReviewModal>
+                  <DeleteReviewModal review={review}></DeleteReviewModal>
                 </div>
               </div>
 
@@ -94,28 +62,16 @@ export default async function ReviewsPage() {
 
               {/* Patient Review Content Body Text */}
               <p className="text-[13.5px] italic text-slate-500 font-medium leading-relaxed pr-4">
-                {review.comment}
+                {review.reviewText}
               </p>
             </div>
 
             {/* Footer Date Metric Timestamp */}
             <div className="mt-5 text-[12px] font-medium text-slate-400">
-              {review.date}
+              {review.createdAt.split("T")[0]}
             </div>
           </div>
         ))}
-
-        {/* 4th Element Slot: Interactive Dotted Placeholder Skeleton Core */}
-        <div className="border-2 border-dashed border-slate-200 rounded-[16px] bg-slate-50/20 hover:bg-slate-50/60 flex flex-col items-center justify-center p-6 min-h-[190px] cursor-pointer group transition-all duration-200">
-          <div className="flex flex-col items-center gap-2">
-            <div className="w-9 h-9 rounded-full bg-white border border-slate-200 text-slate-400 flex items-center justify-center group-hover:text-sky-500 group-hover:border-sky-200 transition-colors shadow-sm">
-              <FaPlus className="text-[11px]" />
-            </div>
-            <span className="text-[14px] font-semibold text-slate-400 group-hover:text-slate-500 transition-colors mt-1">
-              Write a new review
-            </span>
-          </div>
-        </div>
       </div>
     </div>
   );
