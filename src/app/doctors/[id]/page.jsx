@@ -1,4 +1,3 @@
-import React from "react";
 import DoctorDetailsClient from "./DoctorDetailsClient";
 import { getDoctorById } from "@/app/utility/fetchData/doctor/doctor";
 import { getSession } from "@/app/utility/server/session";

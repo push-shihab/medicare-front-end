@@ -7,133 +7,159 @@ import { Card, Button } from "@heroui/react";
 import { IoCheckmarkCircle, IoDocumentTextOutline } from "react-icons/io5";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
+import { createAppointment } from "@/app/utility/actions/appointment/appointment";
+import toast from "react-hot-toast";
 
 export default function DoctorDetailsClient({ doctor: doctorData, session }) {
   const [selectedTime, setSelectedTime] = useState("");
   const [bookingDate, setBookingDate] = useState("");
+  const [symptoms, setSymptoms] = useState("");
+  const handleBooking = async () => {
+    const data = {
+      patientId: session.id,
+      patientName: session.name,
+      doctorId: doctorData._id,
+      doctorName: doctorData.doctorName,
+      appointmentStatus: "pending",
+      appointmentDate: bookingDate,
+      appointmentTime: selectedTime,
+      symptoms,
+      paymentStatus: "pending",
+      specialization: doctorData.specialization,
+      consultationFee: doctorData.consultationFee,
+    };
+    const res = await createAppointment(data);
+    if (res.acknowledged) {
+      toast.success("Booked the appointment successfully");
+    }
+  };
 
   return (
     <div className="w-full max-w-7xl mx-auto p-6 select-none min-h-screen flex flex-col gap-6">
       {/* 1. Main Doctor Information Header Card */}
-      <div className="flex flex-col lg:flex-row gap-6 justify-center items-center">
-        <Card className="border w-full border-slate-200/80 bg-white rounded-[20px] shadow-sm shadow-slate-100/50">
-          <Card.Content className="p-6 flex flex-col sm:flex-row items-center sm:items-start gap-6">
-            {/* Large Square Profile Avatar Box */}
-            <div className="w-32 h-32 rounded-2xl bg-sky-50/60 overflow-hidden flex items-center justify-center shrink-0">
-              <Image
-                className="w-full h-full object-cover"
-                alt={doctorData.doctorName}
-                src={doctorData.profileImage}
-                width={200}
-                height={200}
-              />
-            </div>
-
-            {/* Identity Info Content Details */}
-            <div className="flex-1 flex flex-col items-center sm:items-start text-center sm:text-left pt-1">
-              <h1 className="text-[26px] font-bold text-slate-900 tracking-tight">
-                {doctorData.doctorName}
-              </h1>
-
-              <span className="mt-1.5 px-3 py-0.5 rounded-full text-[12px] font-semibold tracking-wide bg-sky-50 text-[#0EA5E9]">
-                {doctorData.specialization}
-              </span>
-
-              {/* Micro rating stars line row */}
-              <div className="flex items-center gap-1 mt-3">
-                <FaStar className="text-[13px] text-amber-400"></FaStar>
-                <span className="text-[12px] font-bold text-slate-700 ml-1">
-                  {doctorData.rating ? doctorData.rating.toFixed(1) : 0}
-                </span>
-              </div>
-
-              {/* List Metadata Meta Details */}
-              <div className="flex flex-col gap-2 mt-4 text-[14px] text-slate-500 font-medium">
-                <div className="flex items-center gap-2">
-                  <span className="text-amber-500 text-base">🏅</span>
-                  <span>Qualifications: {doctorData.qualifications}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-rose-500 text-base">📍</span>
-                  <span>Practicing Hospital: {doctorData.hospitalName}</span>
-                </div>
-              </div>
-
-              {/* Rate Price Row Frame */}
-              <div className="text-[22px] font-bold text-[#0EA5E9] mt-5">
-                ${doctorData.consultationFee}
-                <span className="text-[13px] text-slate-400 font-normal">
-                  / session
-                </span>
-              </div>
-            </div>
-          </Card.Content>
-        </Card>
-        <Card className="border border-slate-200/80 bg-white w-full rounded-[20px] shadow-sm shadow-slate-100/50">
-          <Card.Content className="p-6 flex flex-col gap-6">
-            {/* Date Picker Input Row */}
-            <div className="flex flex-col gap-2">
-              <label className="text-[13px] font-bold text-slate-700">
-                Configure Date
-              </label>
-              <input
-                type="date"
-                value={bookingDate}
-                onChange={(e) => setBookingDate(e.target.value)}
-                className="w-full h-11 border border-slate-200 rounded-xl px-4 text-[14px] text-slate-700 font-medium focus:outline-none focus:border-[#0EA5E9] transition-all bg-white"
-              />
-            </div>
-
-            {/* Time Slots Selection Grid */}
-            <div className="flex flex-col gap-2.5">
-              <label className="text-[13px] font-bold text-slate-700">
-                Available Time Slots
-              </label>
-              <div className="grid grid-cols-4 gap-3">
-                {doctorData.availableSlots.map((slot, index) => {
-                  const isSelected = selectedTime === slot;
-                  return (
-                    <button
-                      key={index}
-                      onClick={() => setSelectedTime(slot)}
-                      className={`p-2.5 rounded-xl text-[13px] font-bold border transition-all duration-150 ${
-                        isSelected
-                          ? "bg-[#0EA5E9] border-[#0EA5E9] text-white shadow-sm shadow-sky-500/10"
-                          : "bg-white border-[#0EA5E9] text-[#0EA5E9] hover:bg-sky-50/40"
-                      }`}
-                    >
-                      {slot}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-            {doctorData.doctorEmail === session.email ? (
-              <h2 className="text-center font-semibold text-[#0EA5E9]">
-                Everyone can book here except you, {doctorData.doctorName}!
-              </h2>
-            ) : (
-              <form action="/api/checkout_sessions" method="POST">
-                <input type="hidden" value={selectedTime} name="selectedTime" />
-                <input type="hidden" value={bookingDate} name="bookingDate" />
-                <input
-                  type="hidden"
-                  value={doctorData.consultationFee}
-                  name="fee"
+      <div className="grid grid-cols-2 gap-6">
+        <div className="w-full">
+          <Card className="border border-slate-200/80  h-full bg-white rounded-[20px] shadow-sm shadow-slate-100/50">
+            <Card.Content className="p-6 flex justify-center items-center gap-6">
+              {/* Large Square Profile Avatar Box */}
+              <div className="w-50 h-50 rounded-2xl bg-sky-50/60 overflow-hidden flex items-center justify-center shrink-0">
+                <Image
+                  className="w-full h-full object-cover"
+                  alt={doctorData.doctorName}
+                  src={doctorData.profileImage}
+                  width={200}
+                  height={200}
                 />
-                <section>
-                  <button
-                    type="submit"
-                    role="link"
-                    className="w-full bg-[#0EA5E9] text-white font-bold text-[14px] h-11 mt-2 rounded-xl hover:bg-sky-600 transition-all shadow-sm shadow-sky-500/10"
-                  >
-                    Proceed to Payment
-                  </button>
-                </section>
-              </form>
-            )}
-          </Card.Content>
-        </Card>
+              </div>
+
+              {/* Identity Info Content Details */}
+              <div className="flex-1 flex flex-col items-center sm:items-start text-center sm:text-left pt-1">
+                <h1 className="text-[26px] font-bold text-slate-900 tracking-tight">
+                  {doctorData.doctorName}
+                </h1>
+
+                <span className="mt-1.5 px-3 py-0.5 rounded-full text-[12px] font-semibold tracking-wide bg-sky-50 text-[#0EA5E9]">
+                  {doctorData.specialization}
+                </span>
+
+                {/* Micro rating stars line row */}
+                <div className="flex items-center gap-1 mt-3">
+                  <FaStar className="text-[13px] text-amber-400"></FaStar>
+                  <span className="text-[12px] font-bold text-slate-700 ml-1">
+                    {doctorData.rating ? doctorData.rating.toFixed(1) : 0}
+                  </span>
+                </div>
+
+                {/* List Metadata Meta Details */}
+                <div className="flex flex-col gap-2 mt-4 text-[14px] text-slate-500 font-medium">
+                  <div className="flex items-center gap-2">
+                    <span className="text-amber-500 text-base">🏅</span>
+                    <span>Qualifications: {doctorData.qualifications}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-rose-500 text-base">📍</span>
+                    <span>Practicing Hospital: {doctorData.hospitalName}</span>
+                  </div>
+                </div>
+
+                {/* Rate Price Row Frame */}
+                <div className="text-[22px] font-bold text-[#0EA5E9] mt-5">
+                  ${doctorData.consultationFee}
+                  <span className="text-[13px] text-slate-400 font-normal">
+                    / session
+                  </span>
+                </div>
+              </div>
+            </Card.Content>
+          </Card>
+        </div>
+        <div className=" w-full ">
+          <Card className="border border-slate-200/80 bg-white rounded-[20px] shadow-sm shadow-slate-100/50">
+            <Card.Content className="p-6 flex flex-col gap-6">
+              <div className="flex flex-col gap-2 mb-2">
+                <label className="text-[13px] font-bold text-slate-700">
+                  Symptoms / Reason for Visit
+                </label>
+                <textarea
+                  value={symptoms}
+                  onChange={(e) => setSymptoms(e.target.value)}
+                  placeholder="Describe your symptoms or reason for appointment..."
+                  rows={4}
+                  className="w-full border border-slate-200 rounded-xl px-4 py-3 text-[14px] text-slate-700 font-medium focus:outline-none focus:border-[#0EA5E9] transition-all bg-white resize-none"
+                />
+              </div>
+              {/* Date Picker Input Row */}
+              <div className="flex flex-col gap-2">
+                <label className="text-[13px] font-bold text-slate-700">
+                  Configure Date
+                </label>
+                <input
+                  type="date"
+                  value={bookingDate}
+                  onChange={(e) => setBookingDate(e.target.value)}
+                  className="w-full h-11 border border-slate-200 rounded-xl px-4 text-[14px] text-slate-700 font-medium focus:outline-none focus:border-[#0EA5E9] transition-all bg-white"
+                />
+              </div>
+
+              {/* Time Slots Selection Grid */}
+              <div className="flex flex-col gap-2.5">
+                <label className="text-[13px] font-bold text-slate-700">
+                  Available Time Slots
+                </label>
+                <div className="grid grid-cols-4 gap-3">
+                  {doctorData.availableSlots.map((slot, index) => {
+                    const isSelected = selectedTime === slot;
+                    return (
+                      <button
+                        key={index}
+                        onClick={() => setSelectedTime(slot)}
+                        className={`p-2.5 rounded-xl text-[13px] font-bold border transition-all duration-150 ${
+                          isSelected
+                            ? "bg-[#0EA5E9] border-[#0EA5E9] text-white shadow-sm shadow-sky-500/10"
+                            : "bg-white border-[#0EA5E9] text-[#0EA5E9] hover:bg-sky-50/40"
+                        }`}
+                      >
+                        {slot}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+              {doctorData.doctorEmail === session.email ? (
+                <h2 className="text-center font-semibold text-[#0EA5E9]">
+                  Everyone can book here except you, {doctorData.doctorName}!
+                </h2>
+              ) : (
+                <Button
+                  onClick={handleBooking}
+                  className="w-full bg-[#0EA5E9] text-white font-bold text-[14px] h-11 mt-2 rounded-xl hover:bg-sky-600 transition-all shadow-sm shadow-sky-500/10"
+                >
+                  Book Now
+                </Button>
+              )}
+            </Card.Content>
+          </Card>
+        </div>
       </div>
 
       {/* 2. Secondary Information Content Container */}

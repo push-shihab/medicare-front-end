@@ -1,15 +1,13 @@
-const baseLink = process.env.NEXT_PUBLIC_SERVER_URL;
+import { getData } from "../../api/api";
+
 export const getDoctorDataByEmail = async (email) => {
-  const res = await fetch(`${baseLink}/api/doctor?email=${email}`);
-  return res.json();
+  return await getData(`/api/doctor?email=${email}`);
 };
 
 export const getAllDoctors = async () => {
-  const res = await fetch(`${baseLink}/api/all-doctors`);
-  return res.json();
+  return await getData(`/api/all-doctors`);
 };
 
 export const getDoctorById = async (id) => {
-  const res = await fetch(`${baseLink}/api/doctor/${id}`);
-  return res.json();
+  return await getData(`/api/doctor/${id}`);
 };
