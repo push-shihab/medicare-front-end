@@ -7,17 +7,11 @@ export async function POST(req) {
     const headersList = await headers();
     const origin = headersList.get("origin");
     const formData = await req.formData();
-    const selectedTime = formData.get("selectedTime");
-    const bookingDate = formData.get("bookingDate");
+    const doctorId = formData.get("doctorId");
+    const patientId = formData.get("patientId");
     const appointmentFee = formData.get("fee");
-    const patientEmail = formData.get("patientEmail");
-    const symptoms = formData.get("symptoms");
-    if (!selectedTime || !bookingDate) {
-      return NextResponse.json(
-        { error: "Please select date and time to proceed" },
-        { status: 400 },
-      );
-    }
+    const doctorName = formData.get("doctorName");
+    const appointmentId = formData.get("appointmentId");
 
     // Create Checkout Sessions from body params.
     const session = await stripe.checkout.sessions.create({
@@ -27,7 +21,6 @@ export async function POST(req) {
             currency: "usd",
             product_data: {
               name: `Appointment`,
-              description: `Date: ${bookingDate} at ${selectedTime}`,
             },
             unit_amount: appointmentFee * 100,
           },
@@ -35,11 +28,11 @@ export async function POST(req) {
         },
       ],
       metadata: {
-        patientEmail,
-        symptoms,
-        selectedTime,
-        bookingDate,
         appointmentFee,
+        doctorId,
+        patientId,
+        doctorName,
+        appointmentId,
       },
       mode: "payment",
       success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,

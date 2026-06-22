@@ -2,7 +2,7 @@ import OverviewStats from "@/components/Dashboard/patient/OverviewStats";
 import UpcomingAppointmentsTable from "@/components/Dashboard/patient/UpcomingAppointmentsTable";
 import React from "react";
 
-const page = () => {
+const PatientOverviewPage = async () => {
   return (
     <div>
       <OverviewStats></OverviewStats>
@@ -11,4 +11,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default PatientOverviewPage;

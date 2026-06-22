@@ -6,6 +6,7 @@ import { FaPlus } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
 import Link from "next/link";
 import AppointmentDetails from "./AppointmentDetails";
+import toast from "react-hot-toast";
 
 export default function PatientAppointments({ appointments }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,6 +14,24 @@ export default function PatientAppointments({ appointments }) {
   const handleOpenDetails = (row) => {
     setSelectedAppointment(row);
     setIsOpen(true);
+  };
+  const handleProceedToPayment = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+
+    const res = await fetch("/api/checkout_sessions", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!res.ok) {
+      const { error } = await res.json();
+      toast.error(error);
+      return;
+    }
+
+    const data = await res.json();
+    window.location.href = data.url;
   };
 
   return (
@@ -87,9 +106,52 @@ export default function PatientAppointments({ appointments }) {
                         Paid
                       </span>
                     ) : (
-                      <Button className="bg-rose-50 text-sky-600 text-[13px] h-10 rounded-xl border border-sky-200">
-                        Pay Now
-                      </Button>
+                      <form onSubmit={handleProceedToPayment}>
+                        <input
+                          type="hidden"
+                          value={row.appointmentTime}
+                          name="selectedTime"
+                        ></input>
+                        <input
+                          type="hidden"
+                          value={row.appointmentDate}
+                          name="selectedDate"
+                        ></input>
+                        <input
+                          type="hidden"
+                          value={row.patientId}
+                          name="patientId"
+                        />
+                        <input
+                          type="hidden"
+                          value={row.doctorId}
+                          name="doctorId"
+                        />
+                        <input
+                          type="hidden"
+                          value={row.doctorName}
+                          name="doctorName"
+                        />
+                        <input
+                          type="hidden"
+                          value={row._id}
+                          name="appointmentId"
+                        />
+                        <input
+                          type="hidden"
+                          value={row.consultationFee}
+                          name="fee"
+                        />
+                        <section>
+                          <button
+                            type="submit"
+                            role="link"
+                            className="w-full bg-[#0EA5E9] text-white font-bold text-[12px] h-9 mt-1 rounded-xl hover:bg-sky-600 transition-all shadow-sm shadow-sky-500/10 cursor-pointer"
+                          >
+                            Pay Now
+                          </button>
+                        </section>
+                      </form>
                     )}
                   </Table.Cell>
 

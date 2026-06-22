@@ -15,6 +15,10 @@ export default function DoctorDetailsClient({ doctor: doctorData, session }) {
   const [bookingDate, setBookingDate] = useState("");
   const [symptoms, setSymptoms] = useState("");
   const handleBooking = async () => {
+    if (!selectedTime || !bookingDate) {
+      toast.error("Please select date and time to proceed");
+      return;
+    }
     const data = {
       patientId: session.id,
       patientName: session.name,
