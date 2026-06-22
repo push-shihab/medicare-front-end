@@ -143,13 +143,19 @@ export default function PatientAppointments({ appointments }) {
                           name="fee"
                         />
                         <section>
-                          <button
-                            type="submit"
-                            role="link"
-                            className="w-full bg-[#0EA5E9] text-white font-bold text-[12px] h-9 mt-1 rounded-xl hover:bg-sky-600 transition-all shadow-sm shadow-sky-500/10 cursor-pointer"
-                          >
-                            Pay Now
-                          </button>
+                          {row.appointmentStatus !== "cancelled" ? (
+                            <button
+                              type="submit"
+                              role="link"
+                              className="w-full bg-[#0EA5E9] text-white font-bold text-[12px] h-9 mt-1 rounded-xl hover:bg-sky-600 transition-all shadow-sm shadow-sky-500/10 cursor-pointer"
+                            >
+                              Pay Now
+                            </button>
+                          ) : (
+                            <span className="w-full bg-[#e90e0e7e] text-white font-bold text-[12px] h-9 mt-1 rounded-xl transition-all shadow-sm shadow-sky-500/10 p-2">
+                              Not Available
+                            </span>
+                          )}
                         </section>
                       </form>
                     )}

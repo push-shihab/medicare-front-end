@@ -1,11 +1,13 @@
-"use client";
-
-import React from "react";
 import { Button } from "@heroui/react";
 import { FaPlus, FaStar } from "react-icons/fa";
 import { FiEdit2, FiTrash2 } from "react-icons/fi";
+import ReviewModal from "./ReviewModal";
+import { getAppointmentsByPatientId } from "@/app/utility/fetchData/appointment/appointment";
+import { getSession } from "@/app/utility/server/session";
 
-export default function ReviewsPage() {
+export default async function ReviewsPage() {
+  const user = await getSession();
+  const appointments = await getAppointmentsByPatientId(user.id);
   // Existing reviews structural mock array matching patientReviews.png
   const reviewsList = [
     {
@@ -43,12 +45,7 @@ export default function ReviewsPage() {
             Share your experience with doctors you&apos;ve visited
           </p>
         </div>
-        <Button
-          size="sm"
-          className="bg-[#0EA5E9] text-white font-semibold text-[13px] h-9 px-4 rounded-xl flex items-center gap-1.5 self-start sm:self-auto shadow-sm shadow-sky-500/10 hover:bg-sky-600 transition-colors"
-        >
-          <FaPlus className="text-[10px]" /> Add Review
-        </Button>
+        <ReviewModal appointments={appointments}></ReviewModal>
       </div>
 
       {/* Grid Matrix Layer */}

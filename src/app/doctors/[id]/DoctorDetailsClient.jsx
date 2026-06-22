@@ -31,6 +31,7 @@ export default function DoctorDetailsClient({ doctor: doctorData, session }) {
       paymentStatus: "pending",
       specialization: doctorData.specialization,
       consultationFee: doctorData.consultationFee,
+      doctorTime: doctorData.availableSlots,
     };
     const res = await createAppointment(data);
     if (res.acknowledged) {

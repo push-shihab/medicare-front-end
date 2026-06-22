@@ -8,10 +8,21 @@ import {
   IoPulseOutline,
   IoPersonOutline,
 } from "react-icons/io5";
+import RescheduleModal from "./RescheduleModal";
+import { cancelAppointment } from "@/app/utility/actions/appointment/appointment";
+import { redirect } from "next/navigation";
+import toast from "react-hot-toast";
 
 const AppointmentDetails = ({ isOpen, onOpenChange, appointment }) => {
   if (!appointment) return null;
-
+  const handleCanelAppointment = async () => {
+    const appointmentId = appointment._id;
+    const res = await cancelAppointment(appointmentId);
+    if (res.modifiedCount) {
+      toast.success("Successfully cancelled the appointment");
+      redirect("/dashboard/patient/appointments");
+    }
+  };
   return (
     <Modal>
       <Modal.Backdrop isOpen={isOpen} onOpenChange={onOpenChange}>
@@ -94,17 +105,19 @@ const AppointmentDetails = ({ isOpen, onOpenChange, appointment }) => {
                 </div>
               </div>
             </Modal.Body>
-
-            <Modal.Footer className="p-4 bg-slate-50/40 border-t border-slate-100">
-              <div className="flex justify-around w-full">
-                <Button className="border-amber-200 bg-amber-50 border text-slate-600 text-[13px] h-10 rounded-xl">
-                  Reschedule
-                </Button>
-                <Button className="bg-rose-50 text-rose-600 text-[13px] h-10 rounded-xl border border-rose-200">
-                  Cancel appointment
-                </Button>
-              </div>
-            </Modal.Footer>
+            {appointment.appointmentStatus !== "cancelled" && (
+              <Modal.Footer className="p-4 bg-slate-50/40 border-t border-slate-100">
+                <div className="flex justify-around w-full">
+                  <RescheduleModal appointment={appointment}></RescheduleModal>
+                  <Button
+                    onClick={handleCanelAppointment}
+                    className="bg-rose-50 text-rose-600 text-[13px] h-10 rounded-xl border border-rose-200"
+                  >
+                    Cancel appointment
+                  </Button>
+                </div>
+              </Modal.Footer>
+            )}
           </Modal.Dialog>
         </Modal.Container>
       </Modal.Backdrop>
