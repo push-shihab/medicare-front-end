@@ -107,7 +107,6 @@ export default function AllDoctorsClient({ allDoctors }) {
             className="w-full h-11 pl-9 pr-3 rounded-xl border border-slate-200 text-[14px] text-slate-800 placeholder:text-slate-400 outline-none focus:border-sky-500 hover:border-sky-300 transition-colors bg-white"
           />
         </div>
-
         {/* Specialization Select — built from real data */}
         <div className="w-full md:w-[210px]">
           <Select

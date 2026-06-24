@@ -45,7 +45,6 @@ const AppointmentDetails = ({ isOpen, onOpenChange, appointment }) => {
             </Modal.Header>
 
             <Modal.Body className="p-5 flex flex-col gap-5">
-              {/* Patient & Category */}
               <div className="flex items-center gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-100">
                 <div className="w-10 h-10 rounded-full bg-sky-100/60 flex items-center justify-center text-sky-500 flex-shrink-0">
                   <IoPersonOutline className="text-base" />
@@ -55,18 +54,15 @@ const AppointmentDetails = ({ isOpen, onOpenChange, appointment }) => {
                     Doctor & Specialization
                   </span>
                   <p className="text-[15px] font-medium text-slate-800">
-                    {appointment.doctorName ? appointment.doctorName : "Shihab"}
+                    {appointment.doctorName}
                   </p>
                   <span className="text-[12px] text-sky-500 flex items-center gap-1">
                     <IoMedicalOutline className="text-[11px]" />
-                    {appointment.specialization
-                      ? appointment.specialization
-                      : "Football"}
+                    {appointment.specialization}
                   </span>
                 </div>
               </div>
 
-              {/* Date & Time */}
               <div className="flex flex-col gap-1.5">
                 <div className="flex items-center gap-1.5 text-[11px] font-medium text-slate-400 uppercase tracking-wider">
                   <IoCalendarOutline />
@@ -78,7 +74,6 @@ const AppointmentDetails = ({ isOpen, onOpenChange, appointment }) => {
                 </p>
               </div>
 
-              {/* Fee */}
               <div className="flex flex-col gap-1.5">
                 <div className="flex items-center gap-1.5 text-[11px] font-medium text-slate-400 uppercase tracking-wider">
                   <IoWalletOutline />
@@ -93,7 +88,6 @@ const AppointmentDetails = ({ isOpen, onOpenChange, appointment }) => {
                 </p>
               </div>
 
-              {/* Symptoms */}
               <div className="flex flex-col gap-2 pt-4 border-t border-slate-100">
                 <span className="text-[11px] font-medium text-slate-400 uppercase tracking-wider">
                   Reported symptoms

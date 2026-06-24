@@ -19,7 +19,6 @@ export default function Navbar() {
     }
   };
 
-  // Mock authentication state (Toggle to true to preview avatar state)
   const [isAvatarDropdownOpen, setIsAvatarDropdownOpen] = useState(false);
 
   const menuItems = [
@@ -33,9 +32,7 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-[#E2E8F0] bg-[#FFFFFF]/90 h-[68px] backdrop-blur-lg transition-shadow duration-200 shadow-sm">
       <header className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6">
-        {/* ================= LEFT SIDE: LOGO ================= */}
         <div className="flex items-center gap-4">
-          {/* Hamburger Menu (Mobile Only) */}
           <button
             className="text-[#475569] focus:outline-none md:hidden transition-colors hover:text-[#0EA5E9]"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -48,7 +45,6 @@ export default function Navbar() {
             )}
           </button>
 
-          {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-2 active:opacity-90">
             <FaHeartbeat className="text-[22px] text-[#0EA5E9]" />
             <span className="text-[20px] font-bold text-[#0F172A] tracking-tight whitespace-nowrap">
@@ -57,7 +53,6 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* ================= CENTER LINKS (Desktop) ================= */}
         <ul className="hidden items-center gap-8 md:flex h-full">
           {menuItems.map((item, index) => (
             <li key={index} className="relative flex items-center group">
@@ -67,23 +62,21 @@ export default function Navbar() {
               >
                 {item.label}
               </Link>
-              {/* Thin Underline Animation */}
               <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#0EA5E9] transition-all duration-300 group-hover:w-full" />
             </li>
           ))}
         </ul>
-        {/* ================= RIGHT SIDE: AUTH BUTTONS ================= */}
         <div className="flex items-center gap-3">
           {data?.user ? (
-            /* Logged In Avatar Dropdown State */
-
             <>
               <div className="flex flex-col">
                 <span className="font-medium">Hello, {data?.user.name}</span>
                 <span className="text-[#bdbdbd] text-[12px]">
                   {data?.user.role === "doctor"
                     ? "(Doctor)"
-                    : "(Patient)" || "(Admin)"}
+                    : data?.user.role === "patient"
+                      ? "(Patient)"
+                      : "(Admin)"}
                 </span>
               </div>
               <div className="relative">
@@ -99,11 +92,10 @@ export default function Navbar() {
                   />
                 </button>
 
-                {/* Simple Profile Dropdown Menu */}
                 {isAvatarDropdownOpen && (
                   <div className="absolute right-0 mt-2 w-48 rounded-[8px] border border-[#E2E8F0] bg-white p-1 shadow-lg animate-in fade-in slide-in-from-top-2 duration-150">
                     <Link
-                      href="#"
+                      href="/dashboard"
                       className="block w-full rounded-[6px] px-4 py-2 text-sm text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0F172A]"
                       onClick={() => setIsAvatarDropdownOpen(false)}
                     >
@@ -114,7 +106,7 @@ export default function Navbar() {
                       className="block w-full rounded-[6px] px-4 py-2 text-sm text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0F172A]"
                       onClick={() => setIsAvatarDropdownOpen(false)}
                     >
-                      Settings
+                      Profile
                     </Link>
                     <div className="my-1 border-t border-[#E2E8F0]" />
                     <button
@@ -132,7 +124,6 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              {/* Login Button */}
               <Link
                 href="/login"
                 variant="bordered"
@@ -141,7 +132,6 @@ export default function Navbar() {
                 Login
               </Link>
 
-              {/* Register Button */}
               <Link
                 href="/register"
                 className="h-10 flex justify-center sm:min-w-[95px] rounded-[8px] bg-[#0EA5E9] text-[15px] font-semibold tracking-[0.01em] text-white shadow-sm transition-all duration-200 hover:bg-[#0369A1]"
@@ -153,7 +143,6 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* ================= MOBILE DROPDOWN PANEL ================= */}
       {isMenuOpen && (
         <div className="border-b border-[#E2E8F0] bg-[#FFFFFF]/95 backdrop-blur-md md:hidden animate-in fade-in slide-in-from-top-4 duration-200">
           <ul className="flex flex-col gap-1 p-4">

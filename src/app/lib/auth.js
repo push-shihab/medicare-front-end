@@ -26,6 +26,9 @@ export const auth = betterAuth({
       gender: {
         defaultValue: "unknown",
       },
+      status: {
+        defaultValue: "active",
+      },
     },
   },
 });

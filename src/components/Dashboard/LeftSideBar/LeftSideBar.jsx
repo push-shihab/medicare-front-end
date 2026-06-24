@@ -17,7 +17,6 @@ export default function LeftSideBar() {
   const pathname = usePathname();
   const { data } = useSession();
 
-  // Navigation Items Layout Matrix
   const patientNavItems = [
     { label: "Overview", href: "/dashboard/patient/overview", icon: FiGrid },
     {
@@ -54,21 +53,42 @@ export default function LeftSideBar() {
     { label: "My Profile", href: "/dashboard/doctor/profile", icon: FiUser },
   ];
 
-  const mainNavItems =
-    data?.user.role === "doctor" ? [...doctorNavItems] : [...patientNavItems];
+  const adminNavItems = [
+    { label: "Overview", href: "/dashboard/admin/overview", icon: FiGrid },
+    {
+      label: "Manage Users",
+      href: "/dashboard/admin/manage-users",
+      icon: FiCreditCard,
+    },
+    {
+      label: "Appointments",
+      href: "/dashboard/admin/appointments",
+      icon: FiCalendar,
+    },
+    {
+      label: "Prescriptions",
+      href: "/dashboard/admin/prescriptions",
+      icon: FiStar,
+    },
+    { label: "My Profile", href: "/dashboard/admin/profile", icon: FiUser },
+  ];
 
-  // User Profile Mock Context (Matches design specs badge representation)
+  const mainNavItems =
+    data?.user.role === "doctor"
+      ? [...doctorNavItems]
+      : data?.user.role === "patient"
+        ? [...patientNavItems]
+        : [...adminNavItems];
+
   const userProfile = {
-    name: "John Doe",
-    role: "Patient",
-    initials: "JD",
+    name: data?.user.name,
+    role: `${data?.user.role === "doctor" ? "Doctor" : data?.user.role === "patient" ? "Patient" : "Admin"}`,
+    initials: data?.user.name[0],
   };
 
   return (
     <main className="w-70 min-h-full bg-white border-r border-slate-200 flex flex-col justify-between select-none my-5 rounded-2xl shadow-sm">
-      {/* Upper Framework Core */}
       <div className="flex flex-col w-full">
-        {/* Brand System Logo Panel */}
         <div className="h-20 px-6 flex items-center gap-3 border-b border-slate-100">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#0EA5E9] text-white shadow-sm shadow-sky-500/20">
             <FaPlus className="text-xs" />
@@ -78,9 +98,7 @@ export default function LeftSideBar() {
           </span>
         </div>
 
-        {/* Scrollable Context Links Container */}
         <div className="flex flex-col gap-7 px-4 py-6 overflow-y-auto max-h-[calc(100vh-170px)]">
-          {/* Section: MAIN */}
           <div className="flex flex-col gap-1.5">
             <span className="px-3 text-[11px] font-bold uppercase tracking-widest text-slate-400">
               Main
@@ -113,22 +131,19 @@ export default function LeftSideBar() {
             </nav>
           </div>
         </div>
-      </div>
-      {/* Lower Framework Container: Static User Footer Block */}
-      <div className="p-4 border-t border-slate-100 bg-slate-50/50 flex items-center gap-3 rounded-b-2xl">
-        {/* Profile Avatar Initials Graphic */}
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#0EA5E9] text-[14px] font-bold text-white shadow-sm">
-          {userProfile.initials}
-        </div>
-        {/* Account Identity Structural Labels */}
-        <div className="flex flex-col overflow-hidden">
-          <span className="text-[14px] font-semibold text-slate-800 truncate leading-tight">
-            {userProfile.name}
-          </span>
-          <div className="mt-1 flex">
-            <span className="inline-flex items-center justify-center h-5 px-2 rounded-full text-[11px] font-semibold tracking-wide bg-[#0EA5E9]/10 text-[#0EA5E9]">
-              {userProfile.role}
+        <div className="p-4 border-t border-slate-100 flex items-center gap-3 rounded-b-2xl">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#0EA5E9] text-[14px] font-bold text-white shadow-sm">
+            {userProfile.initials}
+          </div>
+          <div className="flex flex-col overflow-hidden">
+            <span className="text-[14px] font-semibold text-slate-800 truncate leading-tight">
+              {userProfile.name}
             </span>
+            <div className="mt-1 flex">
+              <span className="inline-flex items-center justify-center h-5 px-2 rounded-full text-[11px] font-semibold tracking-wide bg-[#0EA5E9]/10 text-[#0EA5E9]">
+                {userProfile.role}
+              </span>
+            </div>
           </div>
         </div>
       </div>

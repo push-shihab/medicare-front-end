@@ -37,6 +37,9 @@ export default function DoctorDetailsClient({ doctor: doctorData, session }) {
     if (res.acknowledged) {
       toast.success("Booked the appointment successfully");
     }
+    if (res.message) {
+      toast.error(res.message);
+    }
   };
 
   return (

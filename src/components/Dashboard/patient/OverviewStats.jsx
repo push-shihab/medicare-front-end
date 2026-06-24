@@ -8,11 +8,10 @@ import {
   FiStar,
 } from "react-icons/fi";
 
-export default function OverviewStats({ appointments, payments }) {
+export default function OverviewStats({ appointments, payments, reviews }) {
   return (
     <main className="flex justify-center m-5 w-full">
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 select-none">
-        {/* Upcoming */}
         <div className="bg-white border border-[#F1F5F9] rounded-[16px] p-6 flex flex-col justify-between shadow-sm shadow-slate-100/40">
           <div className="flex items-center justify-between w-full mb-3">
             <span className="text-[14px] font-medium text-[#94A3B8]">
@@ -27,14 +26,13 @@ export default function OverviewStats({ appointments, payments }) {
               {
                 appointments.filter(
                   (appointment) =>
-                    appointment.appointmentStatus !== "cancelled",
+                    appointment.appointmentStatus === "confirmed",
                 ).length
               }
             </span>
           </div>
         </div>
 
-        {/* Completed */}
         <div className="bg-white border border-[#F1F5F9] rounded-[16px] p-6 flex flex-col justify-between shadow-sm shadow-slate-100/40">
           <div className="flex items-center justify-between w-full mb-3">
             <span className="text-[14px] font-medium text-[#94A3B8]">
@@ -56,7 +54,6 @@ export default function OverviewStats({ appointments, payments }) {
           </div>
         </div>
 
-        {/* Total Paid */}
         <div className="bg-white border border-[#F1F5F9] rounded-[16px] p-6 flex flex-col justify-between shadow-sm shadow-slate-100/40">
           <div className="flex items-center justify-between w-full mb-3">
             <span className="text-[14px] font-medium text-[#94A3B8]">
@@ -77,7 +74,6 @@ export default function OverviewStats({ appointments, payments }) {
           </div>
         </div>
 
-        {/* Reviews Given */}
         <div className="bg-white border border-[#F1F5F9] rounded-[16px] p-6 flex flex-col justify-between shadow-sm shadow-slate-100/40">
           <div className="flex items-center justify-between w-full mb-3">
             <span className="text-[14px] font-medium text-[#94A3B8]">
@@ -89,7 +85,7 @@ export default function OverviewStats({ appointments, payments }) {
           </div>
           <div className="flex flex-col gap-2">
             <span className="text-[32px] font-bold text-[#0F172A] tracking-tight leading-none">
-              0
+              {reviews.length}
             </span>
           </div>
         </div>
