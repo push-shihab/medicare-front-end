@@ -6,8 +6,8 @@ import { FiAlertTriangle, FiTrash2 } from "react-icons/fi";
 
 const DeleteUserModal = ({ row }) => {
   const router = useRouter();
-  const handleDeleteUser = async (userId) => {
-    const res = await deleteUser({ userId });
+  const handleDeleteUser = async (userId, userEmail) => {
+    const res = await deleteUser({ userId, userEmail });
     if (res.deletedCount) {
       toast.success("Successfully deleted the user");
       router.refresh();
@@ -65,7 +65,7 @@ const DeleteUserModal = ({ row }) => {
 
             <Modal.Footer className="px-5 pt-3 pb-4 flex items-center gap-2.5 justify-end">
               <Button
-                onClick={() => handleDeleteUser(row._id)}
+                onClick={() => handleDeleteUser(row._id, row.email)}
                 className="bg-red-500 hover:bg-red-600 text-white font-semibold text-[13px] h-9.5 px-4 rounded-xl shadow-sm shadow-red-500/10 transition-colors cursor-pointer"
               >
                 Delete Account

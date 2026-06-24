@@ -19,3 +19,12 @@ export const suspendUser = async (userId) => {
 export const unsuspendUser = async (userId) => {
   return await updateData("/api/user/unsuspend", userId);
 };
+export const rejectDoctor = async (doctorId) => {
+  return await updateData("/api/doctor/reject", doctorId);
+};
+export const cancelDoctor = async (doctorId) => {
+  return await updateData("/api/doctor/cancel", doctorId);
+};
+export const approveDoctor = async (doctorId) => {
+  return await updateData("/api/doctor/approve", doctorId);
+};

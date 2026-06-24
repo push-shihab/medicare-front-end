@@ -12,6 +12,8 @@ import {
   FiUser,
 } from "react-icons/fi";
 import { useSession } from "@/app/lib/auth-client";
+import { HiOutlineUsers } from "react-icons/hi";
+import { FaUserDoctor } from "react-icons/fa6";
 
 export default function LeftSideBar() {
   const pathname = usePathname();
@@ -58,12 +60,12 @@ export default function LeftSideBar() {
     {
       label: "Manage Users",
       href: "/dashboard/admin/manage-users",
-      icon: FiCreditCard,
+      icon: HiOutlineUsers,
     },
     {
-      label: "Appointments",
-      href: "/dashboard/admin/appointments",
-      icon: FiCalendar,
+      label: "Manage Doctors",
+      href: "/dashboard/admin/manage-doctors",
+      icon: FaUserDoctor,
     },
     {
       label: "Prescriptions",

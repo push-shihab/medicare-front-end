@@ -6,7 +6,7 @@ import { FaStar } from "react-icons/fa";
 import { HiOutlineClock } from "react-icons/hi2";
 import { MdVerified } from "react-icons/md";
 
-const ShowDoctors = async ({ doctor, chipClass }) => {
+const ShowDoctors = ({ doctor, chipClass }) => {
   return (
     <Card
       key={doctor._id}

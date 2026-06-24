@@ -26,11 +26,14 @@ export default function AllDoctorsClient({ allDoctors }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [specialization, setSpecialization] = useState("all");
   const [sortBy, setSortBy] = useState("rating");
+  const verifiedDoctors = allDoctors.filter(
+    (doctor) => doctor.verificationStatus === "approved",
+  );
 
   // Build specialization list + color map dynamically from real data
   const { specializations, colorMap } = useMemo(() => {
     const unique = [
-      ...new Set(allDoctors.map((d) => d.specialization).filter(Boolean)),
+      ...new Set(verifiedDoctors.map((d) => d.specialization).filter(Boolean)),
     ];
 
     const colorMap = {};
@@ -44,12 +47,11 @@ export default function AllDoctorsClient({ allDoctors }) {
     ];
 
     return { specializations, colorMap };
-  }, [allDoctors]);
+  }, [verifiedDoctors]);
 
   const filtered = useMemo(() => {
-    let list = [...allDoctors];
+    let list = [...verifiedDoctors];
 
-    // 1. Search
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
       list = list.filter(
@@ -59,12 +61,10 @@ export default function AllDoctorsClient({ allDoctors }) {
       );
     }
 
-    // 2. Specialization — exact match against real data value
     if (specialization !== "all") {
       list = list.filter((d) => d.specialization === specialization);
     }
 
-    // 3. Sort
     if (sortBy === "rating") {
       list.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
     } else if (sortBy === "fee_asc") {
@@ -76,7 +76,7 @@ export default function AllDoctorsClient({ allDoctors }) {
     }
 
     return list;
-  }, [searchQuery, specialization, sortBy, allDoctors]);
+  }, [searchQuery, specialization, sortBy, verifiedDoctors]);
 
   return (
     <div className="w-full max-w-[1280px] mx-auto px-4 py-8 min-h-screen">
@@ -89,14 +89,12 @@ export default function AllDoctorsClient({ allDoctors }) {
           Find a Doctor
         </h1>
         <p className="text-[14px] text-slate-500 mt-1">
-          Browse from {allDoctors.length}+ verified specialists across
+          Browse from {verifiedDoctors.length}+ verified specialists across
           Bangladesh
         </p>
       </div>
 
-      {/* Search & Filter Bar */}
       <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm flex flex-col md:flex-row gap-3 mb-6">
-        {/* Search */}
         <div className="flex-1 relative">
           <IoSearchOutline className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg pointer-events-none" />
           <input
@@ -107,7 +105,6 @@ export default function AllDoctorsClient({ allDoctors }) {
             className="w-full h-11 pl-9 pr-3 rounded-xl border border-slate-200 text-[14px] text-slate-800 placeholder:text-slate-400 outline-none focus:border-sky-500 hover:border-sky-300 transition-colors bg-white"
           />
         </div>
-        {/* Specialization Select — built from real data */}
         <div className="w-full md:w-[210px]">
           <Select
             selectedKey={specialization}
@@ -131,7 +128,6 @@ export default function AllDoctorsClient({ allDoctors }) {
           </Select>
         </div>
 
-        {/* Sort Select */}
         <div className="w-full md:w-[190px]">
           <Select
             selectedKey={sortBy}
@@ -156,7 +152,6 @@ export default function AllDoctorsClient({ allDoctors }) {
         </div>
       </div>
 
-      {/* Results Count */}
       <div className="mb-5">
         <p className="text-[13px] text-slate-500">
           Showing{" "}
@@ -174,7 +169,6 @@ export default function AllDoctorsClient({ allDoctors }) {
         </p>
       </div>
 
-      {/* Doctor Cards Grid */}
       {filtered.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {filtered.map((doctor) => {

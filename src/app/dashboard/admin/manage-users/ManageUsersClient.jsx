@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 
 export default function ManageUsersClient({ users: usersData }) {
   const [users, setUsers] = useState(usersData);
+  const [isActive, setIsActive] = useState([true, false, false]);
   const router = useRouter();
 
   useEffect(() => {
@@ -43,8 +44,11 @@ export default function ManageUsersClient({ users: usersData }) {
 
         <div className="flex items-center gap-2 bg-slate-50 p-1 rounded-xl border border-slate-100">
           <button
-            className="text-[13px] font-medium px-3 h-8 rounded-lg text-slate-500 hover:text-slate-800 transition-colors cursor-pointer"
-            onClick={() => setUsers(usersData)}
+            className={`text-[13px] font-medium px-3 h-8 rounded-lg text-slate-500 hover:text-slate-800 transition-colors ease-in duration-300 cursor-pointer ${isActive[0] && "bg-slate-200"}`}
+            onClick={() => {
+              setUsers(usersData);
+              setIsActive([true, false, false]);
+            }}
           >
             All{" "}
             <span className="text-[11px] text-slate-400 font-medium ml-0.5">
@@ -52,8 +56,11 @@ export default function ManageUsersClient({ users: usersData }) {
             </span>
           </button>
           <button
-            className="text-[13px] font-medium px-3 h-8 rounded-lg text-slate-500 hover:text-slate-800 transition-colors cursor-pointer"
-            onClick={() => setUsers(patients)}
+            className={`text-[13px] font-medium px-3 h-8 rounded-lg text-slate-500 hover:text-slate-800 transition-colors ease-in duration-300 cursor-pointer ${isActive[1] && "bg-slate-200"}`}
+            onClick={() => {
+              setUsers(patients);
+              setIsActive([false, true, false]);
+            }}
           >
             Patients{" "}
             <span className="text-[11px] text-slate-400 font-normal ml-0.5">
@@ -61,8 +68,11 @@ export default function ManageUsersClient({ users: usersData }) {
             </span>
           </button>
           <button
-            className="text-[13px] font-medium px-3 h-8 rounded-lg text-slate-500 hover:text-slate-800 transition-colors cursor-pointer"
-            onClick={() => setUsers(doctors)}
+            className={`text-[13px] font-medium px-3 h-8 rounded-lg text-slate-500 hover:text-slate-800 transition-colors ease-in duration-300 cursor-pointer ${isActive[2] && "bg-slate-200"}`}
+            onClick={() => {
+              setUsers(doctors);
+              setIsActive([false, false, true]);
+            }}
           >
             Doctors{" "}
             <span className="text-[11px] text-slate-400 font-normal ml-0.5">
