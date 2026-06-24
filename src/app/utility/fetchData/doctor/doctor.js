@@ -11,3 +11,10 @@ export const getAllDoctors = async () => {
 export const getDoctorById = async (id) => {
   return await getData(`/api/doctor/${id}`);
 };
+
+export const getAppointmentByDoctorEmail = async (email) => {
+  return await getData(`/api/appointment?email=${email}`);
+};
+export const getReviewByDoctorEmail = async (email) => {
+  return await getData(`/api/review?email=${email}`);
+};

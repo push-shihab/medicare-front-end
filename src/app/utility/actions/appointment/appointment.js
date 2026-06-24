@@ -7,6 +7,9 @@ export const createAppointment = async (data) => {
 export const cancelAppointment = async (data) => {
   return await updateAppointmentData("/api/appointment/cancel", data);
 };
+export const acceptAppointment = async (data) => {
+  return await updateAppointmentData("/api/appointment/accept", data);
+};
 
 export const reScheduleAppointment = async (data) => {
   return await updateData("/api/appointment/reschedule", data);

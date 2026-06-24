@@ -18,9 +18,12 @@ export default function ReviewModal({ appointments, user }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDoctorId, setSelectedDoctorId] = useState("");
 
-  const filterAppointments = appointments.filter(
-    (appointment) => appointment.appointmentStatus === "pending",
-  );
+  const filterAppointments = appointments
+    .filter((appointment) => appointment.appointmentStatus === "pending")
+    .filter(
+      (appointment, index, self) =>
+        index === self.findIndex((a) => a.doctorId === appointment.doctorId),
+    );
 
   const {
     register,
@@ -37,9 +40,16 @@ export default function ReviewModal({ appointments, user }) {
   const router = useRouter();
 
   const onSubmit = async (formData) => {
+    if (!selectedDoctorId) {
+      toast.error("Please select a doctor");
+      return;
+    }
+    const [doctorId, doctorName] = selectedDoctorId.split("|");
     const payload = {
       ...formData,
-      doctorId: selectedDoctorId,
+      doctorId,
+      doctorName,
+      patientName: user.name,
       patientId: user.id,
     };
     const res = await createReview(payload);
@@ -101,7 +111,10 @@ export default function ReviewModal({ appointments, user }) {
                         Choose Doctor...
                       </option>
                       {filterAppointments.map((doc) => (
-                        <option key={doc._id} value={doc.doctorId}>
+                        <option
+                          key={doc._id}
+                          value={`${doc.doctorId}|${doc.doctorName}`}
+                        >
                           {doc.doctorName}
                         </option>
                       ))}
