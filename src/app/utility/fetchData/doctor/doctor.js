@@ -16,5 +16,5 @@ export const getAppointmentByDoctorEmail = async (email) => {
   return await getData(`/api/appointment?email=${email}`);
 };
 export const getReviewByDoctorEmail = async (email) => {
-  return await getData(`/api/review?email=${email}`);
+  return await getData(`/api/review/doctor?email=${email}`);
 };

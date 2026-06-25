@@ -8,6 +8,7 @@ import { RiFeedbackLine } from "react-icons/ri";
 export default function DoctorOverviewClient({
   doctorAppointments,
   doctorReviews,
+  doctor,
 }) {
   const totalAppointments = doctorAppointments.filter(
     (appointment) => appointment.appointmentStatus !== "cancelled",
@@ -22,14 +23,9 @@ export default function DoctorOverviewClient({
     (appointment) => appointment.appointmentDate === todaysDate,
   );
 
-  const hasReviews = doctorReviews && doctorReviews.length > 0;
+  const hasReviews = doctorReviews.result && doctorReviews.result.length > 0;
 
-  const averageRating = hasReviews
-    ? (
-        doctorReviews.reduce((acc, review) => acc + Number(review.rating), 0) /
-        doctorReviews.length
-      ).toFixed(1)
-    : "0.0";
+  const averageRating = hasReviews ? doctor.rating : "0.0";
 
   const analyticsStats = [
     {
@@ -52,7 +48,7 @@ export default function DoctorOverviewClient({
     },
     {
       id: 4,
-      value: doctorReviews?.length || 0,
+      value: doctorReviews?.result.length || 0,
       label: "FEEDBACKS",
       icon: RiFeedbackLine,
     },
@@ -92,7 +88,7 @@ export default function DoctorOverviewClient({
 
         {hasReviews ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {doctorReviews.map((review) => (
+            {doctorReviews.result.map((review) => (
               <div
                 key={review._id}
                 className="w-full bg-white border border-slate-100 rounded-[16px] p-5 shadow-sm shadow-slate-50/50 hover:border-slate-200/80 transition-all duration-200"

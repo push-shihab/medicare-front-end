@@ -5,10 +5,9 @@ import { Table } from "@heroui/react";
 import { IoCalendarOutline } from "react-icons/io5";
 
 export default function UpcomingAppointmentsTable({ appointments }) {
-  const confirmedAppointments =
-    appointments?.filter(
-      (appointment) => appointment.appointmentStatus === "confirmed",
-    ) || [];
+  const confirmedAppointments = appointments?.filter(
+    (appointment) => appointment.appointmentStatus === "confirmed",
+  );
 
   const hasAppointments = confirmedAppointments.length > 0;
 

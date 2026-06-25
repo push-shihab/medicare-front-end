@@ -14,6 +14,8 @@ import {
 import { useSession } from "@/app/lib/auth-client";
 import { HiOutlineUsers } from "react-icons/hi";
 import { FaUserDoctor } from "react-icons/fa6";
+import { LuCircleDollarSign } from "react-icons/lu";
+import { IoMdAnalytics } from "react-icons/io";
 
 export default function LeftSideBar() {
   const pathname = usePathname();
@@ -56,7 +58,11 @@ export default function LeftSideBar() {
   ];
 
   const adminNavItems = [
-    { label: "Overview", href: "/dashboard/admin/overview", icon: FiGrid },
+    {
+      label: "Analytics",
+      href: "/dashboard/admin/analytics",
+      icon: IoMdAnalytics,
+    },
     {
       label: "Manage Users",
       href: "/dashboard/admin/manage-users",
@@ -68,11 +74,15 @@ export default function LeftSideBar() {
       icon: FaUserDoctor,
     },
     {
-      label: "Prescriptions",
-      href: "/dashboard/admin/prescriptions",
-      icon: FiStar,
+      label: "Appointments",
+      href: "/dashboard/admin/manage-appointments",
+      icon: FiCalendar,
     },
-    { label: "My Profile", href: "/dashboard/admin/profile", icon: FiUser },
+    {
+      label: "Payment Records",
+      href: "/dashboard/admin/payment-records",
+      icon: LuCircleDollarSign,
+    },
   ];
 
   const mainNavItems =

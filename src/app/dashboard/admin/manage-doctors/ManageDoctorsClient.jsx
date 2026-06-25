@@ -9,6 +9,7 @@ import {
 } from "@/app/utility/actions/admin/admin";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { FaStar } from "react-icons/fa";
 
 export default function ManageDoctorsClient({ doctors }) {
   const router = useRouter();
@@ -52,8 +53,11 @@ export default function ManageDoctorsClient({ doctors }) {
                 />
               </div>
               <div className="min-w-0">
-                <h3 className="text-base sm:text-lg font-bold text-slate-800 tracking-tight truncate">
-                  {doctor.doctorName}
+                <h3 className="text-base flex flex-col sm:text-lg font-bold text-slate-800 tracking-tight truncate">
+                  {doctor.doctorName}{" "}
+                  <span className="text-[14px] flex items-center gap-1 text-yellow-600">
+                    <FaStar></FaStar> <span>{doctor.rating}</span>
+                  </span>
                 </h3>
                 <p className="text-[13px] text-slate-400 font-medium mt-0.5 truncate">
                   {doctor.hospitalName}

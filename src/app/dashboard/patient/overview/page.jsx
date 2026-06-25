@@ -11,7 +11,6 @@ const PatientOverviewPage = async () => {
   const appointments = await getAppointmentsByPatientId(user.id);
   const payments = await getPaymentHistoryById(user.id);
   const reviews = await getReviewsById(user.id);
-  console.log(reviews);
   return (
     <div>
       <OverviewStats

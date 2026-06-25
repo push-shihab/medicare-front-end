@@ -2,11 +2,15 @@ import { redirect } from "next/navigation";
 import { getSession } from "../utility/server/session";
 
 const DashboardPage = async () => {
-  const session = await getSession();
-  if (session.role === "doctor") {
+  const user = await getSession();
+  if (user.role === "doctor") {
     redirect("/dashboard/doctor/overview");
-  } else {
+  }
+  if (user.role === "patient") {
     redirect("/dashboard/patient/overview");
+  }
+  if (user.role === "admin") {
+    redirect("/dashboard/admin/analytics");
   }
 };
 

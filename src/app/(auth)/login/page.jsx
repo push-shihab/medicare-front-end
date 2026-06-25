@@ -27,7 +27,12 @@ export default function Login() {
     },
   });
 
-  // Submit data to authentication endpoint
+  const handleGoogleLogin = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+  };
+
   const onSubmit = async (data) => {
     setIsSubmittingForm(true);
     try {
@@ -50,10 +55,8 @@ export default function Login() {
 
   return (
     <div className="flex min-h-screen w-full bg-white">
-      {/* ================= LEFT SIDE: BRAND SPLIT COVER ================= */}
       <div className="hidden w-1/2 flex-col items-center justify-center bg-[#0F172A] p-12 text-white lg:flex relative">
         <div className="flex flex-col items-center max-w-md text-center gap-6">
-          {/* Logo */}
           <div className="flex items-center gap-2.5">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#0EA5E9] text-white">
               <FaPlus className="text-xs" />
@@ -63,17 +66,14 @@ export default function Login() {
             </span>
           </div>
 
-          {/* Heading */}
           <h2 className="text-[28px] font-semibold italic text-white/95 tracking-wide mt-4">
             &quot;Your health is our mission.&quot;
           </h2>
 
-          {/* Subtext */}
           <p className="text-[14px] leading-relaxed text-[#94A3B8]">
             Welcome back to your trusted healthcare platform.
           </p>
 
-          {/* Minimal Vector Representation */}
           <div className="mt-8 flex h-60 w-60 items-center justify-center rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
             <Image
               src={illustration}
@@ -85,7 +85,6 @@ export default function Login() {
         </div>
       </div>
 
-      {/* ================= RIGHT SIDE: LOGIN FORM ================= */}
       <div className="w-full lg:w-1/2 flex flex-col items-center justify-center p-6 sm:p-12 overflow-y-auto">
         <div className="w-full max-w-[440px] flex flex-col gap-6">
           {/* Form Header */}
@@ -112,12 +111,10 @@ export default function Login() {
             </p>
           </div>
 
-          {/* Form Core */}
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col gap-5"
           >
-            {/* Input: Email Address */}
             <div className="flex flex-col gap-2">
               <label className="text-[14px] font-medium text-[#0F172A]">
                 Email Address
@@ -143,7 +140,6 @@ export default function Login() {
               )}
             </div>
 
-            {/* Input: Password */}
             <div className="flex flex-col gap-2">
               <div className="flex items-center justify-between">
                 <label className="text-[14px] font-medium text-[#0F172A]">
@@ -176,7 +172,6 @@ export default function Login() {
               )}
             </div>
 
-            {/* Action Submit Button */}
             <Button
               type="submit"
               disabled={isSubmittingForm}
@@ -190,7 +185,6 @@ export default function Login() {
             </Button>
           </form>
 
-          {/* Form Divider */}
           <div className="relative flex items-center justify-center py-2">
             <div className="absolute w-full h-[1px] bg-[#E2E8F0]" />
             <span className="relative bg-white px-3 text-[13px] font-medium text-[#94A3B8] uppercase tracking-wider">
@@ -198,9 +192,9 @@ export default function Login() {
             </span>
           </div>
 
-          {/* OAuth Provider Action */}
           <Button
             variant="bordered"
+            onClick={handleGoogleLogin}
             className="h-12 w-full rounded-[8px] border-[1.5px] border-[#E2E8F0] bg-white text-[15px] font-semibold text-[#0F172A] transition-all duration-200 hover:bg-[#F1F5F9]"
           >
             <FcGoogle className="text-[20px] mr-1" />

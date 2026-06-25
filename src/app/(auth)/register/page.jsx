@@ -128,10 +128,8 @@ export default function Register() {
 
   return (
     <div className="flex min-h-screen w-full bg-white">
-      {/* ================= LEFT SIDE: BRAND SPLIT COVER ================= */}
       <div className="hidden w-1/2 flex-col items-center justify-center bg-[#0F172A] p-12 text-white lg:flex relative">
         <div className="flex flex-col items-center max-w-md text-center gap-6">
-          {/* Logo */}
           <div className="flex items-center gap-2.5">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#0EA5E9] text-white">
               <FaPlus className="text-xs" />
@@ -141,17 +139,14 @@ export default function Register() {
             </span>
           </div>
 
-          {/* Heading */}
           <h2 className="text-[28px] font-semibold italic text-white/95 tracking-wide mt-4">
             &quot;Your health is our mission.&quot;
           </h2>
 
-          {/* Subtext */}
           <p className="text-[14px] leading-relaxed text-[#94A3B8]">
             Join thousands of patients who trust us for their healthcare needs.
           </p>
 
-          {/* Minimal Vector Box Representation */}
           <div className="mt-8 flex h-60 w-60 items-center justify-center rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
             <Image
               src={illustration}
@@ -163,10 +158,8 @@ export default function Register() {
         </div>
       </div>
 
-      {/* ================= RIGHT SIDE: REGISTRATION FORM ================= */}
       <div className="w-full lg:w-1/2 flex flex-col items-center justify-center p-6 sm:p-12 overflow-y-auto">
         <div className="w-full max-w-[440px] flex flex-col gap-6">
-          {/* Form Header */}
           <div className="flex flex-col items-center text-center gap-2">
             <div className="flex items-center gap-2">
               <div className="flex h-6 w-6 items-center justify-center rounded bg-[#0EA5E9] text-white">
@@ -190,12 +183,10 @@ export default function Register() {
             </p>
           </div>
 
-          {/* Form Core */}
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col gap-5"
           >
-            {/* Input: Full Name */}
             <div className="flex flex-col gap-2">
               <label className="text-[14px] font-medium text-[#0F172A]">
                 Full Name
@@ -215,7 +206,6 @@ export default function Register() {
               )}
             </div>
 
-            {/* Input: Email Address */}
             <div className="flex flex-col gap-2">
               <label className="text-[14px] font-medium text-[#0F172A]">
                 Email Address
@@ -241,7 +231,6 @@ export default function Register() {
               )}
             </div>
 
-            {/* Input: Phone Number */}
             <div className="flex flex-col gap-2">
               <label className="text-[14px] font-medium text-[#0F172A]">
                 Phone Number
@@ -261,7 +250,6 @@ export default function Register() {
               )}
             </div>
 
-            {/* Input: Gender Dropdown */}
             <div className="flex flex-col gap-2">
               <label className="text-[14px] font-medium text-[#0F172A]">
                 Gender
@@ -290,7 +278,6 @@ export default function Register() {
               )}
             </div>
 
-            {/* Input: Role Selection */}
             <div className="flex flex-col gap-2">
               <label className="text-[14px] font-medium text-[#0F172A]">
                 Join As
@@ -321,7 +308,6 @@ export default function Register() {
               </div>
             </div>
 
-            {/* Input: Profile Photo Dropzone & Picker */}
             <div className="flex flex-col gap-2">
               <label className="text-[14px] font-medium text-[#0F172A]">
                 Profile Photo
@@ -341,9 +327,11 @@ export default function Register() {
 
                 {previewUrl ? (
                   <div className="absolute inset-0 flex items-center justify-center p-2 bg-white rounded-[8px]">
-                    <img
+                    <Image
                       src={previewUrl}
                       alt="Local preview context"
+                      width={200}
+                      height={200}
                       className="h-full w-auto object-contain rounded-md"
                     />
                     {isUploading && (
@@ -372,7 +360,6 @@ export default function Register() {
               )}
             </div>
 
-            {/* Input: Password */}
             <div className="flex flex-col gap-2">
               <label className="text-[14px] font-medium text-[#0F172A]">
                 Password
@@ -410,7 +397,6 @@ export default function Register() {
               )}
             </div>
 
-            {/* Action Submit Button */}
             <Button
               type="submit"
               disabled={isUploading || isSubmittingForm}
@@ -423,23 +409,6 @@ export default function Register() {
               )}
             </Button>
           </form>
-
-          {/* Form Divider */}
-          <div className="relative flex items-center justify-center py-2">
-            <div className="absolute w-full h-[1px] bg-[#E2E8F0]" />
-            <span className="relative bg-white px-3 text-[13px] font-medium text-[#94A3B8] uppercase tracking-wider">
-              or
-            </span>
-          </div>
-
-          {/* OAuth Provider Action */}
-          <Button
-            variant="bordered"
-            className="h-12 w-full rounded-[8px] border-[1.5px] border-[#E2E8F0] bg-white text-[15px] font-semibold text-[#0F172A] transition-all duration-200 hover:bg-[#F1F5F9]"
-          >
-            <FcGoogle className="text-[20px] mr-1" />
-            Continue with Google
-          </Button>
         </div>
       </div>
     </div>

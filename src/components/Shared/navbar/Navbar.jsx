@@ -7,8 +7,10 @@ import { FiMenu, FiX } from "react-icons/fi";
 import Image from "next/image";
 import { authClient, useSession } from "@/app/lib/auth-client";
 import toast from "react-hot-toast";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const path = usePathname();
   const { data } = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleLogout = async () => {
@@ -96,17 +98,10 @@ export default function Navbar() {
                   <div className="absolute right-0 mt-2 w-48 rounded-[8px] border border-[#E2E8F0] bg-white p-1 shadow-lg animate-in fade-in slide-in-from-top-2 duration-150">
                     <Link
                       href="/dashboard"
-                      className="block w-full rounded-[6px] px-4 py-2 text-sm text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0F172A]"
+                      className="block w-full rounded-[6px] px-4 py-2 text-sm text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0F172A] no-underline"
                       onClick={() => setIsAvatarDropdownOpen(false)}
                     >
                       My Dashboard
-                    </Link>
-                    <Link
-                      href="#"
-                      className="block w-full rounded-[6px] px-4 py-2 text-sm text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0F172A]"
-                      onClick={() => setIsAvatarDropdownOpen(false)}
-                    >
-                      Profile
                     </Link>
                     <div className="my-1 border-t border-[#E2E8F0]" />
                     <button
