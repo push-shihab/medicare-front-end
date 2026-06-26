@@ -1,4 +1,4 @@
-import React from "react";
+export const dynamic = "force-dynamic";
 import AdminAnalyticsClient from "./AdminAnalyticsClient";
 import { getAllUsers } from "@/app/utility/fetchData/admin/admin";
 import { getAllAppointments } from "@/app/utility/fetchData/appointment/appointment";
