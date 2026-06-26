@@ -1,86 +1,54 @@
 "use client";
-import React, { useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { Select, ListBox } from "@heroui/react";
 import { IoSearchOutline } from "react-icons/io5";
 import ShowDoctors from "@/components/Shared/showDoctors/ShowDoctors";
-
-const specializationColors = [
-  "bg-rose-50 text-rose-500",
-  "bg-violet-50 text-violet-500",
-  "bg-emerald-50 text-emerald-600",
-  "bg-amber-50 text-amber-600",
-  "bg-blue-50 text-blue-500",
-  "bg-pink-50 text-pink-500",
-  "bg-orange-50 text-orange-500",
-  "bg-teal-50 text-teal-600",
-];
+import { useRouter } from "next/navigation";
+import PaginationInAllDoctorPage from "./PaginationInAllDoctorPage";
 
 const sortOptions = [
   { id: "rating", label: "Highest Rated" },
-  { id: "fee_asc", label: "Price: Low to High" },
-  { id: "fee_desc", label: "Price: High to Low" },
+  { id: "price-low-high", label: "Price: Low to High" },
+  { id: "price-high-low", label: "Price: High to Low" },
   { id: "experience", label: "Most Experienced" },
 ];
 
-export default function AllDoctorsClient({ allDoctors }) {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [specialization, setSpecialization] = useState("all");
-  const [sortBy, setSortBy] = useState("rating");
-  const verifiedDoctors = allDoctors.filter(
-    (doctor) => doctor.verificationStatus === "approved",
+export default function AllDoctorsClient({ allDoctors, params }) {
+  const [searchQuery, setSearchQuery] = useState(params.search);
+  const [specialization, setSpecialization] = useState(
+    params.specialization || "all",
   );
+  const [sortBy, setSortBy] = useState(params.sortBy);
+  const [page, setPage] = useState(params.page || 1);
 
-  // Build specialization list + color map dynamically from real data
-  const { specializations, colorMap } = useMemo(() => {
-    const unique = [
-      ...new Set(verifiedDoctors.map((d) => d.specialization).filter(Boolean)),
-    ];
-
-    const colorMap = {};
-    unique.forEach((spec, i) => {
-      colorMap[spec] = specializationColors[i % specializationColors.length];
-    });
-
-    const specializations = [
-      { id: "all", label: "All Specializations" },
-      ...unique.map((spec) => ({ id: spec, label: spec })),
-    ];
-
-    return { specializations, colorMap };
-  }, [verifiedDoctors]);
-
-  const filtered = useMemo(() => {
-    let list = [...verifiedDoctors];
-
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase();
-      list = list.filter(
-        (d) =>
-          d.doctorName?.toLowerCase().includes(q) ||
-          d.specialization?.toLowerCase().includes(q),
-      );
-    }
-
+  const specializations = [
+    { id: "all", label: "All Specializations" },
+    { id: "Neurology", label: "Neurology" },
+    { id: "Cardiology", label: "Cardiology" },
+    { id: "Dermatology", label: "Dermatology" },
+    { id: "Pediatrics", label: "Pediatrics" },
+  ];
+  const router = useRouter();
+  useEffect(() => {
+    const searchParams = new URLSearchParams();
     if (specialization !== "all") {
-      list = list.filter((d) => d.specialization === specialization);
+      searchParams.set("specialization", specialization);
     }
-
-    if (sortBy === "rating") {
-      list.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
-    } else if (sortBy === "fee_asc") {
-      list.sort((a, b) => (a.consultationFee ?? 0) - (b.consultationFee ?? 0));
-    } else if (sortBy === "fee_desc") {
-      list.sort((a, b) => (b.consultationFee ?? 0) - (a.consultationFee ?? 0));
-    } else if (sortBy === "experience") {
-      list.sort((a, b) => (b.experience ?? 0) - (a.experience ?? 0));
+    if (sortBy) {
+      searchParams.set("sortBy", sortBy);
     }
-
-    return list;
-  }, [searchQuery, specialization, sortBy, verifiedDoctors]);
+    if (searchQuery) {
+      searchParams.set("search", searchQuery);
+    }
+    if (page) {
+      searchParams.set("page", page);
+    }
+    const path = `?${searchParams.toString()}`;
+    router.push(path);
+  }, [specialization, router, sortBy, searchQuery, page]);
 
   return (
     <div className="w-full max-w-[1280px] mx-auto px-4 py-8 min-h-screen">
-      {/* Header */}
       <div className="mb-8">
         <p className="text-[13px] font-semibold tracking-widest text-sky-500 uppercase mb-1">
           Medicare
@@ -89,8 +57,8 @@ export default function AllDoctorsClient({ allDoctors }) {
           Find a Doctor
         </h1>
         <p className="text-[14px] text-slate-500 mt-1">
-          Browse from {verifiedDoctors.length}+ verified specialists across
-          Bangladesh
+          Browse from {allDoctors.paginationResult.length}+ verified specialists
+          across Bangladesh
         </p>
       </div>
 
@@ -152,37 +120,35 @@ export default function AllDoctorsClient({ allDoctors }) {
         </div>
       </div>
 
-      <div className="mb-5">
-        <p className="text-[13px] text-slate-500">
-          Showing{" "}
-          <span className="font-bold text-slate-800">{filtered.length}</span>{" "}
-          {filtered.length === 1 ? "doctor" : "doctors"}
-          {specialization !== "all" && (
-            <>
-              {" "}
-              in{" "}
-              <span className="text-sky-600 font-semibold">
-                {specialization}
-              </span>
-            </>
-          )}
-        </p>
+      <div className="max-w-7xl mx-auto mb-5 text-[13px] text-slate-500">
+        Showing{" "}
+        <span className="font-bold text-slate-800">
+          {allDoctors.paginationResult.length}
+        </span>{" "}
+        {allDoctors.paginationResult.length === 1 ? "doctor" : "doctors"}
+        {specialization !== "all" && (
+          <>
+            {" "}
+            in{" "}
+            <span className="text-sky-600 font-semibold">{specialization}</span>
+          </>
+        )}
       </div>
 
-      {filtered.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-          {filtered.map((doctor) => {
-            const chipClass =
-              colorMap[doctor.specialization] ?? "bg-slate-100 text-slate-600";
-            return (
-              <ShowDoctors
-                key={doctor._id}
-                doctor={doctor}
-                chipClass={chipClass}
-              />
-            );
-          })}
-        </div>
+      {allDoctors.paginationResult.length > 0 ? (
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            {allDoctors.paginationResult.map((doctor) => (
+              <ShowDoctors key={doctor._id} doctor={doctor} />
+            ))}
+          </div>
+
+          <PaginationInAllDoctorPage
+            page={page}
+            setPage={setPage}
+            allDoctors={allDoctors}
+          ></PaginationInAllDoctorPage>
+        </>
       ) : (
         <div className="flex flex-col items-center justify-center py-20 text-center">
           <div className="text-5xl mb-4">🔍</div>

@@ -4,8 +4,11 @@ export const getDoctorDataByEmail = async (email) => {
   return await getData(`/api/doctor?email=${email}`);
 };
 
-export const getAllDoctors = async () => {
-  return await getData(`/api/all-doctors`);
+export const getAllDoctors = async (queryString) => {
+  return await getData(`/api/all-doctors?${queryString}`);
+};
+export const getAllDoctorsForAdmin = async () => {
+  return await getData(`/api/all-doctors/admin`);
 };
 
 export const getDoctorById = async (id) => {

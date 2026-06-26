@@ -1,12 +1,12 @@
 import React from "react";
 import AdminAnalyticsClient from "./AdminAnalyticsClient";
-import { getAllDoctors } from "@/app/utility/fetchData/doctor/doctor";
 import { getAllUsers } from "@/app/utility/fetchData/admin/admin";
 import { getAllAppointments } from "@/app/utility/fetchData/appointment/appointment";
 import { getAllReviews } from "@/app/utility/fetchData/review/review";
+import { getAllDoctorsForAdmin } from "@/app/utility/fetchData/doctor/doctor";
 
 const AdminAnalyticsPage = async () => {
-  const doctors = await getAllDoctors();
+  const doctors = await getAllDoctorsForAdmin();
   const filteredDoctors = doctors.filter(
     (doctor) => doctor.verificationStatus === "approved",
   );

@@ -10,7 +10,11 @@ import { FaStar } from "react-icons/fa";
 import { createAppointment } from "@/app/utility/actions/appointment/appointment";
 import toast from "react-hot-toast";
 
-export default function DoctorDetailsClient({ doctor: doctorData, session }) {
+export default function DoctorDetailsClient({
+  doctor: doctorData,
+  session,
+  reviews,
+}) {
   const [selectedTime, setSelectedTime] = useState("");
   const [bookingDate, setBookingDate] = useState("");
   const [symptoms, setSymptoms] = useState("");
@@ -44,12 +48,10 @@ export default function DoctorDetailsClient({ doctor: doctorData, session }) {
 
   return (
     <div className="w-full max-w-7xl mx-auto p-6 select-none min-h-screen flex flex-col gap-6">
-      {/* 1. Main Doctor Information Header Card */}
       <div className="grid grid-cols-2 gap-6">
         <div className="w-full">
           <Card className="border border-slate-200/80  h-full bg-white rounded-[20px] shadow-sm shadow-slate-100/50">
             <Card.Content className="p-6 flex justify-center items-center gap-6">
-              {/* Large Square Profile Avatar Box */}
               <div className="w-50 h-50 rounded-2xl bg-sky-50/60 overflow-hidden flex items-center justify-center shrink-0">
                 <Image
                   className="w-full h-full object-cover"
@@ -60,7 +62,6 @@ export default function DoctorDetailsClient({ doctor: doctorData, session }) {
                 />
               </div>
 
-              {/* Identity Info Content Details */}
               <div className="flex-1 flex flex-col items-center sm:items-start text-center sm:text-left pt-1">
                 <h1 className="text-[26px] font-bold text-slate-900 tracking-tight">
                   {doctorData.doctorName}
@@ -70,15 +71,13 @@ export default function DoctorDetailsClient({ doctor: doctorData, session }) {
                   {doctorData.specialization}
                 </span>
 
-                {/* Micro rating stars line row */}
                 <div className="flex items-center gap-1 mt-3">
                   <FaStar className="text-[13px] text-amber-400"></FaStar>
                   <span className="text-[12px] font-bold text-slate-700 ml-1">
-                    {doctorData.rating ? doctorData.rating.toFixed(1) : 0}
+                    {doctorData.rating}
                   </span>
                 </div>
 
-                {/* List Metadata Meta Details */}
                 <div className="flex flex-col gap-2 mt-4 text-[14px] text-slate-500 font-medium">
                   <div className="flex items-center gap-2">
                     <span className="text-amber-500 text-base">🏅</span>
@@ -90,7 +89,6 @@ export default function DoctorDetailsClient({ doctor: doctorData, session }) {
                   </div>
                 </div>
 
-                {/* Rate Price Row Frame */}
                 <div className="text-[22px] font-bold text-[#0EA5E9] mt-5">
                   ${doctorData.consultationFee}
                   <span className="text-[13px] text-slate-400 font-normal">
@@ -116,7 +114,6 @@ export default function DoctorDetailsClient({ doctor: doctorData, session }) {
                   className="w-full border border-slate-200 rounded-xl px-4 py-3 text-[14px] text-slate-700 font-medium focus:outline-none focus:border-[#0EA5E9] transition-all bg-white resize-none"
                 />
               </div>
-              {/* Date Picker Input Row */}
               <div className="flex flex-col gap-2">
                 <label className="text-[13px] font-bold text-slate-700">
                   Configure Date
@@ -129,7 +126,6 @@ export default function DoctorDetailsClient({ doctor: doctorData, session }) {
                 />
               </div>
 
-              {/* Time Slots Selection Grid */}
               <div className="flex flex-col gap-2.5">
                 <label className="text-[13px] font-bold text-slate-700">
                   Available Time Slots
@@ -170,12 +166,9 @@ export default function DoctorDetailsClient({ doctor: doctorData, session }) {
         </div>
       </div>
 
-      {/* 2. Secondary Information Content Container */}
       <div className="flex flex-col lg:flex-row gap-6 items-start">
-        {/* Left Interactive Documentation Content Block */}
         <Card className="w-full lg:flex-1 border border-slate-200/80 bg-white rounded-[20px] shadow-sm shadow-slate-100/50 overflow-hidden">
           <Card.Content className="p-6 flex flex-col gap-6">
-            {/* Description About block snippet */}
             <div>
               <h3 className="text-[16px] font-bold text-slate-900 mb-3">
                 About Doctor
@@ -185,7 +178,6 @@ export default function DoctorDetailsClient({ doctor: doctorData, session }) {
               </p>
             </div>
 
-            {/* Checked Badge Qualifications Matrix Layout */}
             <div>
               <h3 className="text-[16px] font-bold text-slate-900 mb-3">
                 Qualifications
@@ -207,7 +199,6 @@ export default function DoctorDetailsClient({ doctor: doctorData, session }) {
           </Card.Content>
         </Card>
 
-        {/* Right Metric Grid Summary Information Panel Card */}
         <Card className="w-full lg:w-[320px] border border-slate-200/80 bg-white rounded-[20px] shadow-sm shadow-slate-100/50">
           <Card.Content className="p-5 flex flex-col gap-4">
             <h4 className="text-[14px] font-bold text-slate-900 mb-1">
@@ -255,29 +246,50 @@ export default function DoctorDetailsClient({ doctor: doctorData, session }) {
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <div className="flex items-center gap-3">
               <h2 className="text-[32px] font-extrabold text-slate-900 tracking-tight">
-                0.0
+                {doctorData.rating}
               </h2>
               <div className="flex flex-col">
                 <div className="flex items-center gap-0.5">
                   <FaStar className="text-[13px] text-amber-400" />
                 </div>
                 <span className="text-[12px] text-slate-400 font-medium mt-0.5">
-                  Based on 0 reviews
+                  Based on {reviews.length} reviews
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Empty Placeholder Feedback Slate Content Area */}
-          <div className="w-full border border-dashed border-slate-200 rounded-[16px] bg-slate-50/40 p-8 flex flex-col items-center justify-center text-center">
-            <div className="w-12 h-12 rounded-xl bg-slate-100/80 text-slate-400 flex items-center justify-center text-xl mb-3">
-              <IoDocumentTextOutline />
+          {reviews ? (
+            reviews.map((review) => (
+              <div
+                key={review._id}
+                className="w-full bg-white border border-slate-100 rounded-[16px] p-5 shadow-sm shadow-slate-50/50 hover:border-slate-200/80 transition-all duration-200"
+              >
+                <div className="flex items-center justify-between w-full mb-3">
+                  <h4 className="text-[15px] font-bold text-slate-800">
+                    {review.patientName}
+                  </h4>
+                  <div className="flex items-center gap-1 text-[13px] font-bold text-slate-700">
+                    {Number(review.rating).toFixed(1)}
+                    <FaStar className="text-[#EAB308] text-[13px]" />
+                  </div>
+                </div>
+                <p className="text-[13.5px] italic text-slate-500 font-medium leading-relaxed">
+                  &quot;{review.reviewText}&quot;
+                </p>
+              </div>
+            ))
+          ) : (
+            <div className="w-full border border-dashed border-slate-200 rounded-[16px] bg-slate-50/40 p-8 flex flex-col items-center justify-center text-center">
+              <div className="w-12 h-12 rounded-xl bg-slate-100/80 text-slate-400 flex items-center justify-center text-xl mb-3">
+                <IoDocumentTextOutline />
+              </div>
+              <p className="text-[13px] text-slate-400/90 font-medium max-w-[480px] leading-relaxed">
+                No customer feedback verified for this clinician yet. Make a
+                clinic appointment to post reviews feedback.
+              </p>
             </div>
-            <p className="text-[13px] text-slate-400/90 font-medium max-w-[480px] leading-relaxed">
-              No customer feedback verified for this clinician yet. Make a
-              clinic appointment to post reviews feedback.
-            </p>
-          </div>
+          )}
         </Card.Content>
       </Card>
     </div>
