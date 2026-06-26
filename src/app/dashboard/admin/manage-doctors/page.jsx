@@ -1,4 +1,4 @@
-import React from "react";
+export const dynamic = "force-dynamic";
 import ManageDoctorsClient from "./ManageDoctorsClient";
 import { getAllDoctorsForAdmin } from "@/app/utility/fetchData/doctor/doctor";
 

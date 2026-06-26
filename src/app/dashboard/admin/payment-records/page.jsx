@@ -1,4 +1,4 @@
-import React from "react";
+export const dynamic = "force-dynamic";
 import PaymentRecordsClient from "./PaymentRecordsClient";
 import { getAllPaymentRecords } from "@/app/utility/fetchData/payment/payment";
 
