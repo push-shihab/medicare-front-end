@@ -1,4 +1,4 @@
-import React from "react";
+export const dynamic = "force-dynamic";
 import ManageAppointmentClient from "./ManageAppointmentClient";
 import { getAllAppointments } from "@/app/utility/fetchData/appointment/appointment";
 
