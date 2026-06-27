@@ -1,4 +1,5 @@
-import { updateData } from "../../api/api";
+"use server";
+import { authHeader, updateData } from "../../api/api";
 
 const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
@@ -7,6 +8,7 @@ export const deleteUser = async (data) => {
     method: "DELETE",
     headers: {
       "content-type": "application/json",
+      ...(await authHeader()),
     },
     body: JSON.stringify(data),
   });

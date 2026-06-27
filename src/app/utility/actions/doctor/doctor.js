@@ -1,3 +1,4 @@
+"use server";
 import { createData } from "../../api/api";
 
 export const doctorDataAfterRegister = async (newData) => {

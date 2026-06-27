@@ -1,3 +1,4 @@
+"use server";
 import { createData, updateAppointmentData, updateData } from "../../api/api";
 
 export const createAppointment = async (data) => {

@@ -1,3 +1,4 @@
+"use server";
 import { updateData } from "../../api/api";
 
 export const updateUserProfile = async (data) => {

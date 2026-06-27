@@ -11,7 +11,7 @@ const DoctorOverviewPage = async () => {
   const user = await getSession();
   const doctorAppointments = await getAppointmentByDoctorEmail(user?.email);
   const doctorReviews = await getReviewByDoctorEmail(user?.email);
-  const doctor = await getDoctorDataByEmail(user.email);
+  const doctor = await getDoctorDataByEmail(user?.email);
   return (
     <div>
       <DoctorOverviewClient

@@ -8,6 +8,7 @@ const DeleteUserModal = ({ row }) => {
   const router = useRouter();
   const handleDeleteUser = async (userId, userEmail) => {
     const res = await deleteUser({ userId, userEmail });
+    console.log(res);
     if (res.deletedCount) {
       toast.success("Successfully deleted the user");
       router.refresh();
@@ -33,12 +34,12 @@ const DeleteUserModal = ({ row }) => {
                 <FiAlertTriangle />
               </Modal.Icon>
               <Modal.Heading className="flex flex-col gap-0.5">
-                <h3 className="text-[16px] font-bold text-[#0F172A] tracking-tight">
+                <span className="text-[16px] font-bold text-[#0F172A] tracking-tight">
                   Delete User Account
-                </h3>
-                <p className="text-[13px] text-slate-400 font-medium normal-case">
+                </span>
+                <span className="text-[13px] text-slate-400 font-medium normal-case">
                   This action is permanent and cannot be undone.
-                </p>
+                </span>
               </Modal.Heading>
             </Modal.Header>
 
