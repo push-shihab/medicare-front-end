@@ -253,7 +253,7 @@ export default function DoctorDetailsClient({
                   <FaStar className="text-[13px] text-amber-400" />
                 </div>
                 <span className="text-[12px] text-slate-400 font-medium mt-0.5">
-                  Based on {reviews.length} reviews
+                  Based on {reviews ? reviews.length : 0} reviews
                 </span>
               </div>
             </div>

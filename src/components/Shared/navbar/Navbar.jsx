@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Link, Button } from "@heroui/react";
+import { Link } from "@heroui/react";
 import { FaHeartbeat } from "react-icons/fa";
 import { FiMenu, FiX } from "react-icons/fi";
 import Image from "next/image";
@@ -13,6 +13,8 @@ export default function Navbar() {
   const path = usePathname();
   const { data } = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAvatarDropdownOpen, setIsAvatarDropdownOpen] = useState(false);
+
   const handleLogout = async () => {
     const { data: signOutData } = await authClient.signOut();
     if (signOutData.success) {
@@ -21,14 +23,12 @@ export default function Navbar() {
     }
   };
 
-  const [isAvatarDropdownOpen, setIsAvatarDropdownOpen] = useState(false);
-
   const menuItems = [
     { label: "Home", href: "/" },
-    { label: "Find Doctors", href: "/doctors?page=1" },
+    { label: "Find Doctors", href: "/doctors" },
     { label: "About Us", href: "/about-us" },
     { label: "Contact Us", href: "/contact-us" },
-    { label: "Dashboard", href: `${data?.user ? "/dashboard" : "/login"}` },
+    { label: "Dashboard", href: "/dashboard" },
   ];
 
   return (
@@ -59,18 +59,38 @@ export default function Navbar() {
         </div>
 
         <ul className="hidden items-center gap-8 md:flex h-full">
-          {menuItems.map((item, index) => (
-            <li key={index} className="relative flex items-center group">
-              <Link
-                href={item.href}
-                className="text-[15px] font-medium text-[#475569] transition-colors duration-200 hover:text-[#0EA5E9]"
-              >
-                {item.label}
-              </Link>
-              <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#0EA5E9] transition-all duration-300 group-hover:w-full" />
-            </li>
-          ))}
+          {menuItems.map((item, index) => {
+            const isActive =
+              item.href === "/" ? path === "/" : path.startsWith(item.href);
+
+            return (
+              <li key={index} className="relative flex items-center group">
+                <Link
+                  href={
+                    item.href === "/dashboard" && data?.user
+                      ? "/dashboard"
+                      : item.href === "/dashboard"
+                        ? "/login"
+                        : item.href
+                  }
+                  className={`text-[15px] font-medium transition-colors duration-200 ${
+                    isActive
+                      ? "text-[#0EA5E9]"
+                      : "text-[#475569] hover:text-[#0EA5E9]"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+                <span
+                  className={`absolute bottom-0 left-0 h-[2px] bg-[#0EA5E9] transition-all duration-300 ${
+                    isActive ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                />
+              </li>
+            );
+          })}
         </ul>
+
         <div className="flex items-center gap-3">
           {data?.user ? (
             <>
@@ -144,17 +164,32 @@ export default function Navbar() {
       {isMenuOpen && (
         <div className="border-b border-[#E2E8F0] bg-[#FFFFFF]/95 backdrop-blur-md md:hidden animate-in fade-in slide-in-from-top-4 duration-200">
           <ul className="flex flex-col gap-1 p-4">
-            {menuItems.map((item, index) => (
-              <li key={index}>
-                <Link
-                  href={item.href}
-                  className="block w-full rounded-[8px] px-4 py-3 text-[16px] font-medium text-[#475569] transition-colors duration-150 hover:bg-[#F1F5F9] hover:text-[#0EA5E9]"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+            {menuItems.map((item, index) => {
+              const isActive =
+                item.href === "/" ? path === "/" : path.startsWith(item.href);
+
+              return (
+                <li key={index}>
+                  <Link
+                    href={
+                      item.href === "/dashboard" && data?.user
+                        ? "/dashboard"
+                        : item.href === "/dashboard"
+                          ? "/login"
+                          : item.href
+                    }
+                    className={`block w-full rounded-[8px] px-4 py-3 text-[16px] font-medium transition-colors duration-150 hover:bg-[#F1F5F9] ${
+                      isActive
+                        ? "text-[#0EA5E9] bg-[#F1F5F9]/50"
+                        : "text-[#475569] hover:text-[#0EA5E9]"
+                    }`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}
