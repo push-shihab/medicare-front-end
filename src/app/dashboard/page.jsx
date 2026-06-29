@@ -3,6 +3,9 @@ import { getSession } from "../utility/server/session";
 
 const DashboardPage = async () => {
   const user = await getSession();
+  if (!user) {
+    redirect("/unauthorized");
+  }
   if (user.role === "doctor") {
     redirect("/dashboard/doctor/overview");
   }
