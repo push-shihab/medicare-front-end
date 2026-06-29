@@ -4,8 +4,8 @@ import { getAllReviews } from "@/app/utility/fetchData/review/review";
 import AnimatedStats from "./AnimatedStats";
 
 export default async function Statistics() {
-  const users = await getAllUsers();
   const appointments = await getAllAppointments();
+  const users = await getAllUsers();
   const reviews = await getAllReviews();
   const avgRating =
     reviews.reduce((acc, review) => acc + Number(review.rating), 0) /
