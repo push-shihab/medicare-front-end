@@ -17,7 +17,7 @@ export default async function ReviewsPage() {
   const hasReviews = reviews && reviews.length > 0;
 
   return (
-    <div className="w-full flex flex-col gap-6 m-5 p-1 select-none">
+    <div className="flex flex-col gap-6 md:m-5 mb-5 select-none">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 w-full">
         <div className="flex flex-col gap-1">
           <h2 className="text-[22px] font-bold text-[#0F172A] tracking-tight">

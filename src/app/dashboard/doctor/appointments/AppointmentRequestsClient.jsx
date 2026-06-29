@@ -38,8 +38,7 @@ export default function AppointmentRequestsClient({ doctorAppointments }) {
   const hasAppointments = doctorAppointments && doctorAppointments.length > 0;
 
   return (
-    <div className="w-full m-5 bg-white border border-slate-200 rounded-[20px] overflow-hidden shadow-sm shadow-slate-100/40 select-none">
-      {/* Header Panel Filter Tabs */}
+    <div className="md:m-5 m-0 bg-white border border-slate-200 rounded-[20px] overflow-hidden shadow-sm shadow-slate-100/40 select-none">
       <div className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100">
         <h3 className="text-[16px] font-bold text-[#0F172A] tracking-tight">
           All Appointment Requests
@@ -77,7 +76,6 @@ export default function AppointmentRequestsClient({ doctorAppointments }) {
                     key={row._id}
                     className="hover:bg-slate-50/40 transition-colors group border-b border-slate-100 last:border-0"
                   >
-                    {/* Patient Info */}
                     <Table.Cell className="py-5 px-6">
                       <div className="flex flex-col gap-0.5">
                         <span className="text-[14px] font-bold text-slate-800">

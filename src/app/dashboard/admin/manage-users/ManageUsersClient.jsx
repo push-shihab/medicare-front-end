@@ -36,7 +36,7 @@ export default function ManageUsersClient({ users: usersData }) {
   };
 
   return (
-    <div className="w-full m-5 bg-white border border-slate-100 rounded-[16px] overflow-hidden shadow-sm shadow-slate-100/40 select-none">
+    <div className="md:m-5 mb-5 bg-white border border-slate-100 rounded-[16px] overflow-hidden shadow-sm shadow-slate-100/40 select-none">
       <div className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 bg-white">
         <h3 className="text-[16px] font-bold text-[#0F172A] tracking-tight">
           All Users

@@ -6,13 +6,9 @@ import toast from "react-hot-toast";
 import { editDoctorProfile } from "@/app/utility/actions/doctor/doctor";
 
 export default function DoctorScheduleClient({ session, doctorData }) {
-  // Available week days tracking system
   const [selectedDays, setSelectedDays] = useState(doctorData.availableDays);
-
-  // Active time slots configuration state management
   const [activeSlots, setActiveSlots] = useState(doctorData.availableSlots);
 
-  // Seamless hourly schedule matrix covering 9:00 AM to 9:00 PM with no disabled configurations
   const allTimeSlots = [
     { time: "9:00 AM" },
     { time: "10:00 AM" },
@@ -31,7 +27,6 @@ export default function DoctorScheduleClient({ session, doctorData }) {
 
   const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-  // Toggle Day Selection Handlers
   const handleDayToggle = (day) => {
     if (selectedDays.includes(day)) {
       setSelectedDays(selectedDays.filter((d) => d !== day));
@@ -40,7 +35,6 @@ export default function DoctorScheduleClient({ session, doctorData }) {
     }
   };
 
-  // Toggle Time Selection Handlers
   const handleSlotToggle = (time) => {
     if (activeSlots.includes(time)) {
       setActiveSlots(activeSlots.filter((t) => t !== time));
@@ -49,7 +43,6 @@ export default function DoctorScheduleClient({ session, doctorData }) {
     }
   };
 
-  // Consolidate complete dataset layout payload
   const handleSaveSchedule = async () => {
     const schedulePayload = {
       availableDays: selectedDays,
@@ -63,21 +56,18 @@ export default function DoctorScheduleClient({ session, doctorData }) {
   };
 
   return (
-    <div className="m-5 w-full max-w-190 bg-white border border-slate-200 rounded-[20px] overflow-hidden shadow-sm shadow-slate-100/40 select-none">
-      {/* 1. Global Action Header Control Board */}
+    <div className="md:m-5 max-w-190 bg-white border border-slate-200 rounded-[20px] overflow-hidden shadow-sm shadow-slate-100/40 select-none">
       <div className="p-5 flex items-center justify-between border-b border-slate-100 bg-white">
         <h3 className="text-[16px] font-bold text-[#0F172A] tracking-tight">
           Weekly Availability
         </h3>
       </div>
 
-      {/* 2. Primary Scheduling Body Control Interface */}
       <div className="p-6 flex flex-col gap-6">
         <p className="text-[14px] text-slate-400 font-medium">
           Select the days and time slots you are available for appointments.
         </p>
 
-        {/* Section A: Day Filter Matrix Rows */}
         <div className="flex flex-col gap-3">
           <span className="text-[14px] font-bold text-slate-700 tracking-tight">
             Available Days
@@ -103,7 +93,6 @@ export default function DoctorScheduleClient({ session, doctorData }) {
           </div>
         </div>
 
-        {/* Section B: Dynamic Time Segment Blocks (9:00 AM - 9:00 PM) */}
         <div className="flex flex-col gap-3 mt-1">
           <span className="text-[14px] font-bold text-slate-700 tracking-tight">
             Available Time Slots
@@ -129,7 +118,6 @@ export default function DoctorScheduleClient({ session, doctorData }) {
           </div>
         </div>
 
-        {/* Section C: Process Mutation Action Controls */}
         <div className="flex items-center gap-3 mt-4 pt-2">
           <Button
             onClick={handleSaveSchedule}

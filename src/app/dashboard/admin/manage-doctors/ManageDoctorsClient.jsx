@@ -35,7 +35,7 @@ export default function ManageDoctorsClient({ doctors }) {
     }
   };
   return (
-    <div className="w-full p-4 sm:p-6 min-h-screen space-y-5 select-none">
+    <div className="md:m-5 mb-5 min-h-screen space-y-5 select-none">
       {doctors.map((doctor) => (
         <div
           key={doctor._id}

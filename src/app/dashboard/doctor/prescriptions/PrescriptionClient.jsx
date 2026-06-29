@@ -9,7 +9,7 @@ export default function PrescriptionClient({ prescriptions }) {
   const hasPrescriptions = prescriptions && prescriptions.length > 0;
 
   return (
-    <main className="m-5 space-y-5">
+    <main className="md:m-5 space-y-5">
       {hasPrescriptions ? (
         prescriptions.map((prescription) => (
           <div

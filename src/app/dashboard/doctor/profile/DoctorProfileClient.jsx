@@ -7,7 +7,6 @@ import toast from "react-hot-toast";
 import { redirect } from "next/navigation";
 
 export default function DoctorProfileClient({ doctor, session }) {
-  // Initialize React Hook Form with default values from the doctorProfile.png image
   const {
     register,
     handleSubmit,
@@ -26,11 +25,9 @@ export default function DoctorProfileClient({ doctor, session }) {
   };
 
   return (
-    <div className="w-full m-5 bg-white border border-slate-200 rounded-[24px] p-8 shadow-sm shadow-slate-100/40 select-none">
-      {/* 1. Header Avatar Profile Management Stack */}
+    <div className="md:m-5 bg-white border border-slate-200 rounded-[24px] p-8 shadow-sm shadow-slate-100/40 select-none">
       <div className="flex flex-col items-center justify-center border-b border-slate-100 pb-6 mb-8 w-full">
         <div className="relative group">
-          {/* Avatar Graphic Shell */}
           <div className="w-24 h-24 rounded-full bg-[#E8F5E9] flex items-center justify-center text-slate-400 border border-emerald-100 shadow-sm overflow-hidden">
             <Image
               src={doctor.profileImage}
@@ -39,7 +36,6 @@ export default function DoctorProfileClient({ doctor, session }) {
               className="w-full h-full object-cover rounded-full"
             ></Image>
           </div>
-          {/* Green Status Badge overlay indicator */}
         </div>
 
         <h3 className="text-[20px] font-bold text-slate-800 tracking-tight mt-3">
@@ -51,13 +47,10 @@ export default function DoctorProfileClient({ doctor, session }) {
             : "Not Verified"}
         </span>
       </div>
-
-      {/* 2. Structured Dynamic Form Grid Input Layer */}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-5 w-full"
       >
-        {/* Row 1: Qualifications */}
         <div className="flex flex-col gap-2 w-full">
           <label className="text-[13.5px] font-bold text-slate-700">
             Qualifications
@@ -72,7 +65,6 @@ export default function DoctorProfileClient({ doctor, session }) {
           />
         </div>
 
-        {/* Row 2: Years of Experience & Consultation Fee */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="flex flex-col gap-2">
             <label className="text-[13.5px] font-bold text-slate-700">
@@ -99,7 +91,6 @@ export default function DoctorProfileClient({ doctor, session }) {
           </div>
         </div>
 
-        {/* Row 3: Hospital / Clinic Name */}
         <div className="flex flex-col gap-2 w-full">
           <label className="text-[13.5px] font-bold text-slate-700">
             Hospital / Clinic Name
@@ -112,7 +103,6 @@ export default function DoctorProfileClient({ doctor, session }) {
           />
         </div>
 
-        {/* Row 4: Specialization & Phone Number */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="flex flex-col gap-2">
             <label className="text-[13.5px] font-bold text-slate-700">
@@ -147,8 +137,6 @@ export default function DoctorProfileClient({ doctor, session }) {
             />
           </div>
         </div>
-
-        {/* Row 5: Detailed Bio Area */}
         <div className="flex flex-col gap-2 w-full">
           <label className="text-[13.5px] font-bold text-slate-700">
             Bio / About
@@ -161,7 +149,6 @@ export default function DoctorProfileClient({ doctor, session }) {
           />
         </div>
 
-        {/* 3. Action Submissions Panel Grid Footer */}
         <div className="mt-4 pt-2 w-full">
           <Button
             type="submit"

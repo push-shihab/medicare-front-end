@@ -10,7 +10,6 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 export default function PatientProfileClient({ user }) {
-  // Initialize React Hook Form with default values from the design image
   const {
     register,
     handleSubmit,
@@ -25,7 +24,6 @@ export default function PatientProfileClient({ user }) {
   });
   const router = useRouter();
 
-  // Simple submission handler
   const onSubmit = async (data) => {
     const payload = {
       userId: user.id,
@@ -42,11 +40,9 @@ export default function PatientProfileClient({ user }) {
   };
 
   return (
-    <div className="w-full max-w-[760px] mx-auto my-5 bg-white border border-slate-200 rounded-[24px] p-8 shadow-sm shadow-slate-100/40 select-none my-2">
-      {/* 1. Header Avatar Profile Management Stack */}
+    <div className="max-w-190 mb-5 mx-auto md:m-5 bg-white border border-slate-200 rounded-[24px] p-8 shadow-sm shadow-slate-100/40 select-none">
       <div className="flex flex-col items-center justify-center border-b border-slate-100 pb-6 mb-8 w-full">
         <div className="relative group">
-          {/* Avatar Graphic Shell */}
           <div className="w-24 h-24 rounded-full bg-sky-50 flex items-center justify-center text-slate-400 border border-slate-100 shadow-sm overflow-hidden">
             <Image
               src={user.image}
@@ -64,13 +60,10 @@ export default function PatientProfileClient({ user }) {
           {user.role === "patient" && "Patient"}
         </span>
       </div>
-
-      {/* 2. Structured Dynamic Form Grid Input Layer */}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-5 w-full"
       >
-        {/* Row 1: Full Name & Email */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="flex flex-col gap-2">
             <label className="text-[13.5px] font-bold text-slate-700">
@@ -100,7 +93,6 @@ export default function PatientProfileClient({ user }) {
           </div>
         </div>
 
-        {/* Row 2: Phone Number & Date of Birth */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div className="flex flex-col gap-2">
             <label className="text-[13.5px] font-bold text-slate-700">
@@ -114,7 +106,6 @@ export default function PatientProfileClient({ user }) {
           </div>
         </div>
 
-        {/* Row 4: Structural Full Address Bar */}
         <div className="flex flex-col gap-2 w-full">
           <label className="text-[13.5px] font-bold text-slate-700">
             Photo URL
@@ -126,7 +117,6 @@ export default function PatientProfileClient({ user }) {
           />
         </div>
 
-        {/* 3. Action Submissions Panel Grid Footer */}
         <div className="flex gap-3 mt-5 pt-2 border-t border-slate-50 w-full">
           <Button
             type="submit"

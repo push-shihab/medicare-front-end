@@ -55,7 +55,7 @@ export default function DoctorOverviewClient({
   ];
 
   return (
-    <div className="w-full flex flex-col gap-6 p-1 m-5 select-none">
+    <div className="flex flex-col gap-6 p-1 md:m-5 select-none">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 w-full">
         {analyticsStats.map((stat) => {
           const IconComponent = stat.icon;

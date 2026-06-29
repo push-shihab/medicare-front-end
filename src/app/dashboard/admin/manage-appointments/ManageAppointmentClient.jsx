@@ -5,7 +5,7 @@ import { Table } from "@heroui/react";
 
 export default function ManageAppointmentClient({ appointments }) {
   return (
-    <div className="w-full m-5 bg-white border border-slate-200/80 rounded-[16px] overflow-hidden shadow-sm shadow-slate-100/40 select-none">
+    <div className="md:m-5 bg-white border border-slate-200/80 rounded-[16px] overflow-hidden shadow-sm shadow-slate-100/40 mb-5 select-none">
       <div className="p-5 border-b border-slate-100 bg-white">
         <h3 className="text-[18px] font-bold text-[#0F172A] tracking-tight">
           Total Registered Appointments

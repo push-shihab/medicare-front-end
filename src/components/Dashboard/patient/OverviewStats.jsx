@@ -10,7 +10,7 @@ import {
 
 export default function OverviewStats({ appointments, payments, reviews }) {
   return (
-    <main className="flex justify-center m-5 w-full">
+    <main className="flex justify-center w-full md:m-5">
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 select-none">
         <div className="bg-white border border-[#F1F5F9] rounded-[16px] p-6 flex flex-col justify-between shadow-sm shadow-slate-100/40">
           <div className="flex items-center justify-between w-full mb-3">

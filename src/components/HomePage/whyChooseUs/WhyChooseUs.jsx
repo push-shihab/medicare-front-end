@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import {
   FiCalendar,
   FiCheckCircle,
@@ -62,26 +63,50 @@ export default function WhyChooseUs() {
   return (
     <section className="w-full bg-white py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="mb-16 text-center">
+        <motion.div
+          className="mb-16 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
           <h2 className="text-[36px] font-bold tracking-tight text-[#0F172A]">
             Why Choose MediCare Connect
           </h2>
           <p className="mt-3 text-[16px] text-[#475569]">
             Everything you need for a seamless healthcare experience
           </p>
-        </div>
+        </motion.div>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <motion.div
+          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.1 } },
+          }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+        >
           {features.map((feature, index) => {
             const IconComponent = feature.icon;
             return (
-              <div
+              <motion.div
                 key={index}
-                className="flex flex-col items-start rounded-4xl border border-[#E2E8F0] bg-white p-8 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+                variants={{
+                  hidden: { opacity: 0, y: 36 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.45, ease: "easeOut" },
+                  },
+                }}
+                whileHover={{
+                  y: -6,
+                  boxShadow: "0 12px 28px rgba(0,0,0,0.08)",
+                }}
+                className="flex flex-col items-start rounded-4xl border border-[#E2E8F0] bg-white p-8 transition-shadow duration-200"
               >
-                {/* Icon Box */}
                 <div
                   className={`flex h-12 w-12 items-center justify-center rounded-xl ${feature.bg}`}
                 >
@@ -89,18 +114,16 @@ export default function WhyChooseUs() {
                     className={`text-[22px] ${feature.iconColor}`}
                   />
                 </div>
-
-                {/* Content */}
                 <h3 className="mt-6 text-[18px] font-semibold text-[#0F172A]">
                   {feature.title}
                 </h3>
                 <p className="mt-2 text-[14px] leading-relaxed text-[#475569]">
                   {feature.description}
                 </p>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

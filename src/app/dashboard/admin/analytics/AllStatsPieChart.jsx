@@ -59,7 +59,7 @@ export default function AllStatsPieChart({
     { name: "Reviews", value: reviews.length },
   ];
   return (
-    <main className="bg-white border border-slate-200/80 rounded-[20px] p-6 shadow-sm shadow-slate-100/40">
+    <main className="bg-white mb-5 border border-slate-200/80 rounded-[20px] p-6 shadow-sm shadow-slate-100/40">
       <div
         style={{
           width: "100%",

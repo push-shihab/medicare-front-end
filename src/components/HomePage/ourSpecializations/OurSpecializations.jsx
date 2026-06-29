@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import {
   FaHeart,
   FaBrain,
@@ -27,24 +28,6 @@ export default function OurSpecializations() {
       bg: "bg-pink-50",
     },
     {
-      name: "Dentistry",
-      icon: FaTooth,
-      color: "text-purple-500",
-      bg: "bg-purple-50",
-    },
-    {
-      name: "Ophthalmology",
-      icon: FaEye,
-      color: "text-[#0EA5E9]",
-      bg: "bg-sky-50",
-    },
-    {
-      name: "Orthopedics",
-      icon: FaBone,
-      color: "text-slate-400",
-      bg: "bg-slate-50",
-    },
-    {
       name: "Pediatrics",
       icon: FaBaby,
       color: "text-amber-500",
@@ -56,34 +39,52 @@ export default function OurSpecializations() {
       color: "text-indigo-500",
       bg: "bg-indigo-50",
     },
-    {
-      name: "Gynecology",
-      icon: FaXRay,
-      color: "text-emerald-500",
-      bg: "bg-emerald-50",
-    },
   ];
 
   return (
     <section className="w-full bg-white py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mb-12 text-center">
+        <motion.div
+          className="mb-12 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
           <h2 className="text-[36px] font-bold tracking-tight text-[#0F172A]">
             Our Specialization
           </h2>
-        </div>
+        </motion.div>
 
-        {/* Dynamic Cards Container */}
-        <div className="flex w-full gap-4 overflow-x-auto pb-4 scrollbar-hide sm:grid sm:grid-cols-4 sm:overflow-x-visible md:grid-cols-6 lg:grid-cols-8">
+        <motion.div
+          className="w-full gap-4 pb-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4"
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.07 } },
+          }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+        >
           {specializations.map((item, index) => {
             const IconComponent = item.icon;
             return (
-              <span
+              <motion.span
                 key={index}
-                className="group flex h-[140px] w-[120px] shrink-0 flex-col items-center justify-center gap-4 rounded-[16px] border border-[#E2E8F0] bg-white p-4 transition-all duration-200 hover:-translate-y-1 hover:border-[#0EA5E9] hover:shadow-md sm:w-auto"
+                variants={{
+                  hidden: { opacity: 0, scale: 0.85 },
+                  visible: {
+                    opacity: 1,
+                    scale: 1,
+                    transition: { duration: 0.35, ease: "easeOut" },
+                  },
+                }}
+                whileHover={{
+                  y: -6,
+                  boxShadow: "0 8px 20px rgba(14,165,233,0.12)",
+                }}
+                className="group flex h-[140px] shrink-0 flex-col items-center justify-center gap-4 rounded-[16px] border border-[#E2E8F0] bg-white p-4 transition-colors duration-200 hover:border-[#0EA5E9] sm:w-auto cursor-pointer w-full"
               >
-                {/* Icon Wrapper */}
                 <div
                   className={`flex h-14 w-14 items-center justify-center rounded-full ${item.bg} transition-colors duration-200 group-hover:bg-[#E0F2FE]`}
                 >
@@ -91,15 +92,13 @@ export default function OurSpecializations() {
                     className={`text-[24px] ${item.color} transition-colors duration-200 group-hover:text-[#0EA5E9]`}
                   />
                 </div>
-
-                {/* Name */}
                 <span className="text-[14px] font-semibold tracking-tight text-[#0F172A] text-center transition-colors duration-200 group-hover:text-[#0EA5E9]">
                   {item.name}
                 </span>
-              </span>
+              </motion.span>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

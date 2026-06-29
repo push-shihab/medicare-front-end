@@ -145,14 +145,14 @@ export default function Navbar() {
               <Link
                 href="/login"
                 variant="bordered"
-                className="h-10 flex justify-center sm:min-w-[85px] rounded-[8px] border-[1.5px] border-[#0EA5E9] bg-transparent text-[15px] font-semibold tracking-[0.01em] no-underline text-[#0EA5E9] transition-all duration-200 hover:bg-[#E0F2FE]"
+                className="h-10 flex justify-center px-3 rounded-[8px] border-[1.5px] border-[#0EA5E9] bg-transparent text-[15px] font-semibold tracking-[0.01em] no-underline text-[#0EA5E9] transition-all duration-200 hover:bg-[#E0F2FE]"
               >
                 Login
               </Link>
 
               <Link
                 href="/register"
-                className="h-10 flex justify-center sm:min-w-[95px] rounded-[8px] bg-[#0EA5E9] text-[15px] font-semibold tracking-[0.01em] text-white shadow-sm no-underline transition-all duration-200 hover:bg-[#0369A1]"
+                className="h-10 flex justify-center px-3 rounded-[8px] bg-[#0EA5E9] text-[15px] font-semibold tracking-[0.01em] text-white shadow-sm no-underline transition-all duration-200 hover:bg-[#0369A1]"
               >
                 Register
               </Link>

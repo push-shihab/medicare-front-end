@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import { Table, Button } from "@heroui/react";
+import { Table } from "@heroui/react";
 
 export default function PaymentRecordsClient({ payments }) {
   return (
-    <div className="w-full m-5 bg-white border border-slate-200/80 rounded-[16px] overflow-hidden shadow-sm shadow-slate-100/40 select-none">
+    <div className="md:m-5 mb-5 bg-white border border-slate-200/80 rounded-[16px] overflow-hidden shadow-sm shadow-slate-100/40 select-none">
       <div className="p-5 border-b border-slate-100 bg-white">
         <h3 className="text-[18px] font-bold text-[#0F172A] tracking-tight">
           Payment Records

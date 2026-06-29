@@ -1,5 +1,5 @@
 import { getAllDoctors } from "@/app/utility/fetchData/doctor/doctor";
-import ShowDoctors from "@/components/Shared/showDoctors/ShowDoctors";
+import AnimatedDoctorGrid from "@/components/Shared/showDoctors/AnimatedDoctorGrid";
 import Link from "next/link";
 
 export default async function FeaturedDoctors() {
@@ -17,11 +17,7 @@ export default async function FeaturedDoctors() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-6xl items-stretch mb-12">
-        {featuredDoctors.map((doctor) => (
-          <ShowDoctors key={doctor._id} doctor={doctor}></ShowDoctors>
-        ))}
-      </div>
+      <AnimatedDoctorGrid doctors={featuredDoctors} />
 
       <Link
         href="/doctors?page=1"

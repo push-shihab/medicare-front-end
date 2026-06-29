@@ -8,7 +8,7 @@ export default function PaymentHistoryClient({ payments }) {
   const hasPayments = payments && payments.length > 0;
 
   return (
-    <div className="w-full flex flex-col m-5 gap-6 p-1 select-none">
+    <div className="mb-5 flex flex-col md:m-5 gap-6 p-1 select-none">
       <div className="w-full bg-white border border-slate-200 rounded-[16px] overflow-hidden shadow-sm shadow-slate-100/40 mt-2">
         <div className="p-5 flex items-center justify-between border-b border-slate-100 bg-white">
           <h3 className="text-[16px] font-bold text-[#0F172A] tracking-tight">

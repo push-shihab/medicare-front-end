@@ -16,7 +16,7 @@ export default function AdminAnalyticsClient({
   ];
 
   return (
-    <div className="w-full min-h-screen p-6 flex flex-col gap-8 select-none font-sans antialiased">
+    <div className="min-h-screen md:m-5 flex flex-col gap-8 select-none font-sans antialiased">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-full">
         {analyticsCards.map((card) => (
           <div

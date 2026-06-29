@@ -7,6 +7,7 @@ import { FaStar } from "react-icons/fa";
 import { createAppointment } from "@/app/utility/actions/appointment/appointment";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default function DoctorDetailsClient({
   doctor: doctorData,
@@ -38,7 +39,8 @@ export default function DoctorDetailsClient({
       };
       const res = await createAppointment(data);
       if (res.acknowledged) {
-        toast.success("Booked the appointment successfully");
+        toast.loading("Pay now to book the appointment successfully");
+        redirect("/dashboard/patient/appointments");
       }
       if (res.message) {
         toast.error(res.message);

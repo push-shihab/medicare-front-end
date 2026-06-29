@@ -12,7 +12,7 @@ export default function UpcomingAppointmentsTable({ appointments }) {
   const hasAppointments = confirmedAppointments.length > 0;
 
   return (
-    <div className="w-full mx-5 mb-5 bg-white border border-slate-200 rounded-[16px] overflow-hidden shadow-sm shadow-slate-100/40 select-none">
+    <div className="md:m-5 my-5 bg-white border border-slate-200 rounded-[16px] overflow-hidden shadow-sm shadow-slate-100/40 select-none">
       <div className="p-5 flex items-center justify-between border-b border-slate-100 bg-white">
         <h3 className="text-[16px] font-bold text-[#0F172A] tracking-tight">
           Upcoming Appointments

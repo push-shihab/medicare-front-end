@@ -9,7 +9,7 @@ const PaginationInAllDoctorPage = ({ allDoctors, page, setPage }) => {
   return (
     <div className="pt-7">
       <Pagination className="justify-center w-full">
-        <Pagination.Content className="gap-3">
+        <Pagination.Content className="gap-3 flex-wrap justify-center">
           <Pagination.Item>
             <Pagination.Previous
               isDisabled={page === 1}

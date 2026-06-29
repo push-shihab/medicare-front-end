@@ -99,7 +99,7 @@ export default function LeftSideBar() {
   };
 
   return (
-    <main className="w-70 min-h-full bg-white border-r border-slate-200 flex flex-col justify-between select-none my-5 rounded-2xl shadow-sm">
+    <main className="w-full md:w-70 md:min-h-full bg-white border-r border-slate-200 flex flex-col justify-between my-5 rounded-2xl shadow-sm select-none">
       <div className="flex flex-col w-full">
         <div className="h-20 px-6 flex items-center gap-3 border-b border-slate-100">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#0EA5E9] text-white shadow-sm shadow-sky-500/20">
