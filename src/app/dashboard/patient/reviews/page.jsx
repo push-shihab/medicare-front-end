@@ -35,7 +35,7 @@ export default async function ReviewsPage() {
           {reviews.map((review) => (
             <div
               key={review._id}
-              className="bg-white border border-slate-200 rounded-[16px] p-6 flex flex-col justify-between shadow-sm shadow-slate-100/40 relative min-h-[190px]"
+              className="bg-white border border-slate-200 rounded-4xl p-6 flex flex-col justify-between shadow-sm shadow-slate-100/40 relative min-h-47.5"
             >
               <div>
                 <div className="flex items-center justify-between w-full mb-2">
@@ -78,7 +78,7 @@ export default async function ReviewsPage() {
           <h4 className="text-[16px] font-bold text-slate-800 tracking-tight">
             No Reviews Posted Yet
           </h4>
-          <p className="text-[13.5px] text-slate-400 font-medium mt-1 max-w-[360px] leading-normal">
+          <p className="text-[13.5px] text-slate-400 font-medium mt-1 max-w-90 leading-normal">
             You haven&apos;t submitted any evaluations or testimonials for your
             consulting doctors yet.
           </p>

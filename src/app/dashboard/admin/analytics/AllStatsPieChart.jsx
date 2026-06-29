@@ -105,8 +105,6 @@ export default function AllStatsPieChart({
             formatter={(value, name) => [value.toLocaleString(), name]}
           />
         </PieChart>
-
-        {/* Legend */}
         <div
           style={{
             display: "flex",

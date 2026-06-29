@@ -58,7 +58,6 @@ const RescheduleModal = ({ appointment }) => {
             padding: "1rem",
           }}
         >
-          {/* Backdrop — pointer-events none so it never blocks the modal */}
           <div
             onClick={() => setIsOpen(false)}
             style={{
@@ -69,7 +68,6 @@ const RescheduleModal = ({ appointment }) => {
             }}
           />
 
-          {/* Modal — sits above backdrop, full pointer-events */}
           <div
             style={{
               position: "relative",
@@ -83,7 +81,6 @@ const RescheduleModal = ({ appointment }) => {
               overflow: "hidden",
             }}
           >
-            {/* Close */}
             <button
               onClick={() => setIsOpen(false)}
               style={{
@@ -105,7 +102,6 @@ const RescheduleModal = ({ appointment }) => {
               <IoCloseOutline style={{ fontSize: "18px", color: "#94a3b8" }} />
             </button>
 
-            {/* Header */}
             <div
               style={{
                 padding: "1.5rem",
@@ -155,7 +151,6 @@ const RescheduleModal = ({ appointment }) => {
               </div>
             </div>
 
-            {/* Body */}
             <div
               style={{
                 padding: "1.5rem",
@@ -164,7 +159,6 @@ const RescheduleModal = ({ appointment }) => {
                 gap: "1.25rem",
               }}
             >
-              {/* Date */}
               <div
                 style={{ display: "flex", flexDirection: "column", gap: "6px" }}
               >
@@ -204,7 +198,6 @@ const RescheduleModal = ({ appointment }) => {
                 />
               </div>
 
-              {/* Time slots */}
               <div
                 style={{ display: "flex", flexDirection: "column", gap: "8px" }}
               >
@@ -255,7 +248,6 @@ const RescheduleModal = ({ appointment }) => {
               </div>
             </div>
 
-            {/* Footer */}
             <div
               style={{
                 padding: "1.5rem",

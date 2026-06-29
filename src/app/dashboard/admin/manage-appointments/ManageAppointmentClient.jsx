@@ -5,7 +5,7 @@ import { Table } from "@heroui/react";
 
 export default function ManageAppointmentClient({ appointments }) {
   return (
-    <div className="md:m-5 bg-white border border-slate-200/80 rounded-[16px] overflow-hidden shadow-sm shadow-slate-100/40 mb-5 select-none">
+    <div className="md:m-5 bg-white border border-slate-200/80 rounded-4xl overflow-hidden shadow-sm shadow-slate-100/40 mb-5 select-none">
       <div className="p-5 border-b border-slate-100 bg-white">
         <h3 className="text-[18px] font-bold text-[#0F172A] tracking-tight">
           Total Registered Appointments
@@ -44,11 +44,11 @@ export default function ManageAppointmentClient({ appointments }) {
                   key={row._id}
                   className="border-b border-slate-100 last:border-0 hover:bg-slate-50/20 transition-colors"
                 >
-                  <Table.Cell className="px-6 py-[18px] text-[14px] font-bold text-slate-700">
+                  <Table.Cell className="px-6 py-4.5 text-[14px] font-bold text-slate-700">
                     {row.patientName}
                   </Table.Cell>
 
-                  <Table.Cell className="px-6 py-[18px]">
+                  <Table.Cell className="px-6 py-4.5">
                     <div className="flex flex-col gap-0.5">
                       <span className="text-[14px] font-medium text-slate-700">
                         {row.doctorName}
@@ -59,7 +59,7 @@ export default function ManageAppointmentClient({ appointments }) {
                     </div>
                   </Table.Cell>
 
-                  <Table.Cell className="px-6 py-[18px] text-[13.5px] font-medium text-slate-500 font-mono">
+                  <Table.Cell className="px-6 py-4.5 text-[13.5px] font-medium text-slate-500 font-mono">
                     <span>{row.appointmentDate}</span>
                     <span className="text-slate-300 mx-2">|</span>
                     <span className="text-slate-600">
@@ -67,7 +67,7 @@ export default function ManageAppointmentClient({ appointments }) {
                     </span>
                   </Table.Cell>
 
-                  <Table.Cell className="px-6 py-[18px]">
+                  <Table.Cell className="px-6 py-4.5">
                     {row.paymentStatus === "paid" ? (
                       <span className="inline-flex items-center justify-center h-6 px-3 rounded-full text-[11px] font-bold bg-[#E8FBF2] text-[#10B981] border border-[#D1FAE5]">
                         Paid
@@ -79,13 +79,13 @@ export default function ManageAppointmentClient({ appointments }) {
                     )}
                   </Table.Cell>
 
-                  <Table.Cell className="px-6 py-[18px]">
+                  <Table.Cell className="px-6 py-4.5">
                     {row.appointmentStatus === "completed" ? (
-                      <span className="inline-flex items-center justify-center h-[26px] px-3.5 rounded-md text-[11px] font-bold bg-[#EFF6FF] text-[#3B82F6] border border-[#DBEAFE] tracking-wide">
+                      <span className="inline-flex items-center justify-center h-6.5 px-3.5 rounded-md text-[11px] font-bold bg-[#EFF6FF] text-[#3B82F6] border border-[#DBEAFE] tracking-wide">
                         COMPLETED
                       </span>
                     ) : (
-                      <span className="inline-flex items-center justify-center h-[26px] px-3.5 rounded-md text-[11px] font-bold bg-amber-50 text-amber-600 border border-amber-100 tracking-wide">
+                      <span className="inline-flex items-center justify-center h-6.5 px-3.5 rounded-md text-[11px] font-bold bg-amber-50 text-amber-600 border border-amber-100 tracking-wide">
                         PENDING
                       </span>
                     )}

@@ -57,13 +57,13 @@ export default function HeroSection() {
             >
               <Link
                 href="/doctors?page=1"
-                className="h-12 rounded-[8px] bg-[#0EA5E9] px-7 text-[15px] font-semibold tracking-[0.01em] text-white shadow-md transition-all duration-200 hover:bg-[#0369A1] no-underline"
+                className="h-12 rounded-2xl bg-[#0EA5E9] px-7 text-[15px] font-semibold tracking-[0.01em] text-white shadow-md transition-all duration-200 hover:bg-[#0369A1] no-underline"
               >
                 Book Appointment
               </Link>
               <Link
                 href="/doctors?page=1"
-                className="h-12 rounded-[8px] border-[1.5px] border-[#0EA5E9] bg-transparent px-7 text-[15px] font-semibold tracking-[0.01em] text-[#0EA5E9] transition-all duration-200 hover:bg-[#E0F2FE] no-underline"
+                className="h-12 rounded-2xl border-[1.5px] border-[#0EA5E9] bg-transparent px-7 text-[15px] font-semibold tracking-[0.01em] text-[#0EA5E9] transition-all duration-200 hover:bg-[#E0F2FE] no-underline"
               >
                 Find Doctors
               </Link>
@@ -85,7 +85,7 @@ export default function HeroSection() {
                 { value: "4.9", label: "Rating", star: true },
               ].map((stat, i) => (
                 <React.Fragment key={stat.label}>
-                  {i > 0 && <div className="h-8 w-[1px] bg-[#E2E8F0]" />}
+                  {i > 0 && <div className="h-8 w-px bg-[#E2E8F0]" />}
                   <motion.div
                     variants={{
                       hidden: { opacity: 0, y: 16 },

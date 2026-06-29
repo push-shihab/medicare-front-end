@@ -30,7 +30,6 @@ export default function PrescriptionClient({ prescriptions }) {
             </div>
 
             <div className="flex flex-col gap-4 text-[14px] leading-relaxed text-slate-600 font-medium">
-              {/* Diagnosis Row */}
               <p>
                 <strong className="text-slate-800 font-bold text-[15px]">
                   Diagnosis:
@@ -55,7 +54,7 @@ export default function PrescriptionClient({ prescriptions }) {
           </div>
         ))
       ) : (
-        <div className="w-full max-w-[540px] mx-auto bg-white border border-slate-200/60 rounded-[24px] p-10 flex flex-col items-center justify-center text-center select-none shadow-sm">
+        <div className="w-full max-w-135 mx-auto bg-white border border-slate-200/60 rounded-[24px] p-10 flex flex-col items-center justify-center text-center select-none shadow-sm">
           <div className="w-14 h-14 rounded-2xl bg-sky-50 border border-sky-100 flex items-center justify-center text-[#0EA5E9] text-2xl mb-4">
             <IoDocumentTextOutline />
           </div>

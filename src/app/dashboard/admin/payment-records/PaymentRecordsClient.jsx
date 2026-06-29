@@ -5,7 +5,7 @@ import { Table } from "@heroui/react";
 
 export default function PaymentRecordsClient({ payments }) {
   return (
-    <div className="md:m-5 mb-5 bg-white border border-slate-200/80 rounded-[16px] overflow-hidden shadow-sm shadow-slate-100/40 select-none">
+    <div className="md:m-5 mb-5 bg-white border border-slate-200/80 rounded-4xl overflow-hidden shadow-sm shadow-slate-100/40 select-none">
       <div className="p-5 border-b border-slate-100 bg-white">
         <h3 className="text-[18px] font-bold text-[#0F172A] tracking-tight">
           Payment Records
@@ -45,23 +45,23 @@ export default function PaymentRecordsClient({ payments }) {
                   key={row._id}
                   className="border-b border-slate-100 last:border-0 hover:bg-slate-50/20 transition-colors"
                 >
-                  <Table.Cell className="px-6 py-[18px] text-[14px] font-bold text-slate-700">
+                  <Table.Cell className="px-6 py-4.5 text-[14px] font-bold text-slate-700">
                     {row.patientName}
                   </Table.Cell>
 
-                  <Table.Cell className="px-6 py-[18px] text-[14px] font-medium text-slate-600">
+                  <Table.Cell className="px-6 py-4.5 text-[14px] font-medium text-slate-600">
                     {row.doctorName}
                   </Table.Cell>
 
-                  <Table.Cell className="px-6 py-[18px] text-[13.5px] font-medium text-slate-400 font-mono">
+                  <Table.Cell className="px-6 py-4.5 text-[13.5px] font-medium text-slate-400 font-mono">
                     {row.transactionId}
                   </Table.Cell>
 
-                  <Table.Cell className="px-6 py-[18px] text-[14px] font-bold text-slate-800">
+                  <Table.Cell className="px-6 py-4.5 text-[14px] font-bold text-slate-800">
                     {row.amountPaid}
                   </Table.Cell>
 
-                  <Table.Cell className="px-6 py-[18px] text-[13.5px] font-medium text-slate-500 font-mono">
+                  <Table.Cell className="px-6 py-4.5 text-[13.5px] font-medium text-slate-500 font-mono">
                     {row.paymentTime.split(",")[0]}
                   </Table.Cell>
                 </Table.Row>

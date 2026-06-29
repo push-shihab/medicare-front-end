@@ -39,7 +39,7 @@ export default function AnimatedStats({ stats }) {
             {stat.label}
           </span>
           {index < stats.length - 1 && (
-            <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 h-14 w-[1px] bg-white/20" />
+            <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 h-14 w-px bg-white/20" />
           )}
         </motion.div>
       ))}

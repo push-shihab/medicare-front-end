@@ -12,8 +12,6 @@ export async function POST(req) {
     const appointmentFee = formData.get("fee");
     const doctorName = formData.get("doctorName");
     const appointmentId = formData.get("appointmentId");
-
-    // Create Checkout Sessions from body params.
     const session = await stripe.checkout.sessions.create({
       line_items: [
         {

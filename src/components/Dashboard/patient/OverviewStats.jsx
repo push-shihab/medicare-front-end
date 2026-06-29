@@ -12,12 +12,12 @@ export default function OverviewStats({ appointments, payments, reviews }) {
   return (
     <main className="flex justify-center w-full md:m-5">
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 select-none">
-        <div className="bg-white border border-[#F1F5F9] rounded-[16px] p-6 flex flex-col justify-between shadow-sm shadow-slate-100/40">
+        <div className="bg-white border border-[#F1F5F9] rounded-4xl p-6 flex flex-col justify-between shadow-sm shadow-slate-100/40">
           <div className="flex items-center justify-between w-full mb-3">
             <span className="text-[14px] font-medium text-[#94A3B8]">
               Upcoming
             </span>
-            <div className="w-10 h-10 rounded-[12px] bg-[#E0F2FE] text-[#0EA5E9] flex items-center justify-center text-[18px]">
+            <div className="w-10 h-10 rounded-3xl bg-[#E0F2FE] text-[#0EA5E9] flex items-center justify-center text-[18px]">
               <FiCalendar />
             </div>
           </div>
@@ -33,12 +33,12 @@ export default function OverviewStats({ appointments, payments, reviews }) {
           </div>
         </div>
 
-        <div className="bg-white border border-[#F1F5F9] rounded-[16px] p-6 flex flex-col justify-between shadow-sm shadow-slate-100/40">
+        <div className="bg-white border border-[#F1F5F9] rounded-4xl p-6 flex flex-col justify-between shadow-sm shadow-slate-100/40">
           <div className="flex items-center justify-between w-full mb-3">
             <span className="text-[14px] font-medium text-[#94A3B8]">
               Completed
             </span>
-            <div className="w-10 h-10 rounded-[12px] bg-[#DCFCE7] text-[#22C55E] flex items-center justify-center text-[18px]">
+            <div className="w-10 h-10 rounded-3xl bg-[#DCFCE7] text-[#22C55E] flex items-center justify-center text-[18px]">
               <FiCheckSquare />
             </div>
           </div>
@@ -54,12 +54,12 @@ export default function OverviewStats({ appointments, payments, reviews }) {
           </div>
         </div>
 
-        <div className="bg-white border border-[#F1F5F9] rounded-[16px] p-6 flex flex-col justify-between shadow-sm shadow-slate-100/40">
+        <div className="bg-white border border-[#F1F5F9] rounded-4xl p-6 flex flex-col justify-between shadow-sm shadow-slate-100/40">
           <div className="flex items-center justify-between w-full mb-3">
             <span className="text-[14px] font-medium text-[#94A3B8]">
               Total Paid
             </span>
-            <div className="w-10 h-10 rounded-[12px] bg-[#FEF9C3] text-[#EAB308] flex items-center justify-center text-[18px]">
+            <div className="w-10 h-10 rounded-3xl bg-[#FEF9C3] text-[#EAB308] flex items-center justify-center text-[18px]">
               <FiCreditCard />
             </div>
           </div>
@@ -74,12 +74,12 @@ export default function OverviewStats({ appointments, payments, reviews }) {
           </div>
         </div>
 
-        <div className="bg-white border border-[#F1F5F9] rounded-[16px] p-6 flex flex-col justify-between shadow-sm shadow-slate-100/40">
+        <div className="bg-white border border-[#F1F5F9] rounded-4xl p-6 flex flex-col justify-between shadow-sm shadow-slate-100/40">
           <div className="flex items-center justify-between w-full mb-3">
             <span className="text-[14px] font-medium text-[#94A3B8]">
               Reviews Given
             </span>
-            <div className="w-10 h-10 rounded-[12px] bg-[#F3E8FF] text-[#A855F7] flex items-center justify-center text-[18px]">
+            <div className="w-10 h-10 rounded-3xl bg-[#F3E8FF] text-[#A855F7] flex items-center justify-center text-[18px]">
               <FiStar />
             </div>
           </div>

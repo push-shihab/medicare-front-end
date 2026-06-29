@@ -40,7 +40,7 @@ export default function PatientAppointments({ appointments }) {
   const hasAppointments = appointments && appointments.length > 0;
 
   return (
-    <div className="md:m-5 mb-5 bg-white border border-slate-200 rounded-[16px] overflow-hidden shadow-sm shadow-slate-100/40 select-none">
+    <div className="md:m-5 mb-5 bg-white border border-slate-200 rounded-4xl overflow-hidden shadow-sm shadow-slate-100/40 select-none">
       <div className="p-5 flex items-center justify-between border-b border-slate-100 bg-white">
         <h3 className="text-[16px] font-bold text-[#0F172A] tracking-tight">
           All Appointments
@@ -211,7 +211,7 @@ export default function PatientAppointments({ appointments }) {
           <h4 className="text-[15px] font-bold text-slate-800 tracking-tight">
             No Appointments Scheduled
           </h4>
-          <p className="text-[13px] text-slate-400 font-medium mt-1 max-w-[340px] leading-normal">
+          <p className="text-[13px] text-slate-400 font-medium mt-1 max-w-85 leading-normal">
             You haven&apos;t booked any appointments yet. Click the &quot;Book
             New&quot; button above to schedule your first consultation.
           </p>

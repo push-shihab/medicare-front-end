@@ -12,7 +12,7 @@ export default function UpcomingAppointmentsTable({ appointments }) {
   const hasAppointments = confirmedAppointments.length > 0;
 
   return (
-    <div className="md:m-5 my-5 bg-white border border-slate-200 rounded-[16px] overflow-hidden shadow-sm shadow-slate-100/40 select-none">
+    <div className="md:m-5 my-5 bg-white border border-slate-200 rounded-4xl overflow-hidden shadow-sm shadow-slate-100/40 select-none">
       <div className="p-5 flex items-center justify-between border-b border-slate-100 bg-white">
         <h3 className="text-[16px] font-bold text-[#0F172A] tracking-tight">
           Upcoming Appointments
@@ -86,7 +86,7 @@ export default function UpcomingAppointmentsTable({ appointments }) {
           <h4 className="text-[15px] font-bold text-slate-800 tracking-tight">
             No Upcoming Appointments
           </h4>
-          <p className="text-[13px] text-slate-400 font-medium mt-1 max-w-[340px] leading-normal">
+          <p className="text-[13px] text-slate-400 font-medium mt-1 max-w-85 leading-normal">
             You currently have no confirmed upcoming appointments scheduled in
             the system.
           </p>

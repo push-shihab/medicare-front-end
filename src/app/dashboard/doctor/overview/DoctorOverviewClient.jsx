@@ -91,7 +91,7 @@ export default function DoctorOverviewClient({
             {doctorReviews.result.map((review) => (
               <div
                 key={review._id}
-                className="w-full bg-white border border-slate-100 rounded-[16px] p-5 shadow-sm shadow-slate-50/50 hover:border-slate-200/80 transition-all duration-200"
+                className="w-full bg-white border border-slate-100 rounded-4xl p-5 shadow-sm shadow-slate-50/50 hover:border-slate-200/80 transition-all duration-200"
               >
                 <div className="flex items-center justify-between w-full mb-3">
                   <h4 className="text-[15px] font-bold text-slate-800">
@@ -116,7 +116,7 @@ export default function DoctorOverviewClient({
             <h4 className="text-[15px] font-bold text-slate-800 tracking-tight">
               No Testimonials Found
             </h4>
-            <p className="text-[13px] text-slate-400 font-medium mt-1 max-w-[340px] leading-normal">
+            <p className="text-[13px] text-slate-400 font-medium mt-1 max-w-85 leading-normal">
               There are currently no patient feedback records or testimonials
               registered for this profile log.
             </p>

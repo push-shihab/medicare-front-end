@@ -168,7 +168,7 @@ export default function DoctorDetailsClient({
                 <Link
                   href={`/login?doctor=6a36acf62014ca6956ae5e37`}
                   variant="bordered"
-                  className="py-2.5 flex justify-center sm:min-w-[85px] rounded-[8px] border-[1.5px] border-[#0EA5E9] bg-transparent text-[15px] font-semibold tracking-[0.01em] no-underline text-[#0EA5E9] transition-all duration-200 hover:bg-[#E0F2FE]"
+                  className="py-2.5 flex justify-center sm:min-w-21.25 rounded-2xl border-[1.5px] border-[#0EA5E9] bg-transparent text-[15px] font-semibold tracking-[0.01em] no-underline text-[#0EA5E9] transition-all duration-200 hover:bg-[#E0F2FE]"
                 >
                   Login to Book
                 </Link>
@@ -200,7 +200,7 @@ export default function DoctorDetailsClient({
                     key={idx}
                     className="w-full bg-slate-50/60 rounded-xl p-3 border border-slate-100 flex items-center gap-3"
                   >
-                    <IoCheckmarkCircle className="text-emerald-500 text-lg flex-shrink-0" />
+                    <IoCheckmarkCircle className="text-emerald-500 text-lg shrink-0" />
                     <span className="text-[13px] font-semibold text-slate-600">
                       {item}
                     </span>
@@ -275,7 +275,7 @@ export default function DoctorDetailsClient({
             reviews.map((review) => (
               <div
                 key={review._id}
-                className="w-full bg-white border border-slate-100 rounded-[16px] p-5 shadow-sm shadow-slate-50/50 hover:border-slate-200/80 transition-all duration-200"
+                className="w-full bg-white border border-slate-100 rounded-4xl p-5 shadow-sm shadow-slate-50/50 hover:border-slate-200/80 transition-all duration-200"
               >
                 <div className="flex items-center justify-between w-full mb-3">
                   <h4 className="text-[15px] font-bold text-slate-800">
@@ -292,11 +292,11 @@ export default function DoctorDetailsClient({
               </div>
             ))
           ) : (
-            <div className="w-full border border-dashed border-slate-200 rounded-[16px] bg-slate-50/40 p-8 flex flex-col items-center justify-center text-center">
+            <div className="w-full border border-dashed border-slate-200 rounded-4xl bg-slate-50/40 p-8 flex flex-col items-center justify-center text-center">
               <div className="w-12 h-12 rounded-xl bg-slate-100/80 text-slate-400 flex items-center justify-center text-xl mb-3">
                 <IoDocumentTextOutline />
               </div>
-              <p className="text-[13px] text-slate-400/90 font-medium max-w-[480px] leading-relaxed">
+              <p className="text-[13px] text-slate-400/90 font-medium max-w-120 leading-relaxed">
                 No customer feedback verified for this clinician yet. Make a
                 clinic appointment to post reviews feedback.
               </p>

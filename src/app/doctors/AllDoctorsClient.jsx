@@ -48,7 +48,7 @@ export default function AllDoctorsClient({ allDoctors, params }) {
   }, [specialization, router, sortBy, searchQuery, page]);
 
   return (
-    <div className="w-full max-w-[1280px] mx-auto px-4 py-8 min-h-screen">
+    <div className="w-full max-w-7xl mx-auto px-4 py-8 min-h-screen">
       <div className="mb-8">
         <p className="text-[13px] font-semibold tracking-widest text-sky-500 uppercase mb-1">
           Medicare
@@ -73,7 +73,7 @@ export default function AllDoctorsClient({ allDoctors, params }) {
             className="w-full h-11 pl-9 pr-3 rounded-xl border border-slate-200 text-[14px] text-slate-800 placeholder:text-slate-400 outline-none focus:border-sky-500 hover:border-sky-300 transition-colors bg-white"
           />
         </div>
-        <div className="w-full md:w-[210px]">
+        <div className="w-full md:w-52.5">
           <Select
             selectedKey={specialization}
             onSelectionChange={(key) => setSpecialization(String(key))}
@@ -83,7 +83,7 @@ export default function AllDoctorsClient({ allDoctors, params }) {
               <Select.Value placeholder="All Specializations" />
               <Select.Indicator />
             </Select.Trigger>
-            <Select.Popover className="w-[210px]">
+            <Select.Popover className="w-52.5">
               <ListBox>
                 {specializations.map((s) => (
                   <ListBox.Item key={s.id} id={s.id} textValue={s.label}>
@@ -96,7 +96,7 @@ export default function AllDoctorsClient({ allDoctors, params }) {
           </Select>
         </div>
 
-        <div className="w-full md:w-[190px]">
+        <div className="w-full md:w-47.5">
           <Select
             selectedKey={sortBy}
             onSelectionChange={(key) => setSortBy(String(key))}
@@ -106,7 +106,7 @@ export default function AllDoctorsClient({ allDoctors, params }) {
               <Select.Value placeholder="Highest Rated" />
               <Select.Indicator />
             </Select.Trigger>
-            <Select.Popover className="w-[190px]">
+            <Select.Popover className="w-47.5">
               <ListBox>
                 {sortOptions.map((s) => (
                   <ListBox.Item key={s.id} id={s.id} textValue={s.label}>

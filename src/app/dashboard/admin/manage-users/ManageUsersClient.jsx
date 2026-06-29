@@ -36,7 +36,7 @@ export default function ManageUsersClient({ users: usersData }) {
   };
 
   return (
-    <div className="md:m-5 mb-5 bg-white border border-slate-100 rounded-[16px] overflow-hidden shadow-sm shadow-slate-100/40 select-none">
+    <div className="md:m-5 mb-5 bg-white border border-slate-100 rounded-4xl overflow-hidden shadow-sm shadow-slate-100/40 select-none">
       <div className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 bg-white">
         <h3 className="text-[16px] font-bold text-[#0F172A] tracking-tight">
           All Users
@@ -125,15 +125,15 @@ export default function ManageUsersClient({ users: usersData }) {
 
                   <Table.Cell className="px-6 py-4.5">
                     {row.role === "doctor" ? (
-                      <span className="inline-flex items-center justify-center h-[26px] px-3.5 rounded-full text-[12px] font-semibold bg-[#E8FBF2] text-[#10B981] border border-[#D1FAE5]">
+                      <span className="inline-flex items-center justify-center h-6.5 px-3.5 rounded-full text-[12px] font-semibold bg-[#E8FBF2] text-[#10B981] border border-[#D1FAE5]">
                         Doctor
                       </span>
                     ) : row.role === "patient" ? (
-                      <span className="inline-flex items-center justify-center h-[26px] px-3.5 rounded-full text-[12px] font-semibold bg-[#EFF6FF] text-[#3B82F6] border border-[#DBEAFE]">
+                      <span className="inline-flex items-center justify-center h-6.5 px-3.5 rounded-full text-[12px] font-semibold bg-[#EFF6FF] text-[#3B82F6] border border-[#DBEAFE]">
                         Patient
                       </span>
                     ) : (
-                      <span className="inline-flex items-center justify-center h-[26px] px-3.5 rounded-full text-[12px] font-semibold bg-[#fff3da] text-[#f68f3b] border border-[#fef8db]">
+                      <span className="inline-flex items-center justify-center h-6.5 px-3.5 rounded-full text-[12px] font-semibold bg-[#fff3da] text-[#f68f3b] border border-[#fef8db]">
                         Admin
                       </span>
                     )}
@@ -141,11 +141,11 @@ export default function ManageUsersClient({ users: usersData }) {
 
                   <Table.Cell className="px-6 py-4.5">
                     {row.status === "active" ? (
-                      <span className="inline-flex items-center justify-center h-[26px] px-3 rounded-full text-[12px] font-medium bg-[#DCFCE7] text-[#15803D]">
+                      <span className="inline-flex items-center justify-center h-6.5 px-3 rounded-full text-[12px] font-medium bg-[#DCFCE7] text-[#15803D]">
                         Active
                       </span>
                     ) : (
-                      <span className="inline-flex items-center justify-center h-[26px] px-3 rounded-full text-[12px] font-medium bg-[#FEF9C3] text-[#A16207]">
+                      <span className="inline-flex items-center justify-center h-6.5 px-3 rounded-full text-[12px] font-medium bg-[#FEF9C3] text-[#A16207]">
                         Suspended
                       </span>
                     )}

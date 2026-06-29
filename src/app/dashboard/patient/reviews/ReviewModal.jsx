@@ -73,7 +73,7 @@ export default function ReviewModal({ appointments, user }) {
       </Button>
 
       <Modal isOpen={isOpen} onOpenChange={setIsOpen}>
-        <Modal.Backdrop className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 transition-opacity duration-200">
+        <Modal.Backdrop className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-9999 flex items-center justify-center p-4 transition-opacity duration-200">
           <Modal.Container className="w-full max-w-lg flex items-center justify-center">
             <Modal.Dialog className="w-full bg-white rounded-[24px] border border-slate-200/80 shadow-xl overflow-hidden select-none animate-in fade-in zoom-in-95 duration-150 relative">
               <Modal.CloseTrigger className="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-600 transition-colors cursor-pointer z-10">
@@ -81,7 +81,7 @@ export default function ReviewModal({ appointments, user }) {
               </Modal.CloseTrigger>
 
               <Modal.Header className="p-6 bg-slate-50/60 border-b border-slate-100 flex items-center gap-3">
-                <Modal.Icon className="w-10 h-10 rounded-xl bg-sky-50 flex items-center justify-center text-sky-500 text-lg flex-shrink-0 border border-sky-100">
+                <Modal.Icon className="w-10 h-10 rounded-xl bg-sky-50 flex items-center justify-center text-sky-500 text-lg shrink-0 border border-sky-100">
                   <BiRocket className="size-5" />
                 </Modal.Icon>
                 <div className="flex flex-col gap-0.5">
@@ -96,7 +96,6 @@ export default function ReviewModal({ appointments, user }) {
 
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Modal.Body className="p-6 flex flex-col gap-4">
-                  {/* Doctor Selection — outside react-hook-form, managed via useState */}
                   <div className="flex flex-col gap-1.5">
                     <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
                       <IoPersonOutline className="text-[12px]" /> Select Doctor
@@ -121,7 +120,6 @@ export default function ReviewModal({ appointments, user }) {
                     </select>
                   </div>
 
-                  {/* Rating Selection */}
                   <div className="flex flex-col gap-1.5">
                     <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
                       <IoStarOutline className="text-[12px]" /> Score Rating
@@ -138,7 +136,6 @@ export default function ReviewModal({ appointments, user }) {
                     </select>
                   </div>
 
-                  {/* Review Textarea */}
                   <div className="flex flex-col gap-1.5">
                     <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
                       Review Details

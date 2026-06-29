@@ -24,10 +24,8 @@ export default function Footer() {
 
   return (
     <footer className="w-full bg-[#0F172A] text-white">
-      {/* Main Footer Content */}
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-4 lg:gap-12">
-          {/* ================= COLUMN 1: LOGO & TAGLINE ================= */}
           <div className="flex flex-col gap-5">
             <div className="flex items-center gap-2.5">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#0EA5E9] text-white shadow-sm">
@@ -37,11 +35,10 @@ export default function Footer() {
                 MediCare Connect
               </span>
             </div>
-            <p className="text-[14px] leading-relaxed text-[#94A3B8] max-w-[280px]">
+            <p className="text-[14px] leading-relaxed text-[#94A3B8] max-w-70">
               Connecting patients with trusted healthcare professionals through
               modern technology. Your health, our priority.
             </p>
-            {/* Social Media Circular Buttons */}
             <div className="flex items-center gap-3 pt-2">
               <a
                 href="#"
@@ -74,7 +71,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* ================= COLUMN 2: QUICK LINKS ================= */}
           <div className="flex flex-col gap-4">
             <h4 className="text-[16px] font-bold tracking-wide text-white">
               Quick Links
@@ -93,20 +89,19 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* ================= COLUMN 3: CONTACT INFO ================= */}
           <div className="flex flex-col gap-4">
             <h4 className="text-[16px] font-bold tracking-wide text-white">
               Contact
             </h4>
             <ul className="flex flex-col gap-4">
               <li className="flex items-start gap-3 text-[14px] text-[#94A3B8]">
-                <FiMapPin className="mt-1 h-4 w-4 flex-shrink-0 text-[#0EA5E9]" />
+                <FiMapPin className="mt-1 h-4 w-4 shrink-0 text-[#0EA5E9]" />
                 <span className="leading-relaxed">
                   123 Health Street, Dhaka, Bangladesh
                 </span>
               </li>
               <li className="flex items-center gap-3 text-[14px] text-[#94A3B8]">
-                <FiMail className="h-4 w-4 flex-shrink-0 text-[#0EA5E9]" />
+                <FiMail className="h-4 w-4 shrink-0 text-[#0EA5E9]" />
                 <a
                   href="mailto:support@medicare.com"
                   className="hover:text-[#0EA5E9] transition-colors"
@@ -115,7 +110,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="flex items-center gap-3 text-[14px] text-[#94A3B8]">
-                <FiPhone className="h-4 w-4 flex-shrink-0 text-[#0EA5E9]" />
+                <FiPhone className="h-4 w-4 shrink-0 text-[#0EA5E9]" />
                 <a
                   href="tel:+8801700000000"
                   className="hover:text-[#0EA5E9] transition-colors"
@@ -126,7 +121,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* ================= COLUMN 4: EMERGENCY HOTLINE ================= */}
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
               <span className="relative flex h-2 w-2">
@@ -142,13 +136,12 @@ export default function Footer() {
               <span className="text-[36px] font-extrabold leading-none text-[#0EA5E9] tracking-tight">
                 999
               </span>
-              {/* Confirmed/Verified Status Pill Variant from Chunk 16 */}
               <span className="inline-flex items-center rounded-full bg-[#DCFCE7] px-3 py-1 text-[12px] font-semibold text-[#166534] border border-[#86EFAC]">
                 Available 24/7
               </span>
             </div>
 
-            <p className="text-[13px] leading-relaxed text-[#94A3B8] pt-2 max-w-[260px]">
+            <p className="text-[13px] leading-relaxed text-[#94A3B8] pt-2 max-w-65">
               Call immediately for any medical emergency. Our team is ready to
               assist you anytime.
             </p>
@@ -156,7 +149,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* ================= BOTTOM BAR ================= */}
       <div className="border-t border-gray-800/60 py-6">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
           <p className="text-[13px] text-[#94A3B8]">

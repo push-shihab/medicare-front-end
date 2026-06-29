@@ -32,7 +32,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-[#E2E8F0] bg-[#FFFFFF]/90 h-[68px] backdrop-blur-lg transition-shadow duration-200 shadow-sm">
+    <nav className="sticky top-0 z-50 w-full border-b border-[#E2E8F0] bg-[#FFFFFF]/90 h-17 backdrop-blur-lg transition-shadow duration-200 shadow-sm">
       <header className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6">
         <div className="flex items-center gap-4">
           <button
@@ -82,7 +82,7 @@ export default function Navbar() {
                   {item.label}
                 </Link>
                 <span
-                  className={`absolute bottom-0 left-0 h-[2px] bg-[#0EA5E9] transition-all duration-300 ${
+                  className={`absolute bottom-0 left-0 h-0.5 bg-[#0EA5E9] transition-all duration-300 ${
                     isActive ? "w-full" : "w-0 group-hover:w-full"
                   }`}
                 />
@@ -118,10 +118,10 @@ export default function Navbar() {
                 </button>
 
                 {isAvatarDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-48 rounded-[8px] border border-[#E2E8F0] bg-white p-1 shadow-lg animate-in fade-in slide-in-from-top-2 duration-150">
+                  <div className="absolute right-0 mt-2 w-48 rounded-2xl border border-[#E2E8F0] bg-white p-1 shadow-lg animate-in fade-in slide-in-from-top-2 duration-150">
                     <Link
                       href="/dashboard"
-                      className="block w-full rounded-[6px] px-4 py-2 text-sm text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0F172A] no-underline"
+                      className="block w-full rounded-xl px-4 py-2 text-sm text-[#475569] hover:bg-[#F1F5F9] hover:text-[#0F172A] no-underline"
                       onClick={() => setIsAvatarDropdownOpen(false)}
                     >
                       My Dashboard
@@ -132,7 +132,7 @@ export default function Navbar() {
                         handleLogout();
                         setIsAvatarDropdownOpen(false);
                       }}
-                      className="block w-full text-left rounded-[6px] px-4 py-2 text-sm text-[#EF4444] hover:bg-[#FEE2E2] cursor-pointer"
+                      className="block w-full text-left rounded-xl px-4 py-2 text-sm text-[#EF4444] hover:bg-[#FEE2E2] cursor-pointer"
                     >
                       Logout
                     </button>
@@ -145,14 +145,14 @@ export default function Navbar() {
               <Link
                 href="/login"
                 variant="bordered"
-                className="h-10 flex justify-center px-3 rounded-[8px] border-[1.5px] border-[#0EA5E9] bg-transparent text-[15px] font-semibold tracking-[0.01em] no-underline text-[#0EA5E9] transition-all duration-200 hover:bg-[#E0F2FE]"
+                className="h-10 flex justify-center px-3 rounded-2xl border-[1.5px] border-[#0EA5E9] bg-transparent text-[15px] font-semibold tracking-[0.01em] no-underline text-[#0EA5E9] transition-all duration-200 hover:bg-[#E0F2FE]"
               >
                 Login
               </Link>
 
               <Link
                 href="/register"
-                className="h-10 flex justify-center px-3 rounded-[8px] bg-[#0EA5E9] text-[15px] font-semibold tracking-[0.01em] text-white shadow-sm no-underline transition-all duration-200 hover:bg-[#0369A1]"
+                className="h-10 flex justify-center px-3 rounded-2xl bg-[#0EA5E9] text-[15px] font-semibold tracking-[0.01em] text-white shadow-sm no-underline transition-all duration-200 hover:bg-[#0369A1]"
               >
                 Register
               </Link>
@@ -178,7 +178,7 @@ export default function Navbar() {
                           ? "/login"
                           : item.href
                     }
-                    className={`block w-full rounded-[8px] px-4 py-3 text-[16px] font-medium transition-colors duration-150 hover:bg-[#F1F5F9] ${
+                    className={`block w-full rounded-2xl px-4 py-3 text-[16px] font-medium transition-colors duration-150 hover:bg-[#F1F5F9] ${
                       isActive
                         ? "text-[#0EA5E9] bg-[#F1F5F9]/50"
                         : "text-[#475569] hover:text-[#0EA5E9]"

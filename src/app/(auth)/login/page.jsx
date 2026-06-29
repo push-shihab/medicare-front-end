@@ -85,8 +85,7 @@ export default function Login() {
       </div>
 
       <div className="w-full lg:w-1/2 flex flex-col items-center justify-center p-6 sm:p-12 overflow-y-auto">
-        <div className="w-full max-w-[440px] flex flex-col gap-6">
-          {/* Form Header */}
+        <div className="w-full max-w-110 flex flex-col gap-6">
           <div className="flex flex-col items-center text-center gap-2">
             <div className="flex items-center gap-2">
               <div className="flex h-6 w-6 items-center justify-center rounded bg-[#0EA5E9] text-white">
@@ -128,7 +127,7 @@ export default function Login() {
                     message: "Invalid email format",
                   },
                 })}
-                className={`h-12 w-full rounded-[8px] border-[1.5px] bg-white px-4 text-[15px] text-[#0F172A] placeholder-[#94A3B8] outline-none transition-all focus:border-[#0EA5E9] focus:shadow-[0_0_0_3px_rgba(14,165,233,0.15)] ${
+                className={`h-12 w-full rounded-2xl border-[1.5px] bg-white px-4 text-[15px] text-[#0F172A] placeholder-[#94A3B8] outline-none transition-all focus:border-[#0EA5E9] focus:shadow-[0_0_0_3px_rgba(14,165,233,0.15)] ${
                   errors.email ? "border-[#EF4444]" : "border-[#E2E8F0]"
                 }`}
               />
@@ -152,7 +151,7 @@ export default function Login() {
                   {...register("password", {
                     required: "Password is required",
                   })}
-                  className={`h-12 w-full rounded-[8px] border-[1.5px] bg-white pl-4 pr-11 text-[15px] text-[#0F172A] placeholder-[#94A3B8] outline-none transition-all focus:border-[#0EA5E9] focus:shadow-[0_0_0_3px_rgba(14,165,233,0.15)] ${
+                  className={`h-12 w-full rounded-2xl border-[1.5px] bg-white pl-4 pr-11 text-[15px] text-[#0F172A] placeholder-[#94A3B8] outline-none transition-all focus:border-[#0EA5E9] focus:shadow-[0_0_0_3px_rgba(14,165,233,0.15)] ${
                     errors.password ? "border-[#EF4444]" : "border-[#E2E8F0]"
                   }`}
                 />
@@ -174,7 +173,7 @@ export default function Login() {
             <Button
               type="submit"
               disabled={isSubmittingForm}
-              className="h-12 w-full rounded-[8px] bg-[#0EA5E9] text-[15px] font-semibold tracking-[0.01em] text-white shadow-sm transition-all duration-200 hover:bg-[#0369A1] mt-2 disabled:opacity-70"
+              className="h-12 w-full rounded-2xl bg-[#0EA5E9] text-[15px] font-semibold tracking-[0.01em] text-white shadow-sm transition-all duration-200 hover:bg-[#0369A1] mt-2 disabled:opacity-70"
             >
               {isSubmittingForm ? (
                 <FiLoader className="animate-spin text-lg" />
@@ -185,7 +184,7 @@ export default function Login() {
           </form>
 
           <div className="relative flex items-center justify-center py-2">
-            <div className="absolute w-full h-[1px] bg-[#E2E8F0]" />
+            <div className="absolute w-full h-px bg-[#E2E8F0]" />
             <span className="relative bg-white px-3 text-[13px] font-medium text-[#94A3B8] uppercase tracking-wider">
               or
             </span>
@@ -194,7 +193,7 @@ export default function Login() {
           <Button
             variant="bordered"
             onClick={handleGoogleLogin}
-            className="h-12 w-full rounded-[8px] border-[1.5px] border-[#E2E8F0] bg-white text-[15px] font-semibold text-[#0F172A] transition-all duration-200 hover:bg-[#F1F5F9]"
+            className="h-12 w-full rounded-2xl border-[1.5px] border-[#E2E8F0] bg-white text-[15px] font-semibold text-[#0F172A] transition-all duration-200 hover:bg-[#F1F5F9]"
           >
             <FcGoogle className="text-[20px] mr-1" />
             Continue with Google

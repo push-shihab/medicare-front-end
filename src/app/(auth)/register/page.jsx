@@ -153,7 +153,7 @@ export default function Register() {
       </div>
 
       <div className="w-full lg:w-1/2 flex flex-col items-center justify-center p-6 sm:p-12 overflow-y-auto">
-        <div className="w-full max-w-[440px] flex flex-col gap-6">
+        <div className="w-full max-w-110 flex flex-col gap-6">
           <div className="flex flex-col items-center text-center gap-2">
             <div className="flex items-center gap-2">
               <div className="flex h-6 w-6 items-center justify-center rounded bg-[#0EA5E9] text-white">
@@ -189,7 +189,7 @@ export default function Register() {
                 type="text"
                 placeholder="Enter your full name"
                 {...register("fullName", { required: "Full name is required" })}
-                className={`h-12 w-full rounded-[8px] border-[1.5px] bg-white px-4 text-[15px] text-[#0F172A] placeholder-[#94A3B8] outline-none transition-all focus:border-[#0EA5E9] focus:shadow-[0_0_0_3px_rgba(14,165,233,0.15)] ${
+                className={`h-12 w-full rounded-2xl border-[1.5px] bg-white px-4 text-[15px] text-[#0F172A] placeholder-[#94A3B8] outline-none transition-all focus:border-[#0EA5E9] focus:shadow-[0_0_0_3px_rgba(14,165,233,0.15)] ${
                   errors.fullName ? "border-[#EF4444]" : "border-[#E2E8F0]"
                 }`}
               />
@@ -214,7 +214,7 @@ export default function Register() {
                     message: "Invalid email format",
                   },
                 })}
-                className={`h-12 w-full rounded-[8px] border-[1.5px] bg-white px-4 text-[15px] text-[#0F172A] placeholder-[#94A3B8] outline-none transition-all focus:border-[#0EA5E9] focus:shadow-[0_0_0_3px_rgba(14,165,233,0.15)] ${
+                className={`h-12 w-full rounded-2xl border-[1.5px] bg-white px-4 text-[15px] text-[#0F172A] placeholder-[#94A3B8] outline-none transition-all focus:border-[#0EA5E9] focus:shadow-[0_0_0_3px_rgba(14,165,233,0.15)] ${
                   errors.email ? "border-[#EF4444]" : "border-[#E2E8F0]"
                 }`}
               />
@@ -233,7 +233,7 @@ export default function Register() {
                 type="tel"
                 placeholder="Enter your phone number"
                 {...register("phone", { required: "Phone number is required" })}
-                className={`h-12 w-full rounded-[8px] border-[1.5px] bg-white px-4 text-[15px] text-[#0F172A] placeholder-[#94A3B8] outline-none transition-all focus:border-[#0EA5E9] focus:shadow-[0_0_0_3px_rgba(14,165,233,0.15)] ${
+                className={`h-12 w-full rounded-2xl border-[1.5px] bg-white px-4 text-[15px] text-[#0F172A] placeholder-[#94A3B8] outline-none transition-all focus:border-[#0EA5E9] focus:shadow-[0_0_0_3px_rgba(14,165,233,0.15)] ${
                   errors.phone ? "border-[#EF4444]" : "border-[#E2E8F0]"
                 }`}
               />
@@ -253,7 +253,7 @@ export default function Register() {
                   {...register("gender", {
                     required: "Gender selection is required",
                   })}
-                  className={`h-12 w-full rounded-[8px] border-[1.5px] bg-white px-4 text-[15px] text-[#0F172A] outline-none transition-all focus:border-[#0EA5E9] focus:shadow-[0_0_0_3px_rgba(14,165,233,0.15)] appearance-none cursor-pointer ${
+                  className={`h-12 w-full rounded-2xl border-[1.5px] bg-white px-4 text-[15px] text-[#0F172A] outline-none transition-all focus:border-[#0EA5E9] focus:shadow-[0_0_0_3px_rgba(14,165,233,0.15)] appearance-none cursor-pointer ${
                     errors.gender ? "border-[#EF4444]" : "border-[#E2E8F0]"
                   }`}
                 >
@@ -277,7 +277,7 @@ export default function Register() {
                 Join As
               </label>
               <div className="grid grid-cols-2 gap-4">
-                <label className="flex items-center justify-between h-12 px-4 rounded-[8px] border-[1.5px] border-[#E2E8F0] bg-white cursor-pointer transition-all has-[:checked]:border-[#0EA5E9] has-[:checked]:bg-sky-50/30">
+                <label className="flex items-center justify-between h-12 px-4 rounded-2xl border-[1.5px] border-[#E2E8F0] bg-white cursor-pointer transition-all has-checked:border-[#0EA5E9] has-checked:bg-sky-50/30">
                   <span className="text-[14px] font-medium text-[#0F172A]">
                     Patient
                   </span>
@@ -288,7 +288,7 @@ export default function Register() {
                     className="h-4 w-4 accent-[#0EA5E9]"
                   />
                 </label>
-                <label className="flex items-center justify-between h-12 px-4 rounded-[8px] border-[1.5px] border-[#E2E8F0] bg-white cursor-pointer transition-all has-[:checked]:border-[#0EA5E9] has-[:checked]:bg-sky-50/30">
+                <label className="flex items-center justify-between h-12 px-4 rounded-2xl border-[1.5px] border-[#E2E8F0] bg-white cursor-pointer transition-all has-checked:border-[#0EA5E9] has-checked:bg-sky-50/30">
                   <span className="text-[14px] font-medium text-[#0F172A]">
                     Doctor
                   </span>
@@ -308,7 +308,7 @@ export default function Register() {
               </label>
 
               <label
-                className={`relative flex flex-col items-center justify-center w-full h-32 rounded-[8px] border-[1.5px] border-dashed bg-white cursor-pointer transition-all hover:bg-slate-50/50 ${
+                className={`relative flex flex-col items-center justify-center w-full h-32 rounded-2xl border-[1.5px] border-dashed bg-white cursor-pointer transition-all hover:bg-slate-50/50 ${
                   errors.profilePhoto ? "border-[#EF4444]" : "border-[#E2E8F0]"
                 }`}
               >
@@ -320,7 +320,7 @@ export default function Register() {
                 />
 
                 {previewUrl ? (
-                  <div className="absolute inset-0 flex items-center justify-center p-2 bg-white rounded-[8px]">
+                  <div className="absolute inset-0 flex items-center justify-center p-2 bg-white rounded-2xl">
                     <Image
                       src={previewUrl}
                       alt="Local preview context"
@@ -369,7 +369,7 @@ export default function Register() {
                       message: "At least 6 characters long",
                     },
                   })}
-                  className={`h-12 w-full rounded-[8px] border-[1.5px] bg-white pl-4 pr-11 text-[15px] text-[#0F172A] placeholder-[#94A3B8] outline-none transition-all focus:border-[#0EA5E9] focus:shadow-[0_0_0_3px_rgba(14,165,233,0.15)] ${
+                  className={`h-12 w-full rounded-2xl border-[1.5px] bg-white pl-4 pr-11 text-[15px] text-[#0F172A] placeholder-[#94A3B8] outline-none transition-all focus:border-[#0EA5E9] focus:shadow-[0_0_0_3px_rgba(14,165,233,0.15)] ${
                     errors.password ? "border-[#EF4444]" : "border-[#E2E8F0]"
                   }`}
                 />
@@ -394,7 +394,7 @@ export default function Register() {
             <Button
               type="submit"
               disabled={isUploading || isSubmittingForm}
-              className="h-12 w-full rounded-[8px] bg-[#0EA5E9] text-[15px] font-semibold tracking-[0.01em] text-white shadow-sm transition-all duration-200 hover:bg-[#0369A1] mt-2 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="h-12 w-full rounded-2xl bg-[#0EA5E9] text-[15px] font-semibold tracking-[0.01em] text-white shadow-sm transition-all duration-200 hover:bg-[#0369A1] mt-2 disabled:opacity-70 disabled:cursor-not-allowed"
             >
               {isSubmittingForm ? (
                 <FiLoader className="animate-spin text-lg" />

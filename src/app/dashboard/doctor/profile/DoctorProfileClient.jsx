@@ -145,7 +145,7 @@ export default function DoctorProfileClient({ doctor, session }) {
             defaultValue={doctor.bio}
             rows={4}
             {...register("bio")}
-            className="w-full border border-slate-200 p-4 rounded-xl text-[14px] text-slate-700 bg-white focus:outline-none focus:border-[#0EA5E9] font-medium transition-all resize-y min-h-[100px]"
+            className="w-full border border-slate-200 p-4 rounded-xl text-[14px] text-slate-700 bg-white focus:outline-none focus:border-[#0EA5E9] font-medium transition-all resize-y min-h-25"
           />
         </div>
 

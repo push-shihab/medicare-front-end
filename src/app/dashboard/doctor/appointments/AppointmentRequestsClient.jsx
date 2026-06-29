@@ -52,20 +52,20 @@ export default function AppointmentRequestsClient({ doctorAppointments }) {
               <Table.Header>
                 <Table.Column
                   isRowHeader
-                  className="bg-slate-50/50 text-[11px] font-bold text-slate-400 uppercase tracking-wider py-4 px-6 border-b border-slate-100 min-w-[180px]"
+                  className="bg-slate-50/50 text-[11px] font-bold text-slate-400 uppercase tracking-wider py-4 px-6 border-b border-slate-100 min-w-45"
                 >
                   PATIENT
                 </Table.Column>
-                <Table.Column className="bg-slate-50/50 text-[11px] font-bold text-slate-400 uppercase tracking-wider py-4 px-6 border-b border-slate-100 min-w-[160px]">
+                <Table.Column className="bg-slate-50/50 text-[11px] font-bold text-slate-400 uppercase tracking-wider py-4 px-6 border-b border-slate-100 min-w-40">
                   DATE & TIME
                 </Table.Column>
-                <Table.Column className="bg-slate-50/50 text-[11px] font-bold text-slate-400 uppercase tracking-wider py-4 px-6 border-b border-slate-100 min-w-[240px]">
+                <Table.Column className="bg-slate-50/50 text-[11px] font-bold text-slate-400 uppercase tracking-wider py-4 px-6 border-b border-slate-100 min-w-60">
                   SYMPTOMS
                 </Table.Column>
-                <Table.Column className="bg-slate-50/50 text-[11px] font-bold text-slate-400 uppercase tracking-wider py-4 px-6 border-b border-slate-100 min-w-[130px]">
+                <Table.Column className="bg-slate-50/50 text-[11px] font-bold text-slate-400 uppercase tracking-wider py-4 px-6 border-b border-slate-100 min-w-32.5">
                   STATUS
                 </Table.Column>
-                <Table.Column className="bg-slate-50/50 text-[11px] font-bold text-slate-400 uppercase tracking-wider py-4 px-6 border-b border-slate-100 min-w-[180px]">
+                <Table.Column className="bg-slate-50/50 text-[11px] font-bold text-slate-400 uppercase tracking-wider py-4 px-6 border-b border-slate-100 min-w-45">
                   ACTIONS
                 </Table.Column>
               </Table.Header>
@@ -169,7 +169,7 @@ export default function AppointmentRequestsClient({ doctorAppointments }) {
           <h4 className="text-[15px] font-bold text-slate-800 tracking-tight">
             No Appointment Requests
           </h4>
-          <p className="text-[13px] text-slate-400 font-medium mt-1 max-w-[340px] leading-normal">
+          <p className="text-[13px] text-slate-400 font-medium mt-1 max-w-85 leading-normal">
             There are currently no active patient request records or bookings
             matching this system desk segment.
           </p>

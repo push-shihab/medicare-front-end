@@ -83,7 +83,7 @@ export default function OurSpecializations() {
                   y: -6,
                   boxShadow: "0 8px 20px rgba(14,165,233,0.12)",
                 }}
-                className="group flex h-[140px] shrink-0 flex-col items-center justify-center gap-4 rounded-[16px] border border-[#E2E8F0] bg-white p-4 transition-colors duration-200 hover:border-[#0EA5E9] sm:w-auto cursor-pointer w-full"
+                className="group flex h-35 shrink-0 flex-col items-center justify-center gap-4 rounded-4xl border border-[#E2E8F0] bg-white p-4 transition-colors duration-200 hover:border-[#0EA5E9] sm:w-auto cursor-pointer w-full"
               >
                 <div
                   className={`flex h-14 w-14 items-center justify-center rounded-full ${item.bg} transition-colors duration-200 group-hover:bg-[#E0F2FE]`}

@@ -9,7 +9,7 @@ export default function PaymentHistoryClient({ payments }) {
 
   return (
     <div className="mb-5 flex flex-col md:m-5 gap-6 p-1 select-none">
-      <div className="w-full bg-white border border-slate-200 rounded-[16px] overflow-hidden shadow-sm shadow-slate-100/40 mt-2">
+      <div className="w-full bg-white border border-slate-200 rounded-4xl overflow-hidden shadow-sm shadow-slate-100/40 mt-2">
         <div className="p-5 flex items-center justify-between border-b border-slate-100 bg-white">
           <h3 className="text-[16px] font-bold text-[#0F172A] tracking-tight">
             Transaction History
@@ -53,11 +53,11 @@ export default function PaymentHistoryClient({ payments }) {
                       key={row._id}
                       className="border-b border-slate-50 last:border-0 hover:bg-slate-50/30 transition-colors"
                     >
-                      <Table.Cell className="px-6 py-[18px] text-[13px] font-medium text-slate-400 font-mono">
+                      <Table.Cell className="px-6 py-4.5 text-[13px] font-medium text-slate-400 font-mono">
                         {row.transactionId}
                       </Table.Cell>
 
-                      <Table.Cell className="px-6 py-[18px] text-[14px] font-medium text-slate-700">
+                      <Table.Cell className="px-6 py-4.5 text-[14px] font-medium text-slate-700">
                         {row.doctorName}
                       </Table.Cell>
 
@@ -65,15 +65,15 @@ export default function PaymentHistoryClient({ payments }) {
                         {row.paymentTime?.split(",")[0]}
                       </Table.Cell>
 
-                      <Table.Cell className="px-6 py-[18px] text-[14px] text-slate-800 font-bold font-sans">
+                      <Table.Cell className="px-6 py-4.5 text-[14px] text-slate-800 font-bold font-sans">
                         ${row.amountPaid}
                       </Table.Cell>
 
-                      <Table.Cell className="px-6 py-[18px] text-[14px] text-slate-500">
+                      <Table.Cell className="px-6 py-4.5 text-[14px] text-slate-500">
                         Stripe
                       </Table.Cell>
 
-                      <Table.Cell className="px-6 py-[18px]">
+                      <Table.Cell className="px-6 py-4.5">
                         <span className="inline-flex items-center justify-center h-6 px-3 rounded-full text-[12px] font-medium bg-[#DCFCE7] text-[#16A34A]">
                           Paid
                         </span>
@@ -93,7 +93,7 @@ export default function PaymentHistoryClient({ payments }) {
             <h4 className="text-[15px] font-bold text-slate-800 tracking-tight">
               No Payment History
             </h4>
-            <p className="text-[13px] text-slate-400 font-medium mt-1 max-w-[340px] leading-normal">
+            <p className="text-[13px] text-slate-400 font-medium mt-1 max-w-85 leading-normal">
               There are currently no statements or financial transaction records
               registered in your account.
             </p>

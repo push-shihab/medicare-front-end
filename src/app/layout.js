@@ -52,13 +52,13 @@ export default function RootLayout({ children }) {
             },
             success: {
               iconTheme: {
-                primary: "#0EA5E9", // Brand primary sky blue
+                primary: "#0EA5E9",
                 secondary: "#FFFFFF",
               },
             },
             error: {
               iconTheme: {
-                primary: "#EF4444", // Destructive danger red
+                primary: "#EF4444",
                 secondary: "#FFFFFF",
               },
             },
