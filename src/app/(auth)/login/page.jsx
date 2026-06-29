@@ -10,13 +10,10 @@ import Image from "next/image";
 import illustration from "../../../../public/images/flat-national-doctor-s-day-illustration.png";
 import { authClient } from "@/app/lib/auth-client";
 import toast from "react-hot-toast";
-import { redirect, useSearchParams } from "next/navigation";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmittingForm, setIsSubmittingForm] = useState(false);
-  const params = useSearchParams();
-  const param = params.get("doctor");
 
   const {
     register,
@@ -47,12 +44,8 @@ export default function Login() {
         toast.error(error.message);
       }
       if (res) {
-        toast.success("login in successfull");
-        if (param) {
-          window.location.href = `/doctors/${param}`;
-        } else {
-          window.location.href = "/dashboard";
-        }
+        toast.success("Login successfull");
+        window.location.href = "/dashboard";
       }
     } finally {
       setIsSubmittingForm(false);
