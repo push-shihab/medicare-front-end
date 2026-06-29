@@ -365,8 +365,14 @@ export default function Register() {
                   {...register("password", {
                     required: "Password is required",
                     minLength: {
-                      value: 6,
-                      message: "At least 6 characters long",
+                      value: 8,
+                      message: "At least 8 characters long",
+                    },
+                    pattern: {
+                      value:
+                        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).+$/,
+                      message:
+                        "Must include 1 uppercase, 1 lowercase, 1 number, and 1 special character",
                     },
                   })}
                   className={`h-12 w-full rounded-2xl border-[1.5px] bg-white pl-4 pr-11 text-[15px] text-[#0F172A] placeholder-[#94A3B8] outline-none transition-all focus:border-[#0EA5E9] focus:shadow-[0_0_0_3px_rgba(14,165,233,0.15)] ${
@@ -382,7 +388,8 @@ export default function Register() {
                 </button>
               </div>
               <p className="text-[12px] text-[#94A3B8] leading-normal">
-                At least 6 characters, 1 number, 1 special character
+                At least 8 characters, 1 lowercase, 1 uppercase, 1 number, 1
+                special character
               </p>
               {errors.password && (
                 <span className="text-[13px] text-[#EF4444]">

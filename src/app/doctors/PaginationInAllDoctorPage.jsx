@@ -4,7 +4,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const PaginationInAllDoctorPage = ({ allDoctors, page, setPage }) => {
   const totalItems = allDoctors.totalDoctor;
-  const itemsPerPage = 12;
+  const itemsPerPage = 8;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   return (
     <div className="pt-7">

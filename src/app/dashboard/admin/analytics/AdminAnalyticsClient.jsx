@@ -10,14 +10,15 @@ export default function AdminAnalyticsClient({
   reviews,
 }) {
   const analyticsCards = [
-    { id: "1", label: "Total Patients", value: "2" },
-    { id: "2", label: "Verified Clinicians", value: "6" },
-    { id: "3", label: "All Bookings", value: "5" },
+    { id: "1", label: "Total Patients", value: patients.length },
+    { id: "2", label: "Verified Doctors", value: doctors.length },
+    { id: "3", label: "All Bookings", value: appointments.length },
+    { id: "4", label: "All Reviews", value: reviews.length },
   ];
 
   return (
     <div className="min-h-screen md:m-5 flex flex-col gap-8 select-none font-sans antialiased">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-full">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 w-full">
         {analyticsCards.map((card) => (
           <div
             key={card.id}

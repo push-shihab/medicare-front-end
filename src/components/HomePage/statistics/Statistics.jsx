@@ -2,6 +2,7 @@ import { getAllUsers } from "@/app/utility/fetchData/admin/admin";
 import { getAllAppointments } from "@/app/utility/fetchData/appointment/appointment";
 import { getAllReviews } from "@/app/utility/fetchData/review/review";
 import AnimatedStats from "./AnimatedStats";
+import { getAllDoctors } from "@/app/utility/fetchData/doctor/doctor";
 
 export default async function Statistics() {
   const appointments = await getAllAppointments();
@@ -10,11 +11,18 @@ export default async function Statistics() {
   const avgRating =
     reviews.reduce((acc, review) => acc + Number(review.rating), 0) /
     reviews.length;
-  const doctors = users.filter((user) => user.role === "doctor");
+  const doctors = await getAllDoctors();
+  const filteredDoctor = doctors.filter(
+    (doctor) => doctor.verificationStatus === "approved",
+  );
   const patients = users.filter((user) => user.role === "patient");
 
   const stats = [
-    { value: `${doctors.length}+`, label: "Verified Doctors", isRating: false },
+    {
+      value: `${filteredDoctor.length}+`,
+      label: "Verified Doctors",
+      isRating: false,
+    },
     { value: `${patients.length}+`, label: "Happy Patients", isRating: false },
     {
       value: `${appointments.length}+`,

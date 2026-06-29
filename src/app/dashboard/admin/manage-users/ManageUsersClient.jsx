@@ -16,8 +16,8 @@ export default function ManageUsersClient({ users: usersData }) {
     setUsers(usersData);
   }, [usersData]);
 
-  const patients = users.filter((patient) => patient.role === "patient");
-  const doctors = users.filter((doctor) => doctor.role === "doctor");
+  const patients = usersData.filter((patient) => patient.role === "patient");
+  const doctors = usersData.filter((doctor) => doctor.role === "doctor");
 
   const handleSuspend = async (userId) => {
     const res = await suspendUser({ userId });
