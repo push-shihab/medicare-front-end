@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import { getUserToken } from "../server/session";
 
 const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
@@ -13,7 +14,7 @@ export const authHeader = async () => {
 };
 
 export const createData = async (path, data, method = "POST") => {
-  const res = await fetch(`${baseUrl}${path}`, {
+  const fetchedData = await fetch(`${baseUrl}${path}`, {
     method: method,
     headers: {
       "content-type": "application/json",
@@ -21,31 +22,55 @@ export const createData = async (path, data, method = "POST") => {
     },
     body: JSON.stringify(data),
   });
-  return res.json();
+  const res = await fetchedData.json();
+  if (res.message === "unauthorized") {
+    revalidatePath("/unauthorized");
+    return;
+  } else if (res.message === "forbidden") {
+    revalidatePath("/forbidden");
+    return;
+  }
+  return res;
 };
 
 export const getData = async (path) => {
-  const res = await fetch(`${baseUrl}${path}`, {
+  const fetchedData = await fetch(`${baseUrl}${path}`, {
     headers: {
       ...(await authHeader()),
     },
   });
-  return res.json();
+  const res = await fetchedData.json();
+  if (res.message === "unauthorized") {
+    revalidatePath("/unauthorized");
+    return;
+  } else if (res.message === "forbidden") {
+    revalidatePath("/forbidden");
+    return;
+  }
+  return res;
 };
 
 export const updateAppointmentData = async (path, data) => {
-  const res = await fetch(`${baseUrl}${path}?appointmentId=${data}`, {
+  const fetchedData = await fetch(`${baseUrl}${path}?appointmentId=${data}`, {
     method: "PATCH",
     headers: {
       "content-type": "application/json",
       ...(await authHeader()),
     },
   });
-  return res.json();
+  const res = await fetchedData.json();
+  if (res.message === "unauthorized") {
+    revalidatePath("/unauthorized");
+    return;
+  } else if (res.message === "forbidden") {
+    revalidatePath("/forbidden");
+    return;
+  }
+  return res;
 };
 
 export const updateData = async (path, data) => {
-  const res = await fetch(`${baseUrl}${path}`, {
+  const fetchedData = await fetch(`${baseUrl}${path}`, {
     method: "PATCH",
     headers: {
       "content-type": "application/json",
@@ -53,5 +78,13 @@ export const updateData = async (path, data) => {
     },
     body: JSON.stringify(data),
   });
-  return res.json();
+  const res = await fetchedData.json();
+  if (res.message === "unauthorized") {
+    revalidatePath("/unauthorized");
+    return;
+  } else if (res.message === "forbidden") {
+    revalidatePath("/forbidden");
+    return;
+  }
+  return res;
 };

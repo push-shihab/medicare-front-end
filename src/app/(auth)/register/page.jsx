@@ -38,22 +38,17 @@ export default function Register() {
     },
   });
 
-  // Handle local file picking and direct client-side upload to ImgBB
   const handleFileChange = async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
-
-    // Create local preview URL
     const localUrl = URL.createObjectURL(file);
     setPreviewUrl(localUrl);
     setIsUploading(true);
 
-    // Prepare form data for ImgBB API
     const formData = new FormData();
     formData.append("image", file);
 
     try {
-      // Replace with your actual ImgBB API Key
       const response = await fetch(
         `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`,
         {
@@ -78,7 +73,6 @@ export default function Register() {
     }
   };
 
-  // Submit complete dataset to your backend server
   const onSubmit = async (data) => {
     if (isUploading) {
       alert("Please wait for the profile image upload to complete.");

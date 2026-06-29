@@ -10,7 +10,7 @@ export const editReview = async (data) => {
 };
 
 export const deleteReview = async (data) => {
-  const res = await fetch(
+  const fetchedData = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/review/delete`,
     {
       method: "DELETE",
@@ -21,5 +21,13 @@ export const deleteReview = async (data) => {
       body: JSON.stringify(data),
     },
   );
-  return res.json();
+  const res = await fetchedData.json();
+  if (res.message === "unauthorized") {
+    revalidatePath("/unauthorized");
+    return;
+  } else if (res.message === "forbidden") {
+    revalidatePath("/forbidden");
+    return;
+  }
+  return res;
 };

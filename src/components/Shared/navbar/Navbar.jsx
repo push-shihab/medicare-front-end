@@ -25,10 +25,10 @@ export default function Navbar() {
 
   const menuItems = [
     { label: "Home", href: "/" },
-    { label: "Find Doctors", href: "/doctors" },
+    { label: "Find Doctors", href: "/doctors?page=1" },
     { label: "About Us", href: "/about-us" },
     { label: "Contact Us", href: "/contact-us" },
-    { label: "Dashboard", href: "/dashboard" },
+    { label: "Dashboard", href: `${data?.user ? "/dashboard" : "login"}` },
   ];
 
   return (

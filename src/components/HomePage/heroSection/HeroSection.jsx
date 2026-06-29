@@ -11,9 +11,7 @@ export default function HeroSection() {
     <section className="w-full bg-[#F0F9FF] py-12 md:py-20 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center">
-          {/* ================= LEFT SIDE: CONTENT (60% Width Layout) ================= */}
           <div className="flex flex-col items-start gap-6 lg:col-span-7">
-            {/* Small Pill Badge */}
             <div className="inline-flex items-center gap-1.5 rounded-full bg-[#E0F2FE] px-3.5 py-1.5 border border-[#BDE0FE]">
               <HiSparkles className="text-[12px] text-[#0369A1]" />
               <span className="text-[13px] font-semibold tracking-wide text-[#0369A1]">
@@ -21,38 +19,32 @@ export default function HeroSection() {
               </span>
             </div>
 
-            {/* Main H1 Heading */}
             <h1 className="text-[40px] font-extrabold leading-[1.15] tracking-tight text-[#0F172A] sm:text-[56px]">
               Your Health, <br />
               Our Priority
             </h1>
 
-            {/* Subheading Text */}
             <p className="max-w-xl text-[16px] md:text-[18px] font-normal leading-[1.7] text-[#475569]">
               Book appointments with top doctors instantly. Fast, secure, and
               always available.
             </p>
 
-            {/* Interactive Call to Action Buttons */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
-              <Button
-                as={Link}
-                href="#"
-                className="h-12 rounded-[8px] bg-[#0EA5E9] px-7 text-[15px] font-semibold tracking-[0.01em] text-white shadow-md transition-all duration-200 hover:bg-[#0369A1]"
+              <Link
+                href="/doctors?page=1"
+                className="h-12 rounded-[8px] bg-[#0EA5E9] px-7 text-[15px] font-semibold tracking-[0.01em] text-white shadow-md transition-all duration-200 hover:bg-[#0369A1] no-underline"
               >
                 Book Appointment
-              </Button>
-              <Button
-                as={Link}
-                href="#"
+              </Link>
+              <Link
+                href="/doctors?page=1"
                 variant="bordered"
-                className="h-12 rounded-[8px] border-[1.5px] border-[#0EA5E9] bg-transparent px-7 text-[15px] font-semibold tracking-[0.01em] text-[#0EA5E9] transition-all duration-200 hover:bg-[#E0F2FE]"
+                className="h-12 rounded-[8px] border-[1.5px] border-[#0EA5E9] bg-transparent px-7 text-[15px] font-semibold tracking-[0.01em] text-[#0EA5E9] transition-all duration-200 hover:bg-[#E0F2FE] no-underline"
               >
                 Find Doctors
-              </Button>
+              </Link>
             </div>
 
-            {/* Trust Stats Row */}
             <div className="flex items-center gap-6 pt-6 border-t border-[#E2E8F0] w-full max-w-md mt-4">
               <div>
                 <span className="block text-[22px] font-bold text-[#0F172A] leading-none">
@@ -86,11 +78,9 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* ================= RIGHT SIDE: ILLUSTRATION CONTEXT (40% Width Layout) ================= */}
           <div className="relative flex justify-center lg:col-span-5 lg:justify-end">
             {/* Main Visual Frame Box */}
             <div className="relative h-80 w-full rounded-[24px] bg-[#CBEBFF] p-6 flex items-center justify-center sm:h-95">
-              {/* Centered Medical Dashboard Illustration Image */}
               <Image
                 src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=500&auto=format&fit=crop&q=80"
                 alt="Medical Dashboard Graphic illustration"

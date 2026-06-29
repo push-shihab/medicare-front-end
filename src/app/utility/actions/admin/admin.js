@@ -4,7 +4,7 @@ import { authHeader, updateData } from "../../api/api";
 const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
 export const deleteUser = async (data) => {
-  const res = await fetch(`${baseUrl}/api/user/delete`, {
+  const fetchedData = await fetch(`${baseUrl}/api/user/delete`, {
     method: "DELETE",
     headers: {
       "content-type": "application/json",
@@ -12,7 +12,15 @@ export const deleteUser = async (data) => {
     },
     body: JSON.stringify(data),
   });
-  return res.json();
+  const res = await fetchedData.json();
+  if (res.message === "unauthorized") {
+    revalidatePath("/unauthorized");
+    return;
+  } else if (res.message === "forbidden") {
+    revalidatePath("/forbidden");
+    return;
+  }
+  return res;
 };
 
 export const suspendUser = async (userId) => {

@@ -8,6 +8,7 @@ import { getSession } from "@/app/utility/server/session";
 const DoctorDetailsPage = async ({ params }) => {
   const { id } = await params;
   const doctor = await getDoctorById(id);
+  console.log(id, doctor);
   const session = await getSession();
   const reviews = await getReviewByDoctorEmail(doctor.doctorEmail);
   return (

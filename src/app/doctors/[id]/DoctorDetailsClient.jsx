@@ -1,14 +1,12 @@
 "use client";
-
 import React, { useState } from "react";
-// Fixed imports: Using proper flat HeroUI layout definitions to avoid undefined errors
 import { Card, Button } from "@heroui/react";
-// Using exclusively react-icons
 import { IoCheckmarkCircle, IoDocumentTextOutline } from "react-icons/io5";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import { createAppointment } from "@/app/utility/actions/appointment/appointment";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 export default function DoctorDetailsClient({
   doctor: doctorData,
@@ -23,26 +21,28 @@ export default function DoctorDetailsClient({
       toast.error("Please select date and time to proceed");
       return;
     }
-    const data = {
-      patientId: session.id,
-      patientName: session.name,
-      doctorId: doctorData._id,
-      doctorName: doctorData.doctorName,
-      appointmentStatus: "pending",
-      appointmentDate: bookingDate,
-      appointmentTime: selectedTime,
-      symptoms,
-      paymentStatus: "pending",
-      specialization: doctorData.specialization,
-      consultationFee: doctorData.consultationFee,
-      doctorTime: doctorData.availableSlots,
-    };
-    const res = await createAppointment(data);
-    if (res.acknowledged) {
-      toast.success("Booked the appointment successfully");
-    }
-    if (res.message) {
-      toast.error(res.message);
+    if (session) {
+      const data = {
+        patientId: session.id,
+        patientName: session.name,
+        doctorId: doctorData._id,
+        doctorName: doctorData.doctorName,
+        appointmentStatus: "pending",
+        appointmentDate: bookingDate,
+        appointmentTime: selectedTime,
+        symptoms,
+        paymentStatus: "pending",
+        specialization: doctorData.specialization,
+        consultationFee: doctorData.consultationFee,
+        doctorTime: doctorData.availableSlots,
+      };
+      const res = await createAppointment(data);
+      if (res.acknowledged) {
+        toast.success("Booked the appointment successfully");
+      }
+      if (res.message) {
+        toast.error(res.message);
+      }
     }
   };
 
@@ -149,17 +149,27 @@ export default function DoctorDetailsClient({
                   })}
                 </div>
               </div>
-              {doctorData.doctorEmail === session.email ? (
-                <h2 className="text-center font-semibold text-[#0EA5E9]">
-                  Everyone can book here except you, {doctorData.doctorName}!
-                </h2>
+              {session ? (
+                doctorData.doctorEmail === session.email ? (
+                  <h2 className="text-center font-semibold text-[#0EA5E9]">
+                    Everyone can book here except you, {doctorData.doctorName}!
+                  </h2>
+                ) : (
+                  <Button
+                    onClick={handleBooking}
+                    className="w-full bg-[#0EA5E9] text-white font-bold text-[14px] h-11 mt-2 rounded-xl hover:bg-sky-600 transition-all shadow-sm shadow-sky-500/10"
+                  >
+                    Book Now
+                  </Button>
+                )
               ) : (
-                <Button
-                  onClick={handleBooking}
-                  className="w-full bg-[#0EA5E9] text-white font-bold text-[14px] h-11 mt-2 rounded-xl hover:bg-sky-600 transition-all shadow-sm shadow-sky-500/10"
+                <Link
+                  href={`/login?doctor=6a36acf62014ca6956ae5e37`}
+                  variant="bordered"
+                  className="py-2.5 flex justify-center sm:min-w-[85px] rounded-[8px] border-[1.5px] border-[#0EA5E9] bg-transparent text-[15px] font-semibold tracking-[0.01em] no-underline text-[#0EA5E9] transition-all duration-200 hover:bg-[#E0F2FE]"
                 >
-                  Book Now
-                </Button>
+                  Login to Book
+                </Link>
               )}
             </Card.Content>
           </Card>
