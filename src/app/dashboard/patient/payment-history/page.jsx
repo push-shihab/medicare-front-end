@@ -2,6 +2,9 @@ import React from "react";
 import PaymentHistoryClient from "./PaymentHistoryClient";
 import { getSession } from "@/app/utility/server/session";
 import { getPaymentHistoryById } from "@/app/utility/fetchData/payment/payment";
+export const metadata = {
+  title: "Patient | Payment-History",
+};
 
 const PayemntHistoryPage = async () => {
   const session = await getSession();

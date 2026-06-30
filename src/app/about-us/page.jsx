@@ -1,6 +1,6 @@
-"use client";
-
-import React from "react";
+export const metadata = {
+  title: "About Us",
+};
 
 export default function AboutMediCareConnect() {
   const cards = [

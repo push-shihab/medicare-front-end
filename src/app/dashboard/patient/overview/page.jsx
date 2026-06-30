@@ -5,6 +5,9 @@ import { getSession } from "@/app/utility/server/session";
 import OverviewStats from "@/components/Dashboard/patient/OverviewStats";
 import UpcomingAppointmentsTable from "@/components/Dashboard/patient/UpcomingAppointmentsTable";
 import React from "react";
+export const metadata = {
+  title: "Patient | Overview",
+};
 
 const PatientOverviewPage = async () => {
   const user = await getSession();

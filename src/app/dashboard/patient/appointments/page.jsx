@@ -2,6 +2,9 @@ import { getAppointmentsByPatientId } from "@/app/utility/fetchData/appointment/
 import { getSession } from "@/app/utility/server/session";
 import PatientAppointments from "@/components/Dashboard/patient/PatientAppointments";
 import React from "react";
+export const metadata = {
+  title: "Patient | Appointments",
+};
 
 const AppointmentPage = async () => {
   const session = await getSession();

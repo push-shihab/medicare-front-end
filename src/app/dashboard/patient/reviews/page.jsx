@@ -1,6 +1,4 @@
-import { Button } from "@heroui/react";
-import { FaPlus, FaStar } from "react-icons/fa";
-import { FiEdit2, FiTrash2 } from "react-icons/fi";
+import { FaStar } from "react-icons/fa";
 import { RiFeedbackLine } from "react-icons/ri";
 import ReviewModal from "./ReviewModal";
 import { getAppointmentsByPatientId } from "@/app/utility/fetchData/appointment/appointment";
@@ -8,6 +6,9 @@ import { getSession } from "@/app/utility/server/session";
 import { getReviewsById } from "@/app/utility/fetchData/review/review";
 import EditReviewModal from "./EditReviewModal";
 import DeleteReviewModal from "./DeleteReviewModal";
+export const metadata = {
+  title: "Patient | Reviews",
+};
 
 export default async function ReviewsPage() {
   const user = await getSession();

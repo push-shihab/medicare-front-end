@@ -6,6 +6,9 @@ import {
   getDoctorDataByEmail,
   getReviewByDoctorEmail,
 } from "@/app/utility/fetchData/doctor/doctor";
+export const metadata = {
+  title: "Doctor | Overview",
+};
 
 const DoctorOverviewPage = async () => {
   const user = await getSession();

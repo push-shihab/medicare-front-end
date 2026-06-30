@@ -4,6 +4,9 @@ import { getAllUsers } from "@/app/utility/fetchData/admin/admin";
 import { getAllAppointments } from "@/app/utility/fetchData/appointment/appointment";
 import { getAllReviews } from "@/app/utility/fetchData/review/review";
 import { getAllDoctorsForAdmin } from "@/app/utility/fetchData/doctor/doctor";
+export const metadata = {
+  title: "Admin | Analytics",
+};
 
 const AdminAnalyticsPage = async () => {
   const doctors = await getAllDoctorsForAdmin();

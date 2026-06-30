@@ -4,16 +4,15 @@ import Link from "next/link";
 import {
   IoCheckmarkCircle,
   IoArrowBack,
-  IoCalendarOutline,
   IoTimeOutline,
   IoWalletOutline,
-  IoPersonOutline,
   IoMedicalOutline,
   IoReceiptOutline,
-  IoMailOutline,
 } from "react-icons/io5";
 import { createPayment } from "../utility/actions/payment/payment";
-import toast from "react-hot-toast";
+export const metadata = {
+  title: "Successfully Paid",
+};
 
 export default async function Success({ searchParams }) {
   const { session_id } = await searchParams;

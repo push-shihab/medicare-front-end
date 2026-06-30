@@ -2,6 +2,10 @@ import React from "react";
 import AllDoctorsClient from "./AllDoctorsClient";
 import { getAllDoctors } from "../utility/fetchData/doctor/doctor";
 
+export const metadata = {
+  title: "Find Doctors",
+};
+
 const page = async ({ searchParams }) => {
   const params = await searchParams;
   const querySearch = new URLSearchParams(params);

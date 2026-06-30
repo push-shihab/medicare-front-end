@@ -2,6 +2,9 @@ import React from "react";
 import PrescriptionClient from "./PrescriptionClient";
 import { getPrescriptionsByDoctorId } from "@/app/utility/fetchData/prescription/prescription";
 import { getSession } from "@/app/utility/server/session";
+export const metadata = {
+  title: "Doctor | Prescription",
+};
 
 const page = async () => {
   const user = await getSession();

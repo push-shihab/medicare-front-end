@@ -4,6 +4,14 @@ import {
   getReviewByDoctorEmail,
 } from "@/app/utility/fetchData/doctor/doctor";
 import { getSession } from "@/app/utility/server/session";
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const doctor = await getDoctorById(id);
+
+  return {
+    title: `Dr. ${doctor.doctorName}`,
+  };
+}
 
 const DoctorDetailsPage = async ({ params }) => {
   const { id } = await params;
