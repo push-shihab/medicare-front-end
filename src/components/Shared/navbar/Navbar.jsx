@@ -36,7 +36,7 @@ export default function Navbar() {
       <header className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6">
         <div className="flex items-center gap-4">
           <button
-            className="text-[#475569] focus:outline-none md:hidden transition-colors hover:text-[#0EA5E9]"
+            className="text-[#475569] focus:outline-none lg:hidden transition-colors hover:text-[#0EA5E9]"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -58,7 +58,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <ul className="hidden items-center gap-8 md:flex h-full">
+        <ul className="hidden items-center gap-8 lg:flex h-full">
           {menuItems.map((item, index) => {
             const isActive =
               item.href === "/" ? path === "/" : path.startsWith(item.href);
@@ -92,10 +92,12 @@ export default function Navbar() {
         </ul>
 
         <div className="flex items-center gap-3">
-          {data?.user ? (
+          {data?.user && (
             <>
               <div className="flex flex-col">
-                <span className="font-medium">Hello, {data?.user.name}</span>
+                <span className="font-medium sm:text-[16px] text-[12px]">
+                  Hello, {data?.user.name}
+                </span>
                 <span className="text-[#bdbdbd] text-[12px]">
                   {data?.user.role === "doctor"
                     ? "(Doctor)"
@@ -140,29 +142,30 @@ export default function Navbar() {
                 )}
               </div>
             </>
-          ) : (
-            <>
+          )}
+          {!data?.user && (
+            <div className="gap-2 hidden lg:flex">
               <Link
                 href="/login"
                 variant="bordered"
-                className="h-10 flex justify-center px-3 rounded-2xl border-[1.5px] border-[#0EA5E9] bg-transparent text-[15px] font-semibold tracking-[0.01em] no-underline text-[#0EA5E9] transition-all duration-200 hover:bg-[#E0F2FE]"
+                className="h-10 flex justify-center px-3 rounded-xl border-[1.5px] border-[#0EA5E9] bg-transparent text-[15px] font-semibold tracking-[0.01em] no-underline text-[#0EA5E9] transition-all duration-200 hover:bg-[#E0F2FE]"
               >
                 Login
               </Link>
 
               <Link
                 href="/register"
-                className="h-10 flex justify-center px-3 rounded-2xl bg-[#0EA5E9] text-[15px] font-semibold tracking-[0.01em] text-white shadow-sm no-underline transition-all duration-200 hover:bg-[#0369A1]"
+                className="h-10 flex justify-center px-3 rounded-xl bg-[#0EA5E9] text-[15px] font-semibold tracking-[0.01em] text-white shadow-sm no-underline transition-all duration-200 hover:bg-[#0369A1]"
               >
                 Register
               </Link>
-            </>
+            </div>
           )}
         </div>
       </header>
 
       {isMenuOpen && (
-        <div className="border-b border-[#E2E8F0] bg-[#FFFFFF]/95 backdrop-blur-md md:hidden animate-in fade-in slide-in-from-top-4 duration-200">
+        <div className="border-b border-[#E2E8F0] bg-[#FFFFFF]/95 backdrop-blur-md lg:hidden animate-in fade-in slide-in-from-top-4 duration-200">
           <ul className="flex flex-col gap-1 p-4">
             {menuItems.map((item, index) => {
               const isActive =
@@ -191,6 +194,36 @@ export default function Navbar() {
               );
             })}
           </ul>
+          {!data?.user ? (
+            <div className="flex gap-2 ml-6 pb-5">
+              <Link
+                href="/login"
+                variant="bordered"
+                className="h-10 flex justify-center px-3 rounded-xl border-[1.5px] border-[#0EA5E9] bg-transparent text-[15px] font-semibold tracking-[0.01em] no-underline text-[#0EA5E9] transition-all duration-200 hover:bg-[#E0F2FE]"
+              >
+                Login
+              </Link>
+
+              <Link
+                href="/register"
+                className="h-10 flex justify-center px-3 rounded-xl bg-[#0EA5E9] text-[15px] font-semibold tracking-[0.01em] text-white shadow-sm no-underline transition-all duration-200 hover:bg-[#0369A1]"
+              >
+                Register
+              </Link>
+            </div>
+          ) : (
+            <div className="ml-6 pb-5">
+              <button
+                onClick={() => {
+                  handleLogout();
+                  setIsAvatarDropdownOpen(false);
+                }}
+                className="block w-full text-left rounded-xl px-4 py-2 text-sm text-[#EF4444] hover:bg-[#FEE2E2] cursor-pointer"
+              >
+                Logout
+              </button>
+            </div>
+          )}
         </div>
       )}
     </nav>

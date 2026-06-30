@@ -22,6 +22,10 @@ export default function DoctorDetailsClient({
       toast.error("Please select date and time to proceed");
       return;
     }
+    if (session.status !== "active") {
+      toast.error("Suspended users cannot book an appointment");
+      return;
+    }
     if (session) {
       const data = {
         patientId: session.id,
